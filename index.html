@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#e9f4f1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Леонид Агафонов — массаж и телесные практики</title>
+  <meta name="description" content="Авторский массаж, гвоздепрактики и телесно-ориентированные группы Леонида Агафонова. Более 33 лет практики. Узнайте о форматах и свяжитесь с Леонидом.">
+  <meta property="og:title" content="Леонид Агафонов — массаж и телесные практики">
+  <meta property="og:description" content="Массаж, гвоздепрактики и работа с состоянием через тело.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://leonid-agafonov-praktika.pastel-seal-2668.chatgpt.site/assets/leonid-agafonov.webp">
+  <style>
+    :root {
+      --ink: #173a3b;
+      --ink-soft: #4c6869;
+      --muted: #657d7a;
+      --blue: #dbeef4;
+      --sky: #eff8fa;
+      --mint: #dcefe7;
+      --sage: #91b6a5;
+      --teal: #275c5a;
+      --white: #fffdfa;
+      --cream: #f8faf5;
+      --line: rgba(35, 88, 83, .15);
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--cream); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    button { font: inherit; }
+    ::selection { background: #b5dacc; color: #173a3b; }
+    :focus-visible { outline: 3px solid #397e7d; outline-offset: 4px; }
+    .skip { position: absolute; left: 1rem; top: -5rem; z-index: 100; background: white; padding: .8rem 1rem; border-radius: .6rem; }
+    .skip:focus { top: 1rem; }
+    .container { width: min(1200px, calc(100% - 88px)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: .7rem; color: var(--teal); font-size: .72rem; font-weight: 750; letter-spacing: .17em; text-transform: uppercase; }
+    .eyebrow::before { content: ''; display: block; width: 27px; height: 1px; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, .display { font-family: var(--serif); font-weight: 400; letter-spacing: -.055em; }
+    h2 { font-size: clamp(2.65rem, 5.2vw, 5.2rem); line-height: 1.07; }
+    p { line-height: 1.7; }
+    .button { display: inline-flex; justify-content: center; align-items: center; gap: 1.1rem; min-height: 54px; padding: 0 1.45rem; background: var(--teal); color: white; border: 1px solid var(--teal); border-radius: 100px; text-decoration: none; font-size: .86rem; font-weight: 700; transition: transform .25s, background .25s, border-color .25s; }
+    .button:hover { transform: translateY(-3px); background: #194b49; }
+    .button .arrow { font-size: 1.3rem; font-weight: 400; line-height: 1; }
+    .button.outline { color: var(--teal); background: transparent; }
+    .button.outline:hover { background: rgba(39,92,90,.08); }
+    .text-link { display: inline-flex; align-items: center; gap: .7rem; padding-bottom: .35rem; border-bottom: 1px solid currentColor; color: var(--teal); text-decoration: none; font-weight: 700; font-size: .9rem; }
+    .text-link:hover { gap: 1rem; }
+    .site-header { position: relative; z-index: 20; background: #e9f4f1; }
+    .header-inner { min-height: 91px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+    .brand { display: inline-flex; align-items: center; gap: .75rem; text-decoration: none; flex-shrink: 0; }
+    .brand-mark { display: grid; place-items: center; width: 37px; height: 37px; border: 1px solid #6da397; border-radius: 50%; font-family: var(--serif); font-size: 1.55rem; line-height: 1; font-style: italic; }
+    .brand-name { font-size: .76rem; font-weight: 800; letter-spacing: .135em; line-height: 1.35; text-transform: uppercase; }
+    .site-nav { display: flex; align-items: center; gap: clamp(1.1rem, 2vw, 2rem); margin-left: auto; }
+    .site-nav a { text-decoration: none; font-size: .83rem; font-weight: 600; color: #385f5d; transition: color .2s; }
+    .site-nav a:hover { color: #102f2f; }
+    .header-cta { min-height: 43px; padding: 0 1.15rem; font-size: .79rem; }
+    .menu-toggle { display: none; border: 0; background: transparent; padding: .7rem; color: var(--ink); cursor: pointer; }
+    .menu-toggle span { display: block; width: 23px; height: 2px; margin: 5px 0; background: currentColor; }
+    .hero { overflow: hidden; position: relative; background: linear-gradient(125deg, #e9f4f1 2%, #e5f3f6 55%, #daebea 100%); }
+    .hero::before { content: ''; position: absolute; width: 810px; height: 810px; border: 1px solid rgba(83,139,134,.15); border-radius: 50%; right: -260px; top: -190px; pointer-events: none; }
+    .hero::after { content: ''; position: absolute; width: 610px; height: 610px; border: 1px solid rgba(83,139,134,.12); border-radius: 50%; right: -160px; top: -90px; pointer-events: none; }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; min-height: 735px; gap: clamp(2rem, 5vw, 5rem); padding: 45px 0 90px; }
+    .hero-copy { padding-top: 10px; }
+    .hero h1 { max-width: 710px; font-size: clamp(4rem, 6.2vw, 7.1rem); line-height: .99; margin: 2rem 0 1.8rem; }
+    .hero h1 em { color: #6d9a8f; font-weight: 400; }
+    .hero-lead { max-width: 510px; color: var(--ink-soft); font-size: clamp(1rem, 1.25vw, 1.18rem); line-height: 1.75; margin-bottom: 2.2rem; }
+    .hero-actions { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
+    .hero-photo-wrap { position: relative; width: min(100%, 500px); justify-self: end; padding: 20px 18px 0; }
+    .hero-photo-wrap::before { content: ''; position: absolute; inset: 0 0 20px; background: #acd1c6; border-radius: 250px 250px 28px 28px; transform: rotate(5deg); }
+    .hero-photo { position: relative; overflow: hidden; aspect-ratio: .78; border-radius: 250px 250px 24px 24px; background: #0c1718; box-shadow: 0 28px 60px rgba(30,72,69,.16); }
+    .hero-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 24%; }
+    .photo-caption { position: absolute; z-index: 2; left: -31px; bottom: 38px; padding: 1rem 1.3rem; border: 1px solid rgba(255,255,255,.75); background: rgba(250,253,249,.92); box-shadow: 0 10px 35px rgba(21,58,58,.1); backdrop-filter: blur(12px); border-radius: 3px; }
+    .photo-caption span { display: block; color: var(--muted); font-size: .68rem; letter-spacing: .13em; text-transform: uppercase; margin-bottom: .3rem; }
+    .photo-caption strong { font-family: var(--serif); font-weight: 400; font-size: 1.38rem; }
+    .hero-bottom { position: absolute; bottom: 0; left: 0; right: 0; border-top: 1px solid rgba(46,103,97,.16); }
+    .hero-bottom-inner { display: flex; justify-content: space-between; align-items: center; min-height: 67px; color: #5d817c; font-size: .74rem; text-transform: uppercase; letter-spacing: .14em; }
+    .hero-bottom .line { height: 1px; width: 24%; background: rgba(46,103,97,.22); }
+    .section { padding: clamp(90px, 10vw, 150px) 0; }
+    .section-intro { max-width: 750px; margin-bottom: 3.3rem; }
+    .section-intro h2 { margin: 1.25rem 0 1rem; }
+    .section-intro p { color: var(--ink-soft); max-width: 610px; font-size: 1.02rem; }
+    .services { background: var(--cream); }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .service-card { display: flex; flex-direction: column; min-height: 450px; padding: 2.05rem; border: 1px solid var(--line); border-radius: 18px; background: #fffdfa; transition: transform .3s, box-shadow .3s; }
+    .service-card:hover { transform: translateY(-7px); box-shadow: 0 18px 44px rgba(43,91,82,.09); }
+    .service-card:nth-child(2) { background: #e4f2f2; }
+    .service-card:nth-child(3) { background: #e8f2e9; }
+    .service-no { font-family: var(--serif); color: #5d918a; font-size: 1.5rem; }
+    .service-symbol { display: grid; place-items: center; width: 80px; height: 80px; margin: 2rem 0 1.2rem; border: 1px solid rgba(39,92,90,.3); border-radius: 50%; color: var(--teal); font-family: var(--serif); font-size: 2.5rem; font-style: italic; }
+    .service-card h3 { font-family: var(--serif); font-size: clamp(1.8rem, 2.15vw, 2.35rem); font-weight: 400; letter-spacing: -.035em; margin-bottom: .9rem; }
+    .service-card p { color: var(--ink-soft); font-size: .91rem; margin-bottom: 1.8rem; }
+    .service-card .text-link { margin-top: auto; align-self: flex-start; }
+    .service-note { margin: 1.55rem 0 0; color: var(--muted); font-size: .88rem; }
+    .about { background: #e9f4f1; overflow: hidden; }
+    .about-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(4rem, 9vw, 10rem); align-items: center; }
+    .about-statement { position: relative; min-height: 445px; display: flex; flex-direction: column; justify-content: center; padding: 3rem 2.5rem; border-radius: 230px 230px 20px 20px; background: linear-gradient(160deg, #aed4cf, #cce7df 62%, #d6e9ec); text-align: center; }
+    .about-statement::after { content: ''; position: absolute; inset: 15px; border: 1px solid rgba(255,255,255,.7); border-radius: inherit; pointer-events: none; }
+    .about-statement .number { font-family: var(--serif); font-size: clamp(6rem, 11vw, 10rem); letter-spacing: -.09em; line-height: .9; }
+    .about-statement .years { margin-top: 1rem; font-size: .78rem; font-weight: 750; letter-spacing: .18em; text-transform: uppercase; }
+    .about-statement p { max-width: 245px; margin: 2rem auto 0; color: #426a66; font-family: var(--serif); font-size: 1.25rem; line-height: 1.35; }
+    .about h2 { margin: 1.2rem 0 1.45rem; }
+    .about-copy > p { color: var(--ink-soft); font-size: 1.03rem; max-width: 630px; }
+    .about-credential { display: grid; grid-template-columns: 31px 1fr; gap: .9rem; padding: 1.2rem 0; border-top: 1px solid rgba(39,92,90,.19); font-size: .88rem; line-height: 1.55; }
+    .about-credential:first-of-type { margin-top: 2rem; }
+    .about-credential .dot { color: #6a9c92; font-family: var(--serif); font-size: 1.5rem; line-height: 1; }
+    .approach { background: var(--white); }
+    .approach-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8vw; }
+    .approach-layout .section-intro { position: sticky; top: 35px; align-self: start; margin: 0; }
+    .steps { border-top: 1px solid var(--line); }
+    .step { display: grid; grid-template-columns: 55px 1fr; gap: 1.4rem; padding: 2.2rem 0; border-bottom: 1px solid var(--line); }
+    .step .num { color: #6c9f95; font-family: var(--serif); font-size: 1.5rem; }
+    .step h3 { margin: 0 0 .6rem; font-family: var(--serif); font-size: 1.75rem; font-weight: 400; letter-spacing: -.035em; }
+    .step p { max-width: 430px; margin: 0; color: var(--ink-soft); font-size: .94rem; }
+    .recognition { position: relative; overflow: hidden; background: #285c59; color: #f5fbf6; }
+    .recognition::after { content: ''; position: absolute; width: 580px; height: 580px; border: 1px solid rgba(219,242,231,.2); border-radius: 50%; right: -150px; bottom: -360px; box-shadow: 0 0 0 95px rgba(219,242,231,.035), 0 0 0 190px rgba(219,242,231,.025); }
+    .recognition-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 9vw; align-items: center; }
+    .recognition .eyebrow { color: #b7ddd0; }
+    .recognition h2 { margin: 1.5rem 0; max-width: 650px; }
+    .recognition p { color: #d4e9e3; font-size: 1.02rem; max-width: 530px; }
+    .recognition-facts { border-top: 1px solid rgba(230,248,238,.28); }
+    .fact { padding: 1.55rem 0; border-bottom: 1px solid rgba(230,248,238,.28); }
+    .fact small { display: block; color: #a9d4c7; font-size: .73rem; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; margin-bottom: .5rem; }
+    .fact strong { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(1.25rem, 2.1vw, 1.75rem); line-height: 1.3; }
+    .recognition .text-link { color: #d8f2e5; margin-top: 2rem; }
+    .faq { background: #f4f9f5; }
+    .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8vw; }
+    .faq .section-intro { margin: 0; }
+    .faq-list { border-top: 1px solid var(--line); }
+    .faq details { border-bottom: 1px solid var(--line); }
+    .faq summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.55rem 0; cursor: pointer; list-style: none; font-size: 1rem; font-weight: 650; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: '+'; flex: 0 0 auto; display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid var(--line); border-radius: 50%; color: var(--teal); font-size: 1.3rem; font-weight: 400; }
+    .faq details[open] summary::after { content: '−'; }
+    .faq details p { color: var(--ink-soft); max-width: 550px; margin: -.25rem 2rem 1.6rem 0; font-size: .94rem; }
+    .contact { padding: clamp(90px, 10vw, 150px) 0 0; background: #dceee9; }
+    .contact-panel { display: grid; grid-template-columns: 1.2fr .8fr; gap: 5rem; align-items: end; padding-bottom: clamp(5rem, 9vw, 9rem); }
+    .contact h2 { max-width: 760px; font-size: clamp(3.8rem, 6.5vw, 7.3rem); margin: 1.4rem 0; }
+    .contact-lead { max-width: 520px; color: var(--ink-soft); font-size: 1.05rem; }
+    .contact-action { padding-bottom: 1rem; }
+    .contact-action .button { width: 100%; max-width: 330px; }
+    .contact-action p { max-width: 360px; color: var(--muted); font-size: .85rem; margin: 1.2rem 0 0; }
+    .socials { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 2.5rem; }
+    .socials a { text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: .3rem; color: var(--teal); font-size: .85rem; font-weight: 700; }
+    .socials a:hover { color: #112f2f; }
+    footer { border-top: 1px solid rgba(39,92,90,.2); }
+    .footer-inner { min-height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; color: #547873; font-size: .76rem; }
+    .footer-inner a { text-decoration: none; }
+    @media (max-width: 1000px) {
+      .container { width: min(100% - 52px, 1200px); }
+      .site-nav { gap: 1rem; }
+      .hero-grid { min-height: 650px; gap: 2rem; }
+      .hero h1 { font-size: clamp(3.65rem, 6vw, 5.8rem); }
+      .photo-caption { left: -15px; }
+      .service-card { padding: 1.55rem; min-height: 465px; }
+      .about-grid { gap: 3rem; }
+    }
+    @media (max-width: 760px) {
+      .container { width: min(100% - 38px, 580px); }
+      .header-inner { min-height: 70px; }
+      .header-cta { display: none; }
+      .menu-toggle { display: block; margin-left: auto; }
+      .site-nav { display: none; position: absolute; top: 70px; left: 0; right: 0; margin: 0; padding: 1rem 19px 1.5rem; background: #e9f4f1; box-shadow: 0 18px 30px rgba(21,60,57,.08); flex-direction: column; align-items: stretch; gap: 0; }
+      .site-nav.open { display: flex; }
+      .site-nav a { padding: .85rem .5rem; font-size: .95rem; }
+      .hero-grid { grid-template-columns: 1fr; min-height: unset; padding: 60px 0 95px; gap: 3rem; }
+      .hero-copy { padding: 0; }
+      .hero h1 { font-size: clamp(3.7rem, 12vw, 5.7rem); margin: 1.5rem 0; }
+      .hero-lead { max-width: 520px; }
+      .hero-photo-wrap { width: min(92%, 420px); justify-self: center; padding: 13px 11px 0; }
+      .photo-caption { left: -13px; bottom: 24px; }
+      .hero-bottom-inner { justify-content: center; min-height: 54px; font-size: .64rem; }
+      .hero-bottom .line, .hero-bottom-inner span:last-child { display: none; }
+      .section { padding: 90px 0; }
+      .section-intro { margin-bottom: 2rem; }
+      .service-grid, .about-grid, .approach-layout, .recognition-grid, .faq-grid, .contact-panel { grid-template-columns: 1fr; }
+      .service-grid { gap: 12px; }
+      .service-card { min-height: 335px; }
+      .service-symbol { margin: 1.3rem 0 1rem; width: 64px; height: 64px; }
+      .about-grid { gap: 3rem; }
+      .about-statement { min-height: 370px; width: min(100%, 420px); margin-inline: auto; }
+      .approach-layout .section-intro { position: static; }
+      .recognition-grid { gap: 2.4rem; }
+      .faq-grid { gap: 1.8rem; }
+      .contact-panel { gap: 1rem; }
+      .footer-inner { min-height: 110px; align-items: flex-start; justify-content: center; flex-direction: column; gap: .65rem; }
+    }
+    @media (max-width: 420px) {
+      .hero h1 { font-size: 3.45rem; }
+      .hero-actions { gap: 1.25rem; }
+      .hero-actions .button { width: 100%; }
+      .hero-photo-wrap { width: 100%; }
+      .photo-caption { left: -4px; padding: .75rem .9rem; }
+      .photo-caption strong { font-size: 1.15rem; }
+      .service-card { min-height: 360px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">К содержанию</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Леонид Агафонов — на главную">
+        <span class="brand-mark" aria-hidden="true">л</span>
+        <span class="brand-name">Леонид<br>Агафонов</span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+        <a href="#formats">Форматы</a>
+        <a href="#about">О Леониде</a>
+        <a href="#approach">Как проходит</a>
+        <a href="#questions">Вопросы</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <a class="button header-cta" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Связаться <span class="arrow" aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню"><span></span><span></span></button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Массаж · телесные практики</span>
+          <h1 id="hero-title">Внимание к телу.<br><em>Время для себя.</em></h1>
+          <p class="hero-lead">Авторский массаж, гвоздепрактики и телесно-ориентированная работа с Леонидом Агафоновым. Более 33 лет опыта и индивидуальный подход к каждой встрече.</p>
+          <div class="hero-actions">
+            <a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Обсудить встречу <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#formats">Выбрать формат <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <div class="hero-photo-wrap">
+          <div class="hero-photo"><img src="assets/leonid-agafonov.webp" alt="Портрет Леонида Агафонова" width="1000" height="1250" fetchpriority="high"></div>
+          <div class="photo-caption"><span>Практик и мастер массажа</span><strong>Леонид Агафонов</strong></div>
+        </div>
+      </div>
+      <div class="hero-bottom"><div class="container hero-bottom-inner"><span>Индивидуальные и групповые встречи</span><span class="line" aria-hidden="true"></span><span>Листайте вниз ↓</span></div></div>
+    </section>
+
+    <section class="section services" id="formats" aria-labelledby="formats-title">
+      <div class="container">
+        <div class="section-intro"><span class="eyebrow">Направления</span><h2 id="formats-title">Практика, которая откликается вам</h2><p>У каждого формата своя задача и ритм. Если не знаете, с чего начать, напишите Леониду — он поможет выбрать подходящую встречу.</p></div>
+        <div class="service-grid">
+          <article class="service-card"><span class="service-no">01 / прикосновение</span><span class="service-symbol" aria-hidden="true">~</span><h3>Авторский массаж</h3><p>Телесная практика на основе многолетнего опыта Леонида. Формат и особенности сеанса обсуждаются лично до записи.</p><a class="text-link" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Уточнить детали <span aria-hidden="true">↗</span></a></article>
+          <article class="service-card"><span class="service-no">02 / внимание</span><span class="service-symbol" aria-hidden="true">✳</span><h3>Гвоздепрактики</h3><p>Индивидуальные сессии и групповые встречи с фокусом на внимании к состоянию, воле и собственным ощущениям.</p><a class="text-link" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Уточнить детали <span aria-hidden="true">↗</span></a></article>
+          <article class="service-card"><span class="service-no">03 / диалог</span><span class="service-symbol" aria-hidden="true">◌</span><h3>Телесные группы</h3><p>Телесно-ориентированные практики и исследование себя в поддерживающей групповой атмосфере.</p><a class="text-link" href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Смотреть анонсы <span aria-hidden="true">↗</span></a></article>
+        </div>
+        <p class="service-note">Длительность, стоимость и место встречи Леонид сообщит при обращении. Условия добавим на сайт после согласования.</p>
+      </div>
+    </section>
+
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-statement"><div class="number">33+</div><div class="years">года опыта в массаже</div><p>Опыт, внимание и пространство для вашего собственного пути.</p></div>
+        <div class="about-copy"><span class="eyebrow">Знакомство</span><h2 id="about-title">Леонид Агафонов</h2><p>Мастер массажа, гвоздепрактик, телесно-ориентированный психолог и тренер по эмоциональному интеллекту. В своей работе Леонид соединяет физиологический и психологический взгляд на человека.</p><p>Проводит индивидуальные сеансы массажа и гвоздепрактики, а также групповые встречи для тех, кому важно лучше слышать себя и своё тело.</p><div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>Участник рекордов России и мира по массовому гвоздестоянию и гвоздехождению.</span></div><div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>Приглашённый мастер Всероссийского конгресс-фестиваля «Алхимия тела».</span></div></div>
+      </div>
+    </section>
+
+    <section class="section approach" id="approach" aria-labelledby="approach-title">
+      <div class="container approach-layout">
+        <div class="section-intro"><span class="eyebrow">Первый шаг</span><h2 id="approach-title">Как проходит знакомство</h2><p>Начать можно с короткого сообщения. Необязательно сразу разбираться во всех названиях практик.</p></div>
+        <div class="steps"><div class="step"><span class="num">01</span><div><h3>Расскажите о запросе</h3><p>Напишите Леониду, что вас заинтересовало: массаж, гвоздепрактика или групповая встреча. Личные подробности можно обсудить непосредственно с ним.</p></div></div><div class="step"><span class="num">02</span><div><h3>Подберите формат</h3><p>Леонид уточнит особенности практики, длительность, стоимость и место встречи, ответит на ваши вопросы.</p></div></div><div class="step"><span class="num">03</span><div><h3>Приходите на встречу</h3><p>Перед началом можно обсудить ожидания и комфортный для вас ход занятия. Формат встречи зависит от выбранной практики.</p></div></div></div>
+      </div>
+    </section>
+
+    <section class="section recognition" id="events" aria-labelledby="events-title">
+      <div class="container recognition-grid"><div><span class="eyebrow">За пределами индивидуальных встреч</span><h2 id="events-title">Практика, которой делятся</h2><p>Леонид проводит групповые занятия и участвует в мероприятиях, посвящённых телесным практикам. Анонсы ближайших встреч публикуются в его Telegram-канале.</p><a class="text-link" href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Перейти к анонсам <span aria-hidden="true">↗</span></a></div><div class="recognition-facts"><div class="fact"><small>Опыт</small><strong>Более 33 лет авторской практики массажа</strong></div><div class="fact"><small>Участие</small><strong>Рекорды России и мира по массовому гвоздестоянию и гвоздехождению</strong></div><div class="fact"><small>События</small><strong>Приглашённый мастер конгресс-фестиваля «Алхимия тела»</strong></div></div></div>
+    </section>
+
+    <section class="section faq" id="questions" aria-labelledby="faq-title">
+      <div class="container faq-grid"><div class="section-intro"><span class="eyebrow">Частые вопросы</span><h2 id="faq-title">Перед первой встречей</h2><p>Несколько ответов, которые помогут сориентироваться. Остальное можно уточнить напрямую у Леонида.</p></div><div class="faq-list"><details><summary>Нужно ли заранее выбирать практику?</summary><p>Нет. Расскажите, что вас заинтересовало и чего вы ждёте от встречи. Леонид поможет разобраться в форматах и предложит подходящий вариант.</p></details><details><summary>Гвоздепрактика подходит тем, кто пробует впервые?</summary><p>Можно обсудить первый опыт с Леонидом до записи. Он расскажет, как проходит занятие и на что обратить внимание перед участием.</p></details><details><summary>Как узнать стоимость и длительность?</summary><p>Напишите Леониду в Telegram. Он сообщит актуальные условия выбранного формата до подтверждения записи.</p></details><details><summary>Где смотреть расписание групповых встреч?</summary><p>Анонсы мероприятий и групповых практик Леонид публикует в своём <a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Telegram-канале</a>.</p></details></div></div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="container contact-panel"><div><span class="eyebrow">Связаться</span><h2 id="contact-title">Начните с разговора</h2><p class="contact-lead">Напишите Леониду, чтобы выбрать практику, узнать стоимость и договориться о времени встречи.</p><div class="socials"><a href="https://vk.com/leonid_agafonov_33" target="_blank" rel="noopener noreferrer">ВКонтакте ↗</a><a href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Личный Telegram ↗</a><a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Анонсы практик ↗</a></div></div><div class="contact-action"><a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Написать Леониду <span class="arrow" aria-hidden="true">↗</span></a><p>Сайт не собирает заявки и не запрашивает ваши контактные данные. Общение продолжится в выбранном вами сервисе.</p></div></div><footer><div class="container footer-inner"><span>© 2026 Леонид Агафонов</span><a href="#top">Вернуться наверх ↑</a></div></footer></section>
+  </main>
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.site-nav');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    });
+    nav.addEventListener('click', event => {
+      if (event.target.closest('a')) {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Открыть меню');
+      }
+    });
+  </script>
+</body>
+</html>
