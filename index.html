@@ -4,28 +4,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#e9f4f1">
+  <meta name="theme-color" content="#e9eeee">
   <title>Леонид Агафонов — массаж и телесные практики</title>
-  <meta name="description" content="Авторский массаж, гвоздепрактики и телесно-ориентированные группы Леонида Агафонова. Более 33 лет практики. Узнайте о форматах и свяжитесь с Леонидом.">
+  <meta name="description" content="Авторский массаж, индивидуальные гвоздепрактики и телесно-ориентированные группы Леонида Агафонова. Более 33 лет практики. Выберите формат и обсудите встречу.">
   <meta property="og:title" content="Леонид Агафонов — массаж и телесные практики">
-  <meta property="og:description" content="Массаж, гвоздепрактики и работа с состоянием через тело.">
+  <meta property="og:description" content="Авторский массаж, гвоздепрактики и терапевтические группы с Леонидом Агафоновым.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ranhomer2010-sketch.github.io/Leonid/assets/leonid-agafonov.webp">
   <style>
+    @font-face { font-family: 'Approach Sans'; src: url('assets/approach-sans-regular.ttf') format('truetype'); font-style: normal; font-weight: 400 600; font-display: swap; }
+    @font-face { font-family: 'Approach Sans'; src: url('assets/approach-sans-bold.ttf') format('truetype'); font-style: normal; font-weight: 700 900; font-display: swap; }
     :root {
-      --ink: #173a3b;
-      --ink-soft: #4c6869;
-      --muted: #657d7a;
-      --blue: #dbeef4;
-      --sky: #eff8fa;
-      --mint: #dcefe7;
-      --sage: #91b6a5;
-      --teal: #275c5a;
-      --white: #fffdfa;
-      --cream: #f8faf5;
-      --line: rgba(35, 88, 83, .15);
-      --serif: Georgia, 'Times New Roman', serif;
-      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      --ink: #303d42;
+      --ink-soft: #59676c;
+      --muted: #68777b;
+      --blue: #dae7eb;
+      --sky: #f0f5f6;
+      --mint: #e1eae5;
+      --sage: #90aaa1;
+      --teal: #35645e;
+      --white: #ffffff;
+      --cream: #f5f6f5;
+      --line: #d6dedd;
+      --serif: 'Approach Sans', Arial, sans-serif;
+      --sans: 'Approach Sans', Arial, sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -51,7 +53,7 @@
     .button.outline:hover { background: rgba(39,92,90,.08); }
     .text-link { display: inline-flex; align-items: center; gap: .7rem; padding-bottom: .35rem; border-bottom: 1px solid currentColor; color: var(--teal); text-decoration: none; font-weight: 700; font-size: .9rem; }
     .text-link:hover { gap: 1rem; }
-    .site-header { position: relative; z-index: 20; background: #e9f4f1; }
+    .site-header { position: relative; z-index: 20; background: #e9eeee; }
     .header-inner { min-height: 91px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
     .brand { display: inline-flex; align-items: center; gap: .75rem; text-decoration: none; flex-shrink: 0; }
     .brand-mark { display: grid; place-items: center; width: 37px; height: 37px; border: 1px solid #6da397; border-radius: 50%; font-family: var(--serif); font-size: 1.55rem; line-height: 1; font-style: italic; }
@@ -62,7 +64,7 @@
     .header-cta { min-height: 43px; padding: 0 1.15rem; font-size: .79rem; }
     .menu-toggle { display: none; border: 0; background: transparent; padding: .7rem; color: var(--ink); cursor: pointer; }
     .menu-toggle span { display: block; width: 23px; height: 2px; margin: 5px 0; background: currentColor; }
-    .hero { overflow: hidden; position: relative; background: linear-gradient(125deg, #e9f4f1 2%, #e5f3f6 55%, #daebea 100%); }
+    .hero { overflow: hidden; position: relative; background: linear-gradient(125deg, #e9eeee 2%, #e1e9ec 55%, #dbe6e3 100%); }
     .hero::before { content: ''; position: absolute; width: 810px; height: 810px; border: 1px solid rgba(83,139,134,.15); border-radius: 50%; right: -260px; top: -190px; pointer-events: none; }
     .hero::after { content: ''; position: absolute; width: 610px; height: 610px; border: 1px solid rgba(83,139,134,.12); border-radius: 50%; right: -160px; top: -90px; pointer-events: none; }
     .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; min-height: 735px; gap: clamp(2rem, 5vw, 5rem); padding: 45px 0 90px; }
@@ -72,7 +74,7 @@
     .hero-lead { max-width: 510px; color: var(--ink-soft); font-size: clamp(1rem, 1.25vw, 1.18rem); line-height: 1.75; margin-bottom: 2.2rem; }
     .hero-actions { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
     .hero-photo-wrap { position: relative; width: min(100%, 500px); justify-self: end; padding: 20px 18px 0; }
-    .hero-photo-wrap::before { content: ''; position: absolute; inset: 0 0 20px; background: #acd1c6; border-radius: 250px 250px 28px 28px; transform: rotate(5deg); }
+    .hero-photo-wrap::before { content: ''; position: absolute; inset: 0 0 20px; background: #aebfba; border-radius: 250px 250px 28px 28px; transform: rotate(5deg); }
     .hero-photo { position: relative; overflow: hidden; aspect-ratio: .78; border-radius: 250px 250px 24px 24px; background: #0c1718; box-shadow: 0 28px 60px rgba(30,72,69,.16); }
     .hero-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 24%; }
     .photo-caption { position: absolute; z-index: 2; left: -31px; bottom: 38px; padding: 1rem 1.3rem; border: 1px solid rgba(255,255,255,.75); background: rgba(250,253,249,.92); box-shadow: 0 10px 35px rgba(21,58,58,.1); backdrop-filter: blur(12px); border-radius: 3px; }
@@ -87,19 +89,19 @@
     .section-intro p { color: var(--ink-soft); max-width: 610px; font-size: 1.02rem; }
     .services { background: var(--cream); }
     .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .service-card { display: flex; flex-direction: column; min-height: 450px; padding: 2.05rem; border: 1px solid var(--line); border-radius: 18px; background: #fffdfa; transition: transform .3s, box-shadow .3s; }
+    .service-card { display: flex; flex-direction: column; min-height: 450px; padding: 2.05rem; border: 1px solid var(--line); border-radius: 18px; background: #ffffff; transition: transform .3s, box-shadow .3s; }
     .service-card:hover { transform: translateY(-7px); box-shadow: 0 18px 44px rgba(43,91,82,.09); }
-    .service-card:nth-child(2) { background: #e4f2f2; }
-    .service-card:nth-child(3) { background: #e8f2e9; }
+    .service-card:nth-child(2) { background: #e6eef0; }
+    .service-card:nth-child(3) { background: #e9eeeb; }
     .service-no { font-family: var(--serif); color: #5d918a; font-size: 1.5rem; }
     .service-symbol { display: grid; place-items: center; width: 80px; height: 80px; margin: 2rem 0 1.2rem; border: 1px solid rgba(39,92,90,.3); border-radius: 50%; color: var(--teal); font-family: var(--serif); font-size: 2.5rem; font-style: italic; }
     .service-card h3 { font-family: var(--serif); font-size: clamp(1.8rem, 2.15vw, 2.35rem); font-weight: 400; letter-spacing: -.035em; margin-bottom: .9rem; }
     .service-card p { color: var(--ink-soft); font-size: .91rem; margin-bottom: 1.8rem; }
     .service-card .text-link { margin-top: auto; align-self: flex-start; }
     .service-note { margin: 1.55rem 0 0; color: var(--muted); font-size: .88rem; }
-    .about { background: #e9f4f1; overflow: hidden; }
+    .about { background: #e9eeee; overflow: hidden; }
     .about-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(4rem, 9vw, 10rem); align-items: center; }
-    .about-statement { position: relative; min-height: 445px; display: flex; flex-direction: column; justify-content: center; padding: 3rem 2.5rem; border-radius: 230px 230px 20px 20px; background: linear-gradient(160deg, #aed4cf, #cce7df 62%, #d6e9ec); text-align: center; }
+    .about-statement { position: relative; min-height: 445px; display: flex; flex-direction: column; justify-content: center; padding: 3rem 2.5rem; border-radius: 230px 230px 20px 20px; background: linear-gradient(160deg, #c0d2d0, #e0e9e6 62%, #d3e0e4); text-align: center; }
     .about-statement::after { content: ''; position: absolute; inset: 15px; border: 1px solid rgba(255,255,255,.7); border-radius: inherit; pointer-events: none; }
     .about-statement .number { font-family: var(--serif); font-size: clamp(6rem, 11vw, 10rem); letter-spacing: -.09em; line-height: .9; }
     .about-statement .years { margin-top: 1rem; font-size: .78rem; font-weight: 750; letter-spacing: .18em; text-transform: uppercase; }
@@ -117,7 +119,7 @@
     .step .num { color: #6c9f95; font-family: var(--serif); font-size: 1.5rem; }
     .step h3 { margin: 0 0 .6rem; font-family: var(--serif); font-size: 1.75rem; font-weight: 400; letter-spacing: -.035em; }
     .step p { max-width: 430px; margin: 0; color: var(--ink-soft); font-size: .94rem; }
-    .recognition { position: relative; overflow: hidden; background: #285c59; color: #f5fbf6; }
+    .recognition { position: relative; overflow: hidden; background: #354b4f; color: #f5fbf6; }
     .recognition::after { content: ''; position: absolute; width: 580px; height: 580px; border: 1px solid rgba(219,242,231,.2); border-radius: 50%; right: -150px; bottom: -360px; box-shadow: 0 0 0 95px rgba(219,242,231,.035), 0 0 0 190px rgba(219,242,231,.025); }
     .recognition-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 9vw; align-items: center; }
     .recognition .eyebrow { color: #b7ddd0; }
@@ -128,7 +130,7 @@
     .fact small { display: block; color: #a9d4c7; font-size: .73rem; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; margin-bottom: .5rem; }
     .fact strong { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(1.25rem, 2.1vw, 1.75rem); line-height: 1.3; }
     .recognition .text-link { color: #d8f2e5; margin-top: 2rem; }
-    .faq { background: #f4f9f5; }
+    .faq { background: #f4f5f4; }
     .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8vw; }
     .faq .section-intro { margin: 0; }
     .faq-list { border-top: 1px solid var(--line); }
@@ -138,7 +140,7 @@
     .faq summary::after { content: '+'; flex: 0 0 auto; display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid var(--line); border-radius: 50%; color: var(--teal); font-size: 1.3rem; font-weight: 400; }
     .faq details[open] summary::after { content: '−'; }
     .faq details p { color: var(--ink-soft); max-width: 550px; margin: -.25rem 2rem 1.6rem 0; font-size: .94rem; }
-    .contact { padding: clamp(90px, 10vw, 150px) 0 0; background: #dceee9; }
+    .contact { padding: clamp(90px, 10vw, 150px) 0 0; background: #dce6e2; }
     .contact-panel { display: grid; grid-template-columns: 1.2fr .8fr; gap: 5rem; align-items: end; padding-bottom: clamp(5rem, 9vw, 9rem); }
     .contact h2 { max-width: 760px; font-size: clamp(3.8rem, 6.5vw, 7.3rem); margin: 1.4rem 0; }
     .contact-lead { max-width: 520px; color: var(--ink-soft); font-size: 1.05rem; }
@@ -165,7 +167,7 @@
       .header-inner { min-height: 70px; }
       .header-cta { display: none; }
       .menu-toggle { display: block; margin-left: auto; }
-      .site-nav { display: none; position: absolute; top: 70px; left: 0; right: 0; margin: 0; padding: 1rem 19px 1.5rem; background: #e9f4f1; box-shadow: 0 18px 30px rgba(21,60,57,.08); flex-direction: column; align-items: stretch; gap: 0; }
+      .site-nav { display: none; position: absolute; top: 70px; left: 0; right: 0; margin: 0; padding: 1rem 19px 1.5rem; background: #e9eeee; box-shadow: 0 18px 30px rgba(21,60,57,.08); flex-direction: column; align-items: stretch; gap: 0; }
       .site-nav.open { display: flex; }
       .site-nav a { padding: .85rem .5rem; font-size: .95rem; }
       .hero-grid { grid-template-columns: 1fr; min-height: unset; padding: 60px 0 95px; gap: 3rem; }
@@ -200,6 +202,16 @@
       .service-card { min-height: 360px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+    h1, h2, .display { font-weight: 700; letter-spacing: -.055em; }
+    .hero h1 { font-size: clamp(3.7rem, 5.8vw, 6.5rem); line-height: 1.05; }
+    .hero h1 em { color: #60827e; font-style: normal; }
+    h2 { font-size: clamp(2.45rem, 4.55vw, 4.7rem); line-height: 1.12; }
+    .service-card { border-radius: 12px; }
+    .service-card h3, .step h3, .fact strong { font-weight: 700; letter-spacing: -.035em; }
+    .service-symbol { font-style: normal; }
+    .contact h2 { font-size: clamp(3.3rem, 5.6vw, 6.3rem); }
+    @media (max-width: 760px) { .hero h1 { font-size: clamp(3rem, 10vw, 5rem); } }
+    @media (max-width: 420px) { .hero h1 { font-size: clamp(2.55rem, 10.4vw, 3.4rem); } }
   </style>
 </head>
 <body>
@@ -226,10 +238,10 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <span class="eyebrow">Массаж · телесные практики</span>
-          <h1 id="hero-title">Внимание к телу.<br><em>Время для себя.</em></h1>
-          <p class="hero-lead">Авторский массаж, гвоздепрактики и телесно-ориентированная работа с Леонидом Агафоновым. Более 33 лет опыта и индивидуальный подход к каждой встрече.</p>
+          <h1 id="hero-title">Авторский массаж<br><em>и телесные практики.</em></h1>
+          <p class="hero-lead">Леонид Агафонов работает с телом более 33 лет. Массаж, индивидуальные гвоздепрактики и терапевтические группы — выберите, с чего начать, а детали встречи обсудите напрямую.</p>
           <div class="hero-actions">
-            <a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Обсудить встречу <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Написать Леониду <span class="arrow" aria-hidden="true">↗</span></a>
             <a class="text-link" href="#formats">Выбрать формат <span aria-hidden="true">↓</span></a>
           </div>
         </div>
@@ -243,39 +255,39 @@
 
     <section class="section services" id="formats" aria-labelledby="formats-title">
       <div class="container">
-        <div class="section-intro"><span class="eyebrow">Направления</span><h2 id="formats-title">Практика, которая откликается вам</h2><p>У каждого формата своя задача и ритм. Если не знаете, с чего начать, напишите Леониду — он поможет выбрать подходящую встречу.</p></div>
+        <div class="section-intro"><span class="eyebrow">Направления</span><h2 id="formats-title">С чего можно начать</h2><p>Три формата для разных запросов. Прочитайте, чем они отличаются, и напишите Леониду, если хотите обсудить выбор.</p></div>
         <div class="service-grid">
-          <article class="service-card"><span class="service-no">01 / прикосновение</span><span class="service-symbol" aria-hidden="true">~</span><h3>Авторский массаж</h3><p>Телесная практика на основе многолетнего опыта Леонида. Формат и особенности сеанса обсуждаются лично до записи.</p><a class="text-link" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Уточнить детали <span aria-hidden="true">↗</span></a></article>
-          <article class="service-card"><span class="service-no">02 / внимание</span><span class="service-symbol" aria-hidden="true">✳</span><h3>Гвоздепрактики</h3><p>Индивидуальные сессии и групповые встречи с фокусом на внимании к состоянию, воле и собственным ощущениям.</p><a class="text-link" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Уточнить детали <span aria-hidden="true">↗</span></a></article>
-          <article class="service-card"><span class="service-no">03 / диалог</span><span class="service-symbol" aria-hidden="true">◌</span><h3>Телесные группы</h3><p>Телесно-ориентированные практики и исследование себя в поддерживающей групповой атмосфере.</p><a class="text-link" href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Смотреть анонсы <span aria-hidden="true">↗</span></a></article>
+          <article class="service-card"><span class="service-no">01 / индивидуально</span><span class="service-symbol" aria-hidden="true">~</span><h3>Авторский массаж</h3><p>Возможность уделить внимание телу в спокойном ритме. Леонид работает в авторской технике и обсуждает особенности сеанса с вами до записи.</p><a class="text-link" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Обсудить формат <span aria-hidden="true">↗</span></a></article>
+          <article class="service-card"><span class="service-no">02 / индивидуально или в группе</span><span class="service-symbol" aria-hidden="true">✳</span><h3>Гвоздепрактики</h3><p>Стояние и хождение на досках как практика внимания к своему состоянию. Есть индивидуальные сессии и групповые встречи; первый опыт можно обсудить заранее.</p><a class="text-link" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Обсудить формат <span aria-hidden="true">↗</span></a></article>
+          <article class="service-card"><span class="service-no">03 / в группе</span><span class="service-symbol" aria-hidden="true">◌</span><h3>Телесные группы</h3><p>Терапевтическая работа через ощущения и реакции тела. Группа для тех, кому интересен более глубокий контакт с собой в поддерживающей обстановке.</p><a class="text-link" href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Смотреть анонсы <span aria-hidden="true">↗</span></a></article>
         </div>
-        <p class="service-note">Длительность, стоимость и место встречи Леонид сообщит при обращении. Условия добавим на сайт после согласования.</p>
+        <p class="service-note">Длительность, стоимость и место встречи Леонид сообщит в личном разговоре до записи.</p>
       </div>
     </section>
 
     <section class="section about" id="about" aria-labelledby="about-title">
       <div class="container about-grid">
-        <div class="about-statement"><div class="number">33+</div><div class="years">года опыта в массаже</div><p>Опыт, внимание и пространство для вашего собственного пути.</p></div>
-        <div class="about-copy"><span class="eyebrow">Знакомство</span><h2 id="about-title">Леонид Агафонов</h2><p>Мастер массажа, гвоздепрактик, телесно-ориентированный психолог и тренер по эмоциональному интеллекту. В своей работе Леонид соединяет физиологический и психологический взгляд на человека.</p><p>Проводит индивидуальные сеансы массажа и гвоздепрактики, а также групповые встречи для тех, кому важно лучше слышать себя и своё тело.</p><div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>Участник рекордов России и мира по массовому гвоздестоянию и гвоздехождению.</span></div><div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>Приглашённый мастер Всероссийского конгресс-фестиваля «Алхимия тела».</span></div></div>
+        <div class="about-statement"><div class="number">33+</div><div class="years">года опыта в массаже</div><p>Массажная практика, которую Леонид развивает больше трёх десятилетий.</p></div>
+        <div class="about-copy"><span class="eyebrow">Знакомство</span><h2 id="about-title">Леонид Агафонов</h2><p>Мастер массажа, гвоздепрактик, телесно-ориентированный психолог и тренер по эмоциональному интеллекту. В работе он сочетает опыт массажа, телесные практики и психологический подход.</p><p>Проводит индивидуальные сеансы массажа и гвоздепрактики, а также телесно-ориентированные терапевтические группы.</p><div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>Участник рекордов России и мира по массовому гвоздестоянию и гвоздехождению.</span></div><div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>Приглашённый мастер Всероссийского конгресс-фестиваля «Алхимия тела».</span></div></div>
       </div>
     </section>
 
     <section class="section approach" id="approach" aria-labelledby="approach-title">
       <div class="container approach-layout">
-        <div class="section-intro"><span class="eyebrow">Первый шаг</span><h2 id="approach-title">Как проходит знакомство</h2><p>Начать можно с короткого сообщения. Необязательно сразу разбираться во всех названиях практик.</p></div>
-        <div class="steps"><div class="step"><span class="num">01</span><div><h3>Расскажите о запросе</h3><p>Напишите Леониду, что вас заинтересовало: массаж, гвоздепрактика или групповая встреча. Личные подробности можно обсудить непосредственно с ним.</p></div></div><div class="step"><span class="num">02</span><div><h3>Подберите формат</h3><p>Леонид уточнит особенности практики, длительность, стоимость и место встречи, ответит на ваши вопросы.</p></div></div><div class="step"><span class="num">03</span><div><h3>Приходите на встречу</h3><p>Перед началом можно обсудить ожидания и комфортный для вас ход занятия. Формат встречи зависит от выбранной практики.</p></div></div></div>
+        <div class="section-intro"><span class="eyebrow">Первый шаг</span><h2 id="approach-title">Как договориться о встрече</h2><p>Напишите о своём запросе. Леонид объяснит разницу между форматами и сообщит условия до записи.</p></div>
+        <div class="steps"><div class="step"><span class="num">01</span><div><h3>Напишите, что вам интересно</h3><p>Массаж, гвоздепрактика или группа — достаточно назвать направление и задать вопросы. Если формат пока не выбран, так и напишите.</p></div></div><div class="step"><span class="num">02</span><div><h3>Уточните формат и условия</h3><p>Леонид расскажет, как проходит практика, и сообщит длительность, стоимость и место встречи.</p></div></div><div class="step"><span class="num">03</span><div><h3>Согласуйте время</h3><p>После обсуждения деталей договоритесь о времени. Перед практикой можно ещё раз обозначить свои вопросы и ожидания.</p></div></div></div>
       </div>
     </section>
 
     <section class="section recognition" id="events" aria-labelledby="events-title">
-      <div class="container recognition-grid"><div><span class="eyebrow">За пределами индивидуальных встреч</span><h2 id="events-title">Практика, которой делятся</h2><p>Леонид проводит групповые занятия и участвует в мероприятиях, посвящённых телесным практикам. Анонсы ближайших встреч публикуются в его Telegram-канале.</p><a class="text-link" href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Перейти к анонсам <span aria-hidden="true">↗</span></a></div><div class="recognition-facts"><div class="fact"><small>Опыт</small><strong>Более 33 лет авторской практики массажа</strong></div><div class="fact"><small>Участие</small><strong>Рекорды России и мира по массовому гвоздестоянию и гвоздехождению</strong></div><div class="fact"><small>События</small><strong>Приглашённый мастер конгресс-фестиваля «Алхимия тела»</strong></div></div></div>
+      <div class="container recognition-grid"><div><span class="eyebrow">Ближайшие события</span><h2 id="events-title">Групповые практики</h2><p>Даты групповых гвоздепрактик и других мероприятий Леонид публикует в своём Telegram-канале. Там можно узнать о ближайших встречах.</p><a class="text-link" href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Перейти к анонсам <span aria-hidden="true">↗</span></a></div><div class="recognition-facts"><div class="fact"><small>Опыт</small><strong>Более 33 лет авторской практики массажа</strong></div><div class="fact"><small>Участие</small><strong>Рекорды России и мира по массовому гвоздестоянию и гвоздехождению</strong></div><div class="fact"><small>События</small><strong>Приглашённый мастер конгресс-фестиваля «Алхимия тела»</strong></div></div></div>
     </section>
 
     <section class="section faq" id="questions" aria-labelledby="faq-title">
-      <div class="container faq-grid"><div class="section-intro"><span class="eyebrow">Частые вопросы</span><h2 id="faq-title">Перед первой встречей</h2><p>Несколько ответов, которые помогут сориентироваться. Остальное можно уточнить напрямую у Леонида.</p></div><div class="faq-list"><details><summary>Нужно ли заранее выбирать практику?</summary><p>Нет. Расскажите, что вас заинтересовало и чего вы ждёте от встречи. Леонид поможет разобраться в форматах и предложит подходящий вариант.</p></details><details><summary>Гвоздепрактика подходит тем, кто пробует впервые?</summary><p>Можно обсудить первый опыт с Леонидом до записи. Он расскажет, как проходит занятие и на что обратить внимание перед участием.</p></details><details><summary>Как узнать стоимость и длительность?</summary><p>Напишите Леониду в Telegram. Он сообщит актуальные условия выбранного формата до подтверждения записи.</p></details><details><summary>Где смотреть расписание групповых встреч?</summary><p>Анонсы мероприятий и групповых практик Леонид публикует в своём <a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Telegram-канале</a>.</p></details></div></div>
+      <div class="container faq-grid"><div class="section-intro"><span class="eyebrow">Частые вопросы</span><h2 id="faq-title">Перед записью</h2><p>Ответы на вопросы о выборе практики, первом опыте и условиях встречи.</p></div><div class="faq-list"><details><summary>Нужно ли заранее выбирать практику?</summary><p>Нет. Расскажите, что вас заинтересовало и чего вы ждёте от встречи. Леонид поможет разобраться в форматах и предложит подходящий вариант.</p></details><details><summary>Гвоздепрактика подходит тем, кто пробует впервые?</summary><p>Можно обсудить первый опыт с Леонидом до записи. Он расскажет, как проходит занятие и на что обратить внимание перед участием.</p></details><details><summary>Как узнать стоимость и длительность?</summary><p>Напишите Леониду в Telegram. Он сообщит актуальные условия выбранного формата до подтверждения записи.</p></details><details><summary>Где смотреть расписание групповых встреч?</summary><p>Анонсы мероприятий и групповых практик Леонид публикует в своём <a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Telegram-канале</a>.</p></details></div></div>
     </section>
 
-    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="container contact-panel"><div><span class="eyebrow">Связаться</span><h2 id="contact-title">Начните с разговора</h2><p class="contact-lead">Напишите Леониду, чтобы выбрать практику, узнать стоимость и договориться о времени встречи.</p><div class="socials"><a href="https://vk.com/leonid_agafonov_33" target="_blank" rel="noopener noreferrer">ВКонтакте ↗</a><a href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Личный Telegram ↗</a><a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Анонсы практик ↗</a></div></div><div class="contact-action"><a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Написать Леониду <span class="arrow" aria-hidden="true">↗</span></a><p>Сайт не собирает заявки и не запрашивает ваши контактные данные. Общение продолжится в выбранном вами сервисе.</p></div></div><footer><div class="container footer-inner"><span>© 2026 Леонид Агафонов</span><a href="#top">Вернуться наверх ↑</a></div></footer></section>
+    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="container contact-panel"><div><span class="eyebrow">Связаться</span><h2 id="contact-title">Обсудите встречу с Леонидом</h2><p class="contact-lead">Расскажите, какой формат вас интересует. Леонид ответит на вопросы, сообщит условия и согласует время.</p><div class="socials"><a href="https://vk.com/leonid_agafonov_33" target="_blank" rel="noopener noreferrer">ВКонтакте ↗</a><a href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Личный Telegram ↗</a><a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Анонсы практик ↗</a></div></div><div class="contact-action"><a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Написать Леониду <span class="arrow" aria-hidden="true">↗</span></a><p>Сайт не собирает заявки и не запрашивает ваши контактные данные. Общение продолжится в выбранном вами сервисе.</p></div></div><footer><div class="container footer-inner"><span>© 2026 Леонид Агафонов</span><a href="#top">Вернуться наверх ↑</a></div></footer></section>
   </main>
   <script>
     const toggle = document.querySelector('.menu-toggle');
