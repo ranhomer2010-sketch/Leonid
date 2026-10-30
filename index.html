@@ -6,9 +6,9 @@
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#e9eeee">
   <title>Леонид Агафонов — массаж и телесные практики</title>
-  <meta name="description" content="Авторский массаж, индивидуальные гвоздепрактики и телесно-ориентированные группы Леонида Агафонова. Более 33 лет практики. Выберите формат и обсудите встречу.">
+  <meta name="description" content="Леонид Агафонов: авторский массаж, гвоздепрактики, телесно-ориентированная терапия и нейротехнологии. Более 33 лет практики. Услуги, цены и запись.">
   <meta property="og:title" content="Леонид Агафонов — массаж и телесные практики">
-  <meta property="og:description" content="Авторский массаж, гвоздепрактики и терапевтические группы с Леонидом Агафоновым.">
+  <meta property="og:description" content="Массаж, гвоздепрактики и телесно-ориентированная терапия. Услуги и цены Леонида Агафонова.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ranhomer2010-sketch.github.io/Leonid/assets/leonid-agafonov.webp">
   <style>
@@ -212,6 +212,53 @@
     .contact h2 { font-size: clamp(3.3rem, 5.6vw, 6.3rem); }
     @media (max-width: 760px) { .hero h1 { font-size: clamp(2.05rem, 8.2vw, 3.6rem); } }
     @media (max-width: 420px) { .hero h1 { font-size: clamp(2.05rem, 8.2vw, 2.3rem); } }
+
+    /* New sections and price layout */
+    .price-list { background: #ffffff; }
+    .price-nav { display: flex; gap: .55rem; flex-wrap: wrap; margin: -.6rem 0 2.8rem; }
+    .price-nav a { padding: .72rem 1rem; border: 1px solid var(--line); border-radius: 100px; color: var(--teal); text-decoration: none; font-size: .82rem; font-weight: 700; }
+    .price-nav a:hover { background: #e8efed; }
+    .price-category { display: grid; grid-template-columns: minmax(190px, .55fr) 1.45fr; gap: clamp(2rem, 5vw, 5rem); padding: 2.55rem 0 3.3rem; border-top: 1px solid var(--line); scroll-margin-top: 1rem; }
+    .price-category-head h3 { font-size: clamp(1.9rem, 2.7vw, 2.8rem); letter-spacing: -.04em; line-height: 1.13; margin: .9rem 0; }
+    .price-category-head p { max-width: 280px; color: var(--ink-soft); font-size: .91rem; }
+    .price-rows { border-top: 1px solid var(--line); }
+    .price-row { display: grid; grid-template-columns: minmax(0, 1fr) 110px 122px; gap: 1rem; align-items: baseline; padding: 1.18rem 0; border-bottom: 1px solid var(--line); }
+    .price-name { font-size: .94rem; font-weight: 700; line-height: 1.42; }
+    .price-name small { display: block; margin-top: .25rem; color: var(--muted); font-size: .78rem; font-weight: 400; }
+    .price-time { color: var(--muted); font-size: .83rem; white-space: nowrap; }
+    .price-value { color: var(--teal); font-size: 1.05rem; text-align: right; white-space: nowrap; }
+    .price-footer { display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 1.8rem 2rem; border-radius: 16px; background: #e7eeeb; }
+    .price-footer p { margin: 0; max-width: 550px; font-size: .93rem; }
+    .price-footer .button { flex-shrink: 0; }
+    .studio { background: #f5f6f5; }
+    .studio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .studio-photo { overflow: hidden; aspect-ratio: 1.75; margin: 0; border-radius: 14px; background: #e2e7e6; }
+    .studio-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .neuro { background: #e4eaeb; }
+    .neuro-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(3rem, 8vw, 8rem); align-items: center; }
+    .neuro h2 { margin: 1.2rem 0 1.6rem; }
+    .neuro p { max-width: 660px; color: var(--ink-soft); font-size: 1rem; }
+    .neuro .button { margin-top: 1rem; }
+    .neuro-panel { padding: clamp(2rem, 4vw, 3.5rem); border: 1px solid #c9d4d2; border-radius: 18px; background: #f7f9f8; box-shadow: 0 25px 55px rgba(38,63,66,.07); }
+    .neuro-kicker { display: block; margin-bottom: 1.5rem; color: var(--teal); font-size: .73rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    .neuro-step { display: grid; grid-template-columns: 36px 1fr; gap: 1rem; padding: 1.3rem 0; border-top: 1px solid var(--line); line-height: 1.45; font-size: 1rem; font-weight: 700; }
+    .neuro-step b { color: #659089; font-size: .85rem; }
+    .neuro-panel small { display: block; margin-top: 1.2rem; color: var(--muted); font-size: .75rem; line-height: 1.5; }
+    @media (max-width: 1000px) { .price-category { grid-template-columns: 1fr; gap: 1rem; } .price-category-head p { max-width: 640px; } }
+    @media (max-width: 760px) {
+      .price-nav { gap: .45rem; margin-bottom: 1.5rem; }
+      .price-nav a { padding: .65rem .8rem; }
+      .price-category { padding: 2.1rem 0; }
+      .price-row { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "name value" "time value"; gap: .25rem .8rem; align-items: start; }
+      .price-name { grid-area: name; font-size: .88rem; }
+      .price-time { grid-area: time; }
+      .price-value { grid-area: value; font-size: .93rem; }
+      .price-footer { align-items: stretch; flex-direction: column; padding: 1.5rem; }
+      .price-footer .button { width: 100%; }
+      .studio-grid, .neuro-grid { grid-template-columns: 1fr; }
+      .studio-grid { gap: 12px; }
+      .neuro-grid { gap: 2rem; }
+    }
   </style>
 </head>
 <body>
@@ -223,10 +270,10 @@
         <span class="brand-name">Леонид<br>Агафонов</span>
       </a>
       <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
-        <a href="#formats">Форматы</a>
+        <a href="#formats">Практики</a>
+        <a href="#prices">Цены</a>
         <a href="#about">О Леониде</a>
-        <a href="#approach">Как проходит</a>
-        <a href="#questions">Вопросы</a>
+        <a href="#neuro">Нейротехнологии</a>
         <a href="#contact">Контакты</a>
       </nav>
       <a class="button header-cta" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Связаться <span class="arrow" aria-hidden="true">↗</span></a>
@@ -237,12 +284,12 @@
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">Массаж · телесные практики</span>
-          <h1 id="hero-title">Авторский массаж<br><em>и телесные практики.</em></h1>
-          <p class="hero-lead">Леонид Агафонов работает с телом более 33 лет. Массаж, индивидуальные гвоздепрактики и терапевтические группы — выберите, с чего начать, а детали встречи обсудите напрямую.</p>
+          <span class="eyebrow">Леонид Агафонов · опыт в массаже 33 года</span>
+          <h1 id="hero-title">Верните телу лёгкость,<br><em>а уму — тишину.</em></h1>
+          <p class="hero-lead">Авторский массаж, практики на гвоздях Садху и телесно-ориентированная терапия. Выберите подходящий формат и узнайте условия до записи.</p>
           <div class="hero-actions">
-            <a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Написать Леониду <span class="arrow" aria-hidden="true">↗</span></a>
-            <a class="text-link" href="#formats">Выбрать формат <span aria-hidden="true">↓</span></a>
+            <a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Записаться на сеанс <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#prices">Услуги и цены <span aria-hidden="true">↓</span></a>
           </div>
         </div>
         <div class="hero-photo-wrap">
@@ -255,39 +302,107 @@
 
     <section class="section services" id="formats" aria-labelledby="formats-title">
       <div class="container">
-        <div class="section-intro"><span class="eyebrow">Направления</span><h2 id="formats-title">С чего можно начать</h2><p>Три формата для разных запросов. Прочитайте, чем они отличаются, и напишите Леониду, если хотите обсудить выбор.</p></div>
+        <div class="section-intro"><span class="eyebrow">Направления</span><h2 id="formats-title">Практики под ваш запрос</h2><p>Массаж, работа с состоянием на гвоздях Садху или терапия через тело. Если трудно выбрать, расскажите Леониду, что вас привело.</p></div>
         <div class="service-grid">
-          <article class="service-card"><span class="service-no">01 / индивидуально</span><span class="service-symbol" aria-hidden="true">~</span><h3>Авторский массаж</h3><p>Возможность уделить внимание телу в спокойном ритме. Леонид работает в авторской технике и обсуждает особенности сеанса с вами до записи.</p><a class="text-link" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Обсудить формат <span aria-hidden="true">↗</span></a></article>
-          <article class="service-card"><span class="service-no">02 / индивидуально или в группе</span><span class="service-symbol" aria-hidden="true">✳</span><h3>Гвоздепрактики</h3><p>Стояние и хождение на досках как практика внимания к своему состоянию. Есть индивидуальные сессии и групповые встречи; первый опыт можно обсудить заранее.</p><a class="text-link" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Обсудить формат <span aria-hidden="true">↗</span></a></article>
-          <article class="service-card"><span class="service-no">03 / в группе</span><span class="service-symbol" aria-hidden="true">◌</span><h3>Телесные группы</h3><p>Терапевтическая работа через ощущения и реакции тела. Группа для тех, кому интересен более глубокий контакт с собой в поддерживающей обстановке.</p><a class="text-link" href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Смотреть анонсы <span aria-hidden="true">↗</span></a></article>
+          <article class="service-card"><span class="service-no">01 / телесные практики</span><span class="service-symbol" aria-hidden="true">~</span><h3>Массаж</h3><p>Авторская техника, разные зоны и длительность. Есть расслабляющий, лимфодренажный и энергетический массаж, а также сочетания массажа с практиками Садху.</p><a class="text-link" href="#massage-prices">Смотреть цены <span aria-hidden="true">↗</span></a></article>
+          <article class="service-card"><span class="service-no">02 / индивидуально и в группе</span><span class="service-symbol" aria-hidden="true">✳</span><h3>Гвозди Садху</h3><p>Лежание, стояние, сидение и хождение на гвоздях. Практика строится вокруг внимания к ощущениям и состоянию; особенности первого опыта обсудите до встречи.</p><a class="text-link" href="#sadhu-prices">Смотреть цены <span aria-hidden="true">↗</span></a></article>
+          <article class="service-card"><span class="service-no">03 / индивидуально и в группе</span><span class="service-symbol" aria-hidden="true">◌</span><h3>Телесная терапия</h3><p>Работа с переживаниями и реакциями через внимание к телу. Доступны индивидуальная сессия и терапевтические группы в поддерживающей атмосфере.</p><a class="text-link" href="#therapy-prices">Смотреть условия <span aria-hidden="true">↗</span></a></article>
         </div>
-        <p class="service-note">Длительность, стоимость и место встречи Леонид сообщит в личном разговоре до записи.</p>
+      </div>
+    </section>
+
+    <section class="section price-list" id="prices" aria-labelledby="prices-title">
+      <div class="container">
+        <div class="section-intro"><span class="eyebrow">Стоимость</span><h2 id="prices-title">Услуги и цены</h2><p>Выберите процедуру по длительности и стоимости. Если нужен совет по формату, напишите Леониду до записи.</p></div>
+        <nav class="price-nav" aria-label="Разделы прайс-листа"><a href="#massage-prices">Массаж</a><a href="#sadhu-prices">Гвозди Садху</a><a href="#combo-prices">Комбо</a><a href="#therapy-prices">Терапия</a></nav>
+        <div class="price-category" id="massage-prices">
+          <div class="price-category-head"><span class="eyebrow">01 / тело</span><h3>Массаж</h3><p>От короткой работы с шейно-воротниковой зоной до продолжительной авторской сессии.</p></div>
+          <div class="price-rows">
+            <div class="price-row"><div class="price-name">Глубокий массаж шейно-воротниковой зоны</div><div class="price-time">30 мин</div><strong class="price-value">1 800 ₽</strong></div>
+            <div class="price-row"><div class="price-name">Детский массаж <small>6–10 лет</small></div><div class="price-time">60 мин</div><strong class="price-value">1 800 ₽</strong></div>
+            <div class="price-row"><div class="price-name">Массаж спины <small>включая руки и шею</small></div><div class="price-time">60 мин</div><strong class="price-value">3 300 ₽</strong></div>
+            <div class="price-row"><div class="price-name">Расслабляющий массаж тела</div><div class="price-time">90 мин</div><strong class="price-value">5 000 ₽</strong></div>
+            <div class="price-row"><div class="price-name">Лимфодренажный массаж тела</div><div class="price-time">90 мин</div><strong class="price-value">6 000 ₽</strong></div>
+            <div class="price-row"><div class="price-name">Авторский массаж тела <small>гвозди Садху, стоун- и ароматерапия</small></div><div class="price-time">120 мин</div><strong class="price-value">8 900 ₽</strong></div>
+            <div class="price-row"><div class="price-name">Общий массаж тела</div><div class="price-time">90–120 мин</div><strong class="price-value">от 5 500 ₽</strong></div>
+            <div class="price-row"><div class="price-name">Энергетический массаж тела</div><div class="price-time">2–2,5 часа</div><strong class="price-value">9 990 ₽</strong></div>
+          </div>
+        </div>
+        <div class="price-category" id="sadhu-prices">
+          <div class="price-category-head"><span class="eyebrow">02 / практика</span><h3>Гвозди Садху</h3><p>Индивидуальные форматы гвоздележания и гвоздестояния.</p></div>
+          <div class="price-rows">
+            <div class="price-row"><div class="price-name">Сеанс гвоздележания <small>практика для спины</small></div><div class="price-time">1 час</div><strong class="price-value">3 300 ₽</strong></div>
+            <div class="price-row"><div class="price-name">Сеанс гвоздестояния <small>работа с вниманием и волей</small></div><div class="price-time">1,5 часа</div><strong class="price-value">5 000 ₽</strong></div>
+          </div>
+        </div>
+        <div class="price-category" id="combo-prices">
+          <div class="price-category-head"><span class="eyebrow">03 / сочетание</span><h3>Комбо-сессии</h3><p>Две практики в одной встрече.</p></div>
+          <div class="price-rows">
+            <div class="price-row"><div class="price-name">«Глубокое расслабление» <small>общий массаж + гвоздележание</small></div><div class="price-time">2 часа</div><strong class="price-value">7 800 ₽</strong></div>
+            <div class="price-row"><div class="price-name">«Осанка короля/королевы» <small>массаж спины + гвоздележание</small></div><div class="price-time">1,5 часа</div><strong class="price-value">5 800 ₽</strong></div>
+            <div class="price-row"><div class="price-name">«Тотальная перезагрузка» <small>гвоздестояние + гвоздележание</small></div><div class="price-time">2,5–3 часа</div><strong class="price-value">8 900 ₽</strong></div>
+          </div>
+        </div>
+        <div class="price-category" id="therapy-prices">
+          <div class="price-category-head"><span class="eyebrow">04 / диалог</span><h3>Телесная терапия</h3><p>Индивидуальная сессия с телесно-ориентированным подходом.</p></div>
+          <div class="price-rows">
+            <div class="price-row"><div class="price-name">Сеанс телесно-ориентированной терапии</div><div class="price-time">1 час</div><strong class="price-value">3 500 ₽</strong></div>
+            <div class="price-row"><div class="price-name">Первая онлайн-консультация психолога</div><div class="price-time">30 мин</div><strong class="price-value">Бесплатно</strong></div>
+          </div>
+        </div>
+        <div class="price-footer"><p><strong>Абонементы на массаж и гвозди:</strong> 5 сеансов — скидка 10%, 10 сеансов — скидка 15%.</p><a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Уточнить и записаться <span class="arrow" aria-hidden="true">↗</span></a></div>
       </div>
     </section>
 
     <section class="section about" id="about" aria-labelledby="about-title">
       <div class="container about-grid">
-        <div class="about-statement"><div class="number">33+</div><div class="years">года опыта в массаже</div><p>Массажная практика, которую Леонид развивает больше трёх десятилетий.</p></div>
-        <div class="about-copy"><span class="eyebrow">Знакомство</span><h2 id="about-title">Леонид Агафонов</h2><p>Мастер массажа, гвоздепрактик, телесно-ориентированный психолог и тренер по эмоциональному интеллекту. В работе он сочетает опыт массажа, телесные практики и психологический подход.</p><p>Проводит индивидуальные сеансы массажа и гвоздепрактики, а также телесно-ориентированные терапевтические группы.</p><div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>Участник рекордов России и мира по массовому гвоздестоянию и гвоздехождению.</span></div><div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>Приглашённый мастер Всероссийского конгресс-фестиваля «Алхимия тела».</span></div></div>
+        <div class="about-statement"><div class="number">33+</div><div class="years">лет опыта в массаже</div><p>Авторская массажная практика, телесная работа и внимание к человеку.</p></div>
+        <div class="about-copy"><span class="eyebrow">О мастере</span><h2 id="about-title">Леонид Агафонов</h2><p>Мастер массажа, гвоздепрактик, телесно-ориентированный психолог и тренер по эмоциональному интеллекту. В работе объединяет массаж, телесный опыт и психологический подход.</p><p>Проводит индивидуальные и групповые практики на гвоздях Садху, терапевтические группы и оздоровительные ретриты с приглашёнными мастерами.</p>
+          <div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>Участник рекордов России и мира по массовому гвоздестоянию и гвоздехождению.</span></div>
+          <div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>Приглашённый мастер Всероссийского конгресс-фестиваля «Алхимия тела».</span></div>
+          <div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>Амбассадор проектов Neiry, Sadhu-record и ONTO NOTHING.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section studio" id="studio" aria-labelledby="studio-title">
+      <div class="container">
+        <div class="section-intro"><span class="eyebrow">Пространство</span><h2 id="studio-title">Кабинет для встреч</h2><p>Спокойная обстановка для индивидуальных практик. Место проведения и детали визита Леонид сообщит при записи.</p></div>
+        <div class="studio-grid">
+          <figure class="studio-photo"><img src="assets/cabinet-1.png" alt="Кабинет с массажной кушеткой и душевой кабиной" width="695" height="466" loading="lazy"></figure>
+          <figure class="studio-photo"><img src="assets/cabinet-2.png" alt="Кабинет с массажной кушеткой, зеркалом и раковиной" width="712" height="474" loading="lazy"></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section neuro" id="neuro" aria-labelledby="neuro-title">
+      <div class="container neuro-grid">
+        <div><span class="eyebrow">Новое направление</span><h2 id="neuro-title">Нейротехнологии и самоисследование</h2><p>Леонид работает с инструментами проекта ONTO NOTHING и платформы ex NIHILO AI. ЭЭГ и трекеры помогают наблюдать показатели состояния, а записи и повторные замеры — сравнивать изменения со временем.</p><p>Подход объединяет данные устройств, самоотчёты и практики работы с состоянием. Например, можно исследовать, как сон и нагрузка соотносятся с самочувствием. Формат участия и используемые инструменты уточняйте у Леонида.</p><a class="button outline" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Узнать о направлении <span class="arrow" aria-hidden="true">↗</span></a></div>
+        <div class="neuro-panel" aria-label="Этапы самоисследования"><span class="neuro-kicker">Как устроен подход</span><div class="neuro-step"><b>01</b><span>Замер показателей и описание состояния</span></div><div class="neuro-step"><b>02</b><span>Практика по выбранному протоколу</span></div><div class="neuro-step"><b>03</b><span>Повторный замер и сравнение динамики</span></div><small>Инструменты самоисследования не заменяют медицинскую диагностику.</small></div>
       </div>
     </section>
 
     <section class="section approach" id="approach" aria-labelledby="approach-title">
       <div class="container approach-layout">
         <div class="section-intro"><span class="eyebrow">Первый шаг</span><h2 id="approach-title">Как договориться о встрече</h2><p>Напишите о своём запросе. Леонид объяснит разницу между форматами и сообщит условия до записи.</p></div>
-        <div class="steps"><div class="step"><span class="num">01</span><div><h3>Напишите, что вам интересно</h3><p>Массаж, гвоздепрактика или группа — достаточно назвать направление и задать вопросы. Если формат пока не выбран, так и напишите.</p></div></div><div class="step"><span class="num">02</span><div><h3>Уточните формат и условия</h3><p>Леонид расскажет, как проходит практика, и сообщит длительность, стоимость и место встречи.</p></div></div><div class="step"><span class="num">03</span><div><h3>Согласуйте время</h3><p>После обсуждения деталей договоритесь о времени. Перед практикой можно ещё раз обозначить свои вопросы и ожидания.</p></div></div></div>
+        <div class="steps"><div class="step"><span class="num">01</span><div><h3>Напишите, что вам интересно</h3><p>Массаж, гвоздепрактика или группа — достаточно назвать направление и задать вопросы. Если формат пока не выбран, так и напишите.</p></div></div><div class="step"><span class="num">02</span><div><h3>Уточните формат и условия</h3><p>Леонид расскажет, как проходит практика, подтвердит цену из прайс-листа и сообщит место встречи.</p></div></div><div class="step"><span class="num">03</span><div><h3>Согласуйте время</h3><p>После обсуждения деталей договоритесь о времени. Перед практикой можно ещё раз обозначить свои вопросы и ожидания.</p></div></div></div>
       </div>
     </section>
 
     <section class="section recognition" id="events" aria-labelledby="events-title">
-      <div class="container recognition-grid"><div><span class="eyebrow">Ближайшие события</span><h2 id="events-title">Групповые практики</h2><p>Даты групповых гвоздепрактик и других мероприятий Леонид публикует в своём Telegram-канале. Там можно узнать о ближайших встречах.</p><a class="text-link" href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Перейти к анонсам <span aria-hidden="true">↗</span></a></div><div class="recognition-facts"><div class="fact"><small>Опыт</small><strong>Более 33 лет авторской практики массажа</strong></div><div class="fact"><small>Участие</small><strong>Рекорды России и мира по массовому гвоздестоянию и гвоздехождению</strong></div><div class="fact"><small>События</small><strong>Приглашённый мастер конгресс-фестиваля «Алхимия тела»</strong></div></div></div>
+      <div class="container recognition-grid"><div><span class="eyebrow">Встречи и события</span><h2 id="events-title">Практики в группе и ретриты</h2><p>Леонид организует групповые практики на гвоздях Садху и оздоровительные ретриты с участием приглашённых мастеров. Ближайшие даты и условия участия публикуются в Telegram-канале.</p><a class="text-link" href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Смотреть анонсы <span aria-hidden="true">↗</span></a></div><div class="recognition-facts"><div class="fact"><small>Форматы Садху</small><strong>Лежание, стояние, сидение и хождение</strong></div><div class="fact"><small>Участие</small><strong>Индивидуальные сессии и групповые практики</strong></div><div class="fact"><small>Выездные события</small><strong>Оздоровительные ретриты с мастерами</strong></div></div></div>
     </section>
 
     <section class="section faq" id="questions" aria-labelledby="faq-title">
-      <div class="container faq-grid"><div class="section-intro"><span class="eyebrow">Частые вопросы</span><h2 id="faq-title">Перед записью</h2><p>Ответы на вопросы о выборе практики, первом опыте и условиях встречи.</p></div><div class="faq-list"><details><summary>Нужно ли заранее выбирать практику?</summary><p>Нет. Расскажите, что вас заинтересовало и чего вы ждёте от встречи. Леонид поможет разобраться в форматах и предложит подходящий вариант.</p></details><details><summary>Гвоздепрактика подходит тем, кто пробует впервые?</summary><p>Можно обсудить первый опыт с Леонидом до записи. Он расскажет, как проходит занятие и на что обратить внимание перед участием.</p></details><details><summary>Как узнать стоимость и длительность?</summary><p>Напишите Леониду в Telegram. Он сообщит актуальные условия выбранного формата до подтверждения записи.</p></details><details><summary>Где смотреть расписание групповых встреч?</summary><p>Анонсы мероприятий и групповых практик Леонид публикует в своём <a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Telegram-канале</a>.</p></details></div></div>
+      <div class="container faq-grid"><div class="section-intro"><span class="eyebrow">Перед записью</span><h2 id="faq-title">Частые вопросы</h2><p>То, что полезно знать перед первым обращением.</p></div><div class="faq-list">
+        <details><summary>Нужно ли заранее выбирать практику?</summary><p>Нет. Напишите, что вас интересует, и Леонид расскажет, чем отличаются форматы.</p></details>
+        <details><summary>Можно ли прийти на гвозди впервые?</summary><p>Да, перед записью можно обсудить первый опыт, особенности практики и ваши вопросы с Леонидом.</p></details>
+        <details><summary>Как работают абонементы?</summary><p>На массаж и гвоздепрактики доступны абонементы: 5 сеансов со скидкой 10% и 10 сеансов со скидкой 15%. Условия оформления уточняйте напрямую.</p></details>
+        <details><summary>Где узнать о группах и ретритах?</summary><p>Анонсы Леонид публикует в <a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Telegram-канале практик</a>.</p></details>
+      </div></div>
     </section>
 
-    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="container contact-panel"><div><span class="eyebrow">Связаться</span><h2 id="contact-title">Обсудите встречу с Леонидом</h2><p class="contact-lead">Расскажите, какой формат вас интересует. Леонид ответит на вопросы, сообщит условия и согласует время.</p><div class="socials"><a href="https://vk.com/leonid_agafonov_33" target="_blank" rel="noopener noreferrer">ВКонтакте ↗</a><a href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Личный Telegram ↗</a><a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Анонсы практик ↗</a></div></div><div class="contact-action"><a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Написать Леониду <span class="arrow" aria-hidden="true">↗</span></a><p>Сайт не собирает заявки и не запрашивает ваши контактные данные. Общение продолжится в выбранном вами сервисе.</p></div></div><footer><div class="container footer-inner"><span>© 2026 Леонид Агафонов</span><a href="#top">Вернуться наверх ↑</a></div></footer></section>
+    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="container contact-panel"><div><span class="eyebrow">Связаться</span><h2 id="contact-title">Обсудите встречу с Леонидом</h2><p class="contact-lead">Выберите услугу в прайс-листе или расскажите о своём запросе. Леонид ответит на вопросы и согласует время.</p><div class="socials"><a href="https://vk.com/leonid_agafonov_33" target="_blank" rel="noopener noreferrer">ВКонтакте ↗</a><a href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Личный Telegram ↗</a><a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Анонсы практик ↗</a></div></div><div class="contact-action"><a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Написать Леониду <span class="arrow" aria-hidden="true">↗</span></a><p>Сайт не собирает заявки и не запрашивает ваши контактные данные. Общение продолжится в выбранном вами сервисе.</p></div></div><footer><div class="container footer-inner"><span>© 2026 Леонид Агафонов</span><a href="#top">Вернуться наверх ↑</a></div></footer></section>
   </main>
   <script>
     const toggle = document.querySelector('.menu-toggle');
@@ -307,3 +422,4 @@
   </script>
 </body>
 </html>
+
