@@ -1,0 +1,178 @@
+{
+  "groups": {
+    "Главный экран": [
+      {
+        "key": "hero_eyebrow",
+        "label": "Строка над заголовком",
+        "type": "text"
+      },
+      {
+        "key": "hero_title_1",
+        "label": "Заголовок, первая строка",
+        "type": "text"
+      },
+      {
+        "key": "hero_title_2",
+        "label": "Заголовок, вторая строка",
+        "type": "text"
+      },
+      {
+        "key": "hero_lead",
+        "label": "Описание",
+        "type": "textarea"
+      }
+    ],
+    "Направления": [
+      {
+        "key": "formats_title",
+        "label": "Заголовок",
+        "type": "text"
+      },
+      {
+        "key": "formats_lead",
+        "label": "Описание",
+        "type": "textarea"
+      },
+      {
+        "key": "massage_card",
+        "label": "Карточка массажа",
+        "type": "textarea"
+      },
+      {
+        "key": "sadhu_card",
+        "label": "Карточка Садху",
+        "type": "textarea"
+      },
+      {
+        "key": "therapy_card",
+        "label": "Карточка терапии",
+        "type": "textarea"
+      }
+    ],
+    "Прайс и абонементы": [
+      {
+        "key": "prices_title",
+        "label": "Заголовок прайса",
+        "type": "text"
+      },
+      {
+        "key": "prices_lead",
+        "label": "Описание",
+        "type": "textarea"
+      },
+      {
+        "key": "subscription_text",
+        "label": "Абонементы",
+        "type": "text"
+      }
+    ],
+    "О Леониде": [
+      {
+        "key": "about_years",
+        "label": "Подпись к опыту",
+        "type": "textarea"
+      },
+      {
+        "key": "about_intro",
+        "label": "Описание, часть 1",
+        "type": "textarea"
+      },
+      {
+        "key": "about_work",
+        "label": "Описание, часть 2",
+        "type": "textarea"
+      },
+      {
+        "key": "about_record",
+        "label": "Достижение 1",
+        "type": "text"
+      },
+      {
+        "key": "about_festival",
+        "label": "Достижение 2",
+        "type": "text"
+      },
+      {
+        "key": "about_ambassador",
+        "label": "Достижение 3",
+        "type": "text"
+      }
+    ],
+    "Кабинет": [
+      {
+        "key": "studio_title",
+        "label": "Заголовок",
+        "type": "text"
+      },
+      {
+        "key": "studio_lead",
+        "label": "Описание",
+        "type": "textarea"
+      }
+    ],
+    "Нейротехнологии": [
+      {
+        "key": "neuro_title",
+        "label": "Заголовок",
+        "type": "text"
+      },
+      {
+        "key": "neuro_intro",
+        "label": "Описание, часть 1",
+        "type": "textarea"
+      },
+      {
+        "key": "neuro_method",
+        "label": "Описание, часть 2",
+        "type": "textarea"
+      }
+    ],
+    "Как записаться": [
+      {
+        "key": "approach_title",
+        "label": "Заголовок",
+        "type": "text"
+      },
+      {
+        "key": "approach_lead",
+        "label": "Описание",
+        "type": "textarea"
+      }
+    ],
+    "Группы и ретриты": [
+      {
+        "key": "events_title",
+        "label": "Заголовок",
+        "type": "text"
+      },
+      {
+        "key": "events_lead",
+        "label": "Описание",
+        "type": "textarea"
+      }
+    ],
+    "Контакты": [
+      {
+        "key": "contact_title",
+        "label": "Заголовок",
+        "type": "text"
+      },
+      {
+        "key": "contact_lead",
+        "label": "Описание",
+        "type": "textarea"
+      }
+    ]
+  },
+  "images": {
+    "portrait": "Портрет Леонида",
+    "cabinet_1": "Кабинет, фото 1",
+    "cabinet_2": "Кабинет, фото 2"
+  },
+  "price_groups": {
+    "massage": "Массаж",
+    "sadhu": "Гвозди Садху",
+    "combo": "Комбо-сессии",
+    "therapy": "Телесная терапия"
+  }
+}
