@@ -1,0 +1,27 @@
+name: PHP admin checks
+on:
+  push:
+    paths:
+      - 'admin/**'
+      - 'content/site.json'
+      - 'site.template.html'
+      - '.github/workflows/php-admin-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  admin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check PHP syntax
+        run: |
+          php -v
+          php -l admin/lib.php
+          php -l admin/index.php
+          php -l admin/private/index.php
+      - name: Render default site
+        run: |
+          php -r 'require "admin/lib.php"; $html = render_site(load_json(DATA_FILE)); if (strpos($html, "Верните телу") === false || preg_match("/\\{\\{[A-Za-z0-9_]+\\}\\}/", $html)) exit(1); echo "Render OK\\n";'
