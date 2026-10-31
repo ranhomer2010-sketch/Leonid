@@ -27,18 +27,8 @@
         "type": "text"
       },
       {
-        "key": "hero_secondary",
-        "label": "Ссылка к прайсу",
-        "type": "text"
-      },
-      {
         "key": "hero_caption",
         "label": "Подпись на фото",
-        "type": "text"
-      },
-      {
-        "key": "hero_bottom",
-        "label": "Подпись внизу первого экрана",
         "type": "text"
       }
     ],
@@ -47,11 +37,6 @@
         "key": "formats_title",
         "label": "Заголовок",
         "type": "text"
-      },
-      {
-        "key": "formats_lead",
-        "label": "Описание",
-        "type": "textarea"
       },
       {
         "key": "massage_card",
@@ -82,21 +67,6 @@
         "key": "therapy_card_title",
         "label": "Название: терапия",
         "type": "text"
-      },
-      {
-        "key": "massage_card_label",
-        "label": "Подпись: массаж",
-        "type": "text"
-      },
-      {
-        "key": "sadhu_card_label",
-        "label": "Подпись: Садху",
-        "type": "text"
-      },
-      {
-        "key": "therapy_card_label",
-        "label": "Подпись: терапия",
-        "type": "text"
       }
     ],
     "Прайс и абонементы": [
@@ -104,11 +74,6 @@
         "key": "prices_title",
         "label": "Заголовок прайса",
         "type": "text"
-      },
-      {
-        "key": "prices_lead",
-        "label": "Описание",
-        "type": "textarea"
       },
       {
         "key": "subscription_text",
@@ -121,19 +86,9 @@
         "type": "text"
       },
       {
-        "key": "price_massage_lead",
-        "label": "Описание массажа",
-        "type": "textarea"
-      },
-      {
         "key": "price_sadhu_title",
         "label": "Раздел прайса: Гвозди Садху",
         "type": "text"
-      },
-      {
-        "key": "price_sadhu_lead",
-        "label": "Описание практик Садху",
-        "type": "textarea"
       },
       {
         "key": "price_combo_title",
@@ -141,27 +96,12 @@
         "type": "text"
       },
       {
-        "key": "price_combo_lead",
-        "label": "Описание комбо",
-        "type": "textarea"
-      },
-      {
         "key": "price_therapy_title",
         "label": "Раздел прайса: Телесная терапия",
         "type": "text"
-      },
-      {
-        "key": "price_therapy_lead",
-        "label": "Описание терапии",
-        "type": "textarea"
       }
     ],
     "О Леониде": [
-      {
-        "key": "about_years",
-        "label": "Подпись к опыту",
-        "type": "textarea"
-      },
       {
         "key": "about_intro",
         "label": "Описание, часть 1",
@@ -208,11 +148,6 @@
         "key": "studio_title",
         "label": "Заголовок",
         "type": "text"
-      },
-      {
-        "key": "studio_lead",
-        "label": "Описание",
-        "type": "textarea"
       }
     ],
     "Нейротехнологии": [
@@ -224,11 +159,6 @@
       {
         "key": "neuro_intro",
         "label": "Описание, часть 1",
-        "type": "textarea"
-      },
-      {
-        "key": "neuro_method",
-        "label": "Описание, часть 2",
         "type": "textarea"
       },
       {
@@ -244,90 +174,6 @@
       {
         "key": "neuro_step_3",
         "label": "Этап 3",
-        "type": "text"
-      }
-    ],
-    "Как записаться": [
-      {
-        "key": "approach_title",
-        "label": "Заголовок",
-        "type": "text"
-      },
-      {
-        "key": "approach_lead",
-        "label": "Описание",
-        "type": "textarea"
-      },
-      {
-        "key": "step_1_title",
-        "label": "Шаг 1: заголовок",
-        "type": "text"
-      },
-      {
-        "key": "step_1_body",
-        "label": "Шаг 1: описание",
-        "type": "textarea"
-      },
-      {
-        "key": "step_2_title",
-        "label": "Шаг 2: заголовок",
-        "type": "text"
-      },
-      {
-        "key": "step_2_body",
-        "label": "Шаг 2: описание",
-        "type": "textarea"
-      },
-      {
-        "key": "step_3_title",
-        "label": "Шаг 3: заголовок",
-        "type": "text"
-      },
-      {
-        "key": "step_3_body",
-        "label": "Шаг 3: описание",
-        "type": "textarea"
-      }
-    ],
-    "Группы и ретриты": [
-      {
-        "key": "events_title",
-        "label": "Заголовок",
-        "type": "text"
-      },
-      {
-        "key": "events_lead",
-        "label": "Описание",
-        "type": "textarea"
-      },
-      {
-        "key": "event_fact_1_label",
-        "label": "Факт 1: подпись",
-        "type": "text"
-      },
-      {
-        "key": "event_fact_1_value",
-        "label": "Факт 1: текст",
-        "type": "text"
-      },
-      {
-        "key": "event_fact_2_label",
-        "label": "Факт 2: подпись",
-        "type": "text"
-      },
-      {
-        "key": "event_fact_2_value",
-        "label": "Факт 2: текст",
-        "type": "text"
-      },
-      {
-        "key": "event_fact_3_label",
-        "label": "Факт 3: подпись",
-        "type": "text"
-      },
-      {
-        "key": "event_fact_3_value",
-        "label": "Факт 3: текст",
         "type": "text"
       }
     ],
@@ -348,66 +194,9 @@
         "type": "text"
       },
       {
-        "key": "contact_note",
-        "label": "Подпись под кнопкой",
-        "type": "textarea"
-      },
-      {
         "key": "footer_year",
         "label": "Год в подвале",
         "type": "text"
-      }
-    ],
-    "Частые вопросы": [
-      {
-        "key": "faq_title",
-        "label": "Заголовок",
-        "type": "text"
-      },
-      {
-        "key": "faq_lead",
-        "label": "Подзаголовок",
-        "type": "textarea"
-      },
-      {
-        "key": "faq_1_question",
-        "label": "Вопрос 1",
-        "type": "text"
-      },
-      {
-        "key": "faq_1_answer",
-        "label": "Ответ 1",
-        "type": "textarea"
-      },
-      {
-        "key": "faq_2_question",
-        "label": "Вопрос 2",
-        "type": "text"
-      },
-      {
-        "key": "faq_2_answer",
-        "label": "Ответ 2",
-        "type": "textarea"
-      },
-      {
-        "key": "faq_3_question",
-        "label": "Вопрос 3",
-        "type": "text"
-      },
-      {
-        "key": "faq_3_answer",
-        "label": "Ответ 3",
-        "type": "textarea"
-      },
-      {
-        "key": "faq_4_question",
-        "label": "Вопрос 4",
-        "type": "text"
-      },
-      {
-        "key": "faq_4_answer",
-        "label": "Ответ 4 до ссылки",
-        "type": "textarea"
       }
     ],
     "Афиша на главной": [
@@ -415,11 +204,6 @@
         "key": "upcoming_title",
         "label": "Заголовок афиши",
         "type": "text"
-      },
-      {
-        "key": "upcoming_lead",
-        "label": "Описание афиши",
-        "type": "textarea"
       }
     ],
     "Настройки сайта": [

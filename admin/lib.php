@@ -146,26 +146,33 @@ function safe_external_url(string $url): string {
 
 function featured_events_html(array $data): string {
     $fields = $data['fields'];
-    $channel = h(safe_external_url((string) $data['links']['channel']));
     $cards = [];
     foreach ($data['featured_events'] ?? [] as $event) {
         if (empty($event['visible'])) continue;
-        $image = empty($event['image']) ? '<div class="event-image empty" aria-hidden="true">✳</div>'
+        $image = empty($event['image']) ? '<div class="event-image empty" aria-hidden="true"></div>'
             : '<div class="event-image"><img src="' . h(safe_image_path((string) $event['image'])) . '" alt="' . h((string) $event['title']) . '" loading="lazy"></div>';
         $meta = trim((string) $event['date'] . (empty($event['category']) ? '' : ' · ' . $event['category']), " ·");
         $place = empty($event['place']) ? '' : '<div class="event-place">' . h((string) $event['place']) . '</div>';
         $description = empty($event['description']) ? '' : '<p>' . h((string) $event['description']) . '</p>';
         $url = safe_external_url((string) ($event['url'] ?? ''));
-        $link = $url === '' ? '' : '<a class="text-link" href="' . h($url) . '" target="_blank" rel="noopener noreferrer">Подробнее <span aria-hidden="true">↗</span></a>';
-        $cards[] = '<article class="event-card">' . $image . '<div class="event-body"><span class="event-meta">' . h($meta) . '</span><h3>' . h((string) $event['title']) . '</h3>' . $place . $description . $link . '</div></article>';
+        $href = h($url === '' ? safe_external_url((string) $data['links']['channel']) : $url);
+        $cards[] = '<a class="event-card" href="' . $href . '" target="_blank" rel="noopener noreferrer">' . $image . '<div class="event-body"><span class="event-meta">' . h($meta) . '</span><h3>' . h((string) $event['title']) . '</h3>' . $place . $description . '<span class="event-arrow" aria-hidden="true">↗</span></div></a>';
     }
-    $content = $cards
-        ? '<div class="upcoming-grid">' . implode("\n        ", $cards) . '</div>'
-        : '<div class="upcoming-empty"><p>Пока ближайшие даты не опубликованы. Анонсы практик можно посмотреть в <a href="' . $channel . '" target="_blank" rel="noopener noreferrer">Telegram-канале Леонида</a>.</p></div>';
-    return '<section class="section upcoming" id="upcoming" aria-labelledby="upcoming-title"><div class="container">'
-        . '<div class="upcoming-layout"><div class="section-intro"><span class="eyebrow">Афиша Леонида</span><h2 id="upcoming-title">' . h((string) $fields['upcoming_title']) . '</h2><p>' . h((string) $fields['upcoming_lead']) . '</p></div>'
-        . '<a class="text-link" href="' . $channel . '" target="_blank" rel="noopener noreferrer">Все анонсы <span aria-hidden="true">↗</span></a></div>'
-        . $content . '</div></section>';
+    if (!$cards) return '';
+    return '<section class="section upcoming reveal" id="upcoming" aria-labelledby="upcoming-title"><div class="container">'
+        . '<div class="section-head"><div><span class="eyebrow">Афиша</span><h2 id="upcoming-title">' . h((string) $fields['upcoming_title']) . '</h2></div></div>'
+        . '<div class="upcoming-grid">' . implode("\n        ", $cards) . '</div></div></section>';
+}
+
+function hero_event_html(array $data): string {
+    foreach ($data['featured_events'] ?? [] as $event) {
+        if (empty($event['visible'])) continue;
+        $url = safe_external_url((string) ($event['url'] ?? ''));
+        $href = $url === '' ? '#upcoming' : h($url);
+        $external = $url === '' ? '' : ' target="_blank" rel="noopener noreferrer"';
+        return '<div class="hero-event"><div class="container"><a href="' . $href . '"' . $external . '><span class="label">Ближайшее событие</span><strong>' . h((string) $event['title']) . '</strong><span class="event-date">' . h((string) $event['date']) . '</span><span class="event-arrow" aria-hidden="true">↗</span></a></div></div>';
+    }
+    return '';
 }
 
 function custom_blocks_html(array $data): string {
@@ -214,6 +221,8 @@ function render_site(array $data): string {
         $replacements['{{PRICE_' . strtoupper((string) $key) . '}}'] = price_rows($rows);
     }
     $replacements['{{FEATURED_EVENTS}}'] = featured_events_html($data);
+    $replacements['{{HERO_EVENT}}'] = hero_event_html($data);
+    $replacements['{{EVENTS_NAV}}'] = featured_events_html($data) === '' ? '' : '<a href="#upcoming">События</a>';
     $replacements['{{CUSTOM_BLOCKS}}'] = custom_blocks_html($data);
     $result = strtr($template, $replacements);
     if (preg_match('/\{\{[A-Za-z0-9_]+\}\}/', $result)) {

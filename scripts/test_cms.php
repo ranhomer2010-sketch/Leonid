@@ -9,8 +9,8 @@ function expect(bool $condition, string $message): void {
 $data = load_json(DATA_FILE);
 $schema = load_json(SCHEMA_FILE);
 $html = render_site($data);
-expect(str_contains($html, 'id="upcoming"'), 'Missing homepage events section');
-expect(str_contains($html, 'Пока ближайшие даты не опубликованы'), 'Missing empty state');
+expect(!str_contains($html, 'id="upcoming"'), 'Empty events section should be hidden');
+expect(!str_contains($html, 'Ближайшее событие'), 'Empty hero event should be hidden');
 expect(!str_contains($html, '{{'), 'Unrendered placeholders');
 
 $password = 'A-long-test-password-12345';
@@ -26,11 +26,14 @@ $withEvent = update_featured_events($data, [$event]);
 $eventHtml = render_site($withEvent);
 expect(str_contains($eventHtml, '&lt;Конференция&gt;'), 'Event title was not escaped');
 expect(str_contains($eventHtml, 'https://example.org/event'), 'Event URL missing');
+expect(str_contains($eventHtml, 'Ближайшее событие'), 'Hero event missing');
+expect(str_contains($eventHtml, 'id="upcoming"'), 'Event section missing');
 expect(!str_contains($eventHtml, '<Конференция>'), 'Raw event title leaked');
 $hidden = $event;
 $hidden['visible'] = '';
 $hiddenHtml = render_site(update_featured_events($data, [$hidden]));
 expect(!str_contains($hiddenHtml, 'Выступление'), 'Hidden event leaked');
+expect(!str_contains($hiddenHtml, 'id="upcoming"'), 'Hidden event section leaked');
 
 $block = [
     'id' => '', 'eyebrow' => 'Направление', 'title' => 'Новый формат',
