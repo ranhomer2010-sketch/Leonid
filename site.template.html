@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#e9eeee">
-  <title>Леонид Агафонов — массаж и телесные практики</title>
-  <meta name="description" content="Леонид Агафонов: авторский массаж, гвоздепрактики, телесно-ориентированная терапия и нейротехнологии. Более 33 лет практики. Услуги, цены и запись.">
-  <meta property="og:title" content="Леонид Агафонов — массаж и телесные практики">
-  <meta property="og:description" content="Массаж, гвоздепрактики и телесно-ориентированная терапия. Услуги и цены Леонида Агафонова.">
+  <title>{{site_title}}</title>
+  <meta name="description" content="{{seo_description}}">
+  <meta property="og:title" content="{{site_title}}">
+  <meta property="og:description" content="{{og_description}}">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ranhomer2010-sketch.github.io/Leonid/assets/leonid-agafonov.webp">
+  <link rel="canonical" href="{{site_url}}/">
+  <meta property="og:image" content="{{site_url}}/{{image_portrait_path}}">
   <style>
     @font-face { font-family: 'Approach Sans'; src: url('assets/approach-sans-regular.ttf') format('truetype'); font-style: normal; font-weight: 400; font-display: swap; }
     @font-face { font-family: 'Approach Sans'; src: url('assets/approach-sans-bold.ttf') format('truetype'); font-style: normal; font-weight: 700; font-display: swap; }
@@ -259,6 +260,36 @@
       .studio-grid { gap: 12px; }
       .neuro-grid { gap: 2rem; }
     }
+
+    .upcoming { background: #e9eeee; }
+    .upcoming-layout { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+    .upcoming-layout .section-intro { margin: 0; }
+    .upcoming-layout .section-intro h2 { margin-bottom: .7rem; }
+    .upcoming-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .event-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid #d5dfdc; border-radius: 14px; background: #fff; }
+    .event-image { aspect-ratio: 1.6; background: linear-gradient(145deg, #c6d9d8, #dce7e2 55%, #b9d4df); }
+    .event-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .event-image.empty { display: grid; place-items: center; color: #59847e; font-size: 3rem; }
+    .event-body { display: flex; flex-direction: column; flex: 1; padding: 1.5rem; }
+    .event-meta { color: #4a7973; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .event-card h3 { margin: .75rem 0; font-size: 1.45rem; line-height: 1.2; letter-spacing: -.04em; }
+    .event-place { color: var(--muted); font-size: .83rem; }
+    .event-card p { color: var(--ink-soft); font-size: .89rem; }
+    .event-card .text-link { align-self: flex-start; margin-top: auto; }
+    .upcoming-empty { padding: 1.6rem 2rem; border: 1px solid #cbdad5; border-radius: 12px; background: #f6f9f7; }
+    .upcoming-empty p { margin: 0; }
+    .custom-block { background: #fff; }
+    .custom-block:nth-of-type(even) { background: #e9efec; }
+    .custom-block-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; align-items: center; }
+    .custom-block-grid.no-image { grid-template-columns: 1fr; }
+    .custom-block h2 { margin: 1.2rem 0; }
+    .custom-block p { color: var(--ink-soft); max-width: 640px; }
+    .custom-block img { display: block; width: 100%; aspect-ratio: 1.25; object-fit: cover; border-radius: 14px; }
+    @media (max-width: 900px) { .upcoming-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 760px) {
+      .upcoming-layout { align-items: start; flex-direction: column; }
+      .upcoming-grid, .custom-block-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -272,11 +303,12 @@
       <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
         <a href="#formats">Практики</a>
         <a href="#prices">Цены</a>
+        <a href="#upcoming">События</a>
         <a href="#about">О Леониде</a>
-        <a href="#neuro">Нейротехнологии</a>
+        <a href="#neuro">Нейро</a>
         <a href="#contact">Контакты</a>
       </nav>
-      <a class="button header-cta" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Связаться <span class="arrow" aria-hidden="true">↗</span></a>
+      <a class="button header-cta" href="{{url_telegram}}" target="_blank" rel="noopener noreferrer">Связаться <span class="arrow" aria-hidden="true">↗</span></a>
       <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню"><span></span><span></span></button>
     </div>
   </header>
@@ -288,25 +320,27 @@
           <h1 id="hero-title">{{hero_title_1}}<br><em>{{hero_title_2}}</em></h1>
           <p class="hero-lead">{{hero_lead}}</p>
           <div class="hero-actions">
-            <a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Записаться на сеанс <span class="arrow" aria-hidden="true">↗</span></a>
-            <a class="text-link" href="#prices">Услуги и цены <span aria-hidden="true">↓</span></a>
+            <a class="button" href="{{url_telegram}}" target="_blank" rel="noopener noreferrer">{{hero_cta}} <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#prices">{{hero_secondary}} <span aria-hidden="true">↓</span></a>
           </div>
         </div>
         <div class="hero-photo-wrap">
           <div class="hero-photo"><img src="{{image_portrait_path}}" alt="{{image_portrait_alt}}" width="1000" height="1250" fetchpriority="high"></div>
-          <div class="photo-caption"><span>Практик и мастер массажа</span><strong>Леонид Агафонов</strong></div>
+          <div class="photo-caption"><span>{{hero_caption}}</span><strong>Леонид Агафонов</strong></div>
         </div>
       </div>
-      <div class="hero-bottom"><div class="container hero-bottom-inner"><span>Индивидуальные и групповые встречи</span><span class="line" aria-hidden="true"></span><span>Листайте вниз ↓</span></div></div>
+      <div class="hero-bottom"><div class="container hero-bottom-inner"><span>{{hero_bottom}}</span><span class="line" aria-hidden="true"></span><span>Листайте вниз ↓</span></div></div>
     </section>
+
+    {{FEATURED_EVENTS}}
 
     <section class="section services" id="formats" aria-labelledby="formats-title">
       <div class="container">
         <div class="section-intro"><span class="eyebrow">Направления</span><h2 id="formats-title">{{formats_title}}</h2><p>{{formats_lead}}</p></div>
         <div class="service-grid">
-          <article class="service-card"><span class="service-no">01 / телесные практики</span><span class="service-symbol" aria-hidden="true">~</span><h3>Массаж</h3><p>{{massage_card}}</p><a class="text-link" href="#massage-prices">Смотреть цены <span aria-hidden="true">↗</span></a></article>
-          <article class="service-card"><span class="service-no">02 / индивидуально и в группе</span><span class="service-symbol" aria-hidden="true">✳</span><h3>Гвозди Садху</h3><p>{{sadhu_card}}</p><a class="text-link" href="#sadhu-prices">Смотреть цены <span aria-hidden="true">↗</span></a></article>
-          <article class="service-card"><span class="service-no">03 / индивидуально и в группе</span><span class="service-symbol" aria-hidden="true">◌</span><h3>Телесная терапия</h3><p>{{therapy_card}}</p><a class="text-link" href="#therapy-prices">Смотреть условия <span aria-hidden="true">↗</span></a></article>
+          <article class="service-card"><span class="service-no">{{massage_card_label}}</span><span class="service-symbol" aria-hidden="true">~</span><h3>{{massage_card_title}}</h3><p>{{massage_card}}</p><a class="text-link" href="#massage-prices">Смотреть цены <span aria-hidden="true">↗</span></a></article>
+          <article class="service-card"><span class="service-no">{{sadhu_card_label}}</span><span class="service-symbol" aria-hidden="true">✳</span><h3>{{sadhu_card_title}}</h3><p>{{sadhu_card}}</p><a class="text-link" href="#sadhu-prices">Смотреть цены <span aria-hidden="true">↗</span></a></article>
+          <article class="service-card"><span class="service-no">{{therapy_card_label}}</span><span class="service-symbol" aria-hidden="true">◌</span><h3>{{therapy_card_title}}</h3><p>{{therapy_card}}</p><a class="text-link" href="#therapy-prices">Смотреть условия <span aria-hidden="true">↗</span></a></article>
         </div>
       </div>
     </section>
@@ -316,37 +350,37 @@
         <div class="section-intro"><span class="eyebrow">Стоимость</span><h2 id="prices-title">{{prices_title}}</h2><p>{{prices_lead}}</p></div>
         <nav class="price-nav" aria-label="Разделы прайс-листа"><a href="#massage-prices">Массаж</a><a href="#sadhu-prices">Гвозди Садху</a><a href="#combo-prices">Комбо</a><a href="#therapy-prices">Терапия</a></nav>
         <div class="price-category" id="massage-prices">
-          <div class="price-category-head"><span class="eyebrow">01 / тело</span><h3>Массаж</h3><p>От короткой работы с шейно-воротниковой зоной до продолжительной авторской сессии.</p></div>
+          <div class="price-category-head"><span class="eyebrow">01 / тело</span><h3>{{price_massage_title}}</h3><p>{{price_massage_lead}}</p></div>
           <div class="price-rows">
             {{PRICE_MASSAGE}}
           </div>
         </div>
         <div class="price-category" id="sadhu-prices">
-          <div class="price-category-head"><span class="eyebrow">02 / практика</span><h3>Гвозди Садху</h3><p>Индивидуальные форматы гвоздележания и гвоздестояния.</p></div>
+          <div class="price-category-head"><span class="eyebrow">02 / практика</span><h3>{{price_sadhu_title}}</h3><p>{{price_sadhu_lead}}</p></div>
           <div class="price-rows">
             {{PRICE_SADHU}}
           </div>
         </div>
         <div class="price-category" id="combo-prices">
-          <div class="price-category-head"><span class="eyebrow">03 / сочетание</span><h3>Комбо-сессии</h3><p>Две практики в одной встрече.</p></div>
+          <div class="price-category-head"><span class="eyebrow">03 / сочетание</span><h3>{{price_combo_title}}</h3><p>{{price_combo_lead}}</p></div>
           <div class="price-rows">
             {{PRICE_COMBO}}
           </div>
         </div>
         <div class="price-category" id="therapy-prices">
-          <div class="price-category-head"><span class="eyebrow">04 / диалог</span><h3>Телесная терапия</h3><p>Индивидуальная сессия с телесно-ориентированным подходом.</p></div>
+          <div class="price-category-head"><span class="eyebrow">04 / диалог</span><h3>{{price_therapy_title}}</h3><p>{{price_therapy_lead}}</p></div>
           <div class="price-rows">
             {{PRICE_THERAPY}}
           </div>
         </div>
-        <div class="price-footer"><p><strong>Абонементы на массаж и гвозди:</strong> {{subscription_text}}</p><a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Уточнить и записаться <span class="arrow" aria-hidden="true">↗</span></a></div>
+        <div class="price-footer"><p><strong>Абонементы на массаж и гвозди:</strong> {{subscription_text}}</p><a class="button" href="{{url_telegram}}" target="_blank" rel="noopener noreferrer">Уточнить и записаться <span class="arrow" aria-hidden="true">↗</span></a></div>
       </div>
     </section>
 
     <section class="section about" id="about" aria-labelledby="about-title">
       <div class="container about-grid">
-        <div class="about-statement"><div class="number">33+</div><div class="years">лет опыта в массаже</div><p>{{about_years}}</p></div>
-        <div class="about-copy"><span class="eyebrow">О мастере</span><h2 id="about-title">Леонид Агафонов</h2><p>{{about_intro}}</p><p>{{about_work}}</p>
+        <div class="about-statement"><div class="number">{{about_years_number}}</div><div class="years">{{about_years_label}}</div><p>{{about_years}}</p></div>
+        <div class="about-copy"><span class="eyebrow">О мастере</span><h2 id="about-title">{{about_name}}</h2><p>{{about_intro}}</p><p>{{about_work}}</p>
           <div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>{{about_record}}</span></div>
           <div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>{{about_festival}}</span></div>
           <div class="about-credential"><span class="dot" aria-hidden="true">✳</span><span>{{about_ambassador}}</span></div>
@@ -366,32 +400,34 @@
 
     <section class="section neuro" id="neuro" aria-labelledby="neuro-title">
       <div class="container neuro-grid">
-        <div><span class="eyebrow">Новое направление</span><h2 id="neuro-title">{{neuro_title}}</h2><p>{{neuro_intro}}</p><p>{{neuro_method}}</p><a class="button outline" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Узнать о направлении <span class="arrow" aria-hidden="true">↗</span></a></div>
-        <div class="neuro-panel" aria-label="Этапы самоисследования"><span class="neuro-kicker">Как устроен подход</span><div class="neuro-step"><b>01</b><span>Замер показателей и описание состояния</span></div><div class="neuro-step"><b>02</b><span>Практика по выбранному протоколу</span></div><div class="neuro-step"><b>03</b><span>Повторный замер и сравнение динамики</span></div><small>Инструменты самоисследования не заменяют медицинскую диагностику.</small></div>
+        <div><span class="eyebrow">Новое направление</span><h2 id="neuro-title">{{neuro_title}}</h2><p>{{neuro_intro}}</p><p>{{neuro_method}}</p><a class="button outline" href="{{url_telegram}}" target="_blank" rel="noopener noreferrer">Узнать о направлении <span class="arrow" aria-hidden="true">↗</span></a></div>
+        <div class="neuro-panel" aria-label="Этапы самоисследования"><span class="neuro-kicker">Как устроен подход</span><div class="neuro-step"><b>01</b><span>{{neuro_step_1}}</span></div><div class="neuro-step"><b>02</b><span>{{neuro_step_2}}</span></div><div class="neuro-step"><b>03</b><span>{{neuro_step_3}}</span></div><small>Инструменты самоисследования не заменяют медицинскую диагностику.</small></div>
       </div>
     </section>
 
     <section class="section approach" id="approach" aria-labelledby="approach-title">
       <div class="container approach-layout">
         <div class="section-intro"><span class="eyebrow">Первый шаг</span><h2 id="approach-title">{{approach_title}}</h2><p>{{approach_lead}}</p></div>
-        <div class="steps"><div class="step"><span class="num">01</span><div><h3>Напишите, что вам интересно</h3><p>Массаж, гвоздепрактика или группа — достаточно назвать направление и задать вопросы. Если формат пока не выбран, так и напишите.</p></div></div><div class="step"><span class="num">02</span><div><h3>Уточните формат и условия</h3><p>Леонид расскажет, как проходит практика, подтвердит цену из прайс-листа и сообщит место встречи.</p></div></div><div class="step"><span class="num">03</span><div><h3>Согласуйте время</h3><p>После обсуждения деталей договоритесь о времени. Перед практикой можно ещё раз обозначить свои вопросы и ожидания.</p></div></div></div>
+        <div class="steps"><div class="step"><span class="num">01</span><div><h3>{{step_1_title}}</h3><p>{{step_1_body}}</p></div></div><div class="step"><span class="num">02</span><div><h3>{{step_2_title}}</h3><p>{{step_2_body}}</p></div></div><div class="step"><span class="num">03</span><div><h3>{{step_3_title}}</h3><p>{{step_3_body}}</p></div></div></div>
       </div>
     </section>
 
     <section class="section recognition" id="events" aria-labelledby="events-title">
-      <div class="container recognition-grid"><div><span class="eyebrow">Встречи и события</span><h2 id="events-title">{{events_title}}</h2><p>{{events_lead}}</p><a class="text-link" href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Смотреть анонсы <span aria-hidden="true">↗</span></a></div><div class="recognition-facts"><div class="fact"><small>Форматы Садху</small><strong>Лежание, стояние, сидение и хождение</strong></div><div class="fact"><small>Участие</small><strong>Индивидуальные сессии и групповые практики</strong></div><div class="fact"><small>Выездные события</small><strong>Оздоровительные ретриты с мастерами</strong></div></div></div>
+      <div class="container recognition-grid"><div><span class="eyebrow">Встречи и события</span><h2 id="events-title">{{events_title}}</h2><p>{{events_lead}}</p><a class="text-link" href="{{url_channel}}" target="_blank" rel="noopener noreferrer">Смотреть анонсы <span aria-hidden="true">↗</span></a></div><div class="recognition-facts"><div class="fact"><small>{{event_fact_1_label}}</small><strong>{{event_fact_1_value}}</strong></div><div class="fact"><small>{{event_fact_2_label}}</small><strong>{{event_fact_2_value}}</strong></div><div class="fact"><small>{{event_fact_3_label}}</small><strong>{{event_fact_3_value}}</strong></div></div></div>
     </section>
 
     <section class="section faq" id="questions" aria-labelledby="faq-title">
-      <div class="container faq-grid"><div class="section-intro"><span class="eyebrow">Перед записью</span><h2 id="faq-title">Частые вопросы</h2><p>То, что полезно знать перед первым обращением.</p></div><div class="faq-list">
-        <details><summary>Нужно ли заранее выбирать практику?</summary><p>Нет. Напишите, что вас интересует, и Леонид расскажет, чем отличаются форматы.</p></details>
-        <details><summary>Можно ли прийти на гвозди впервые?</summary><p>Да, перед записью можно обсудить первый опыт, особенности практики и ваши вопросы с Леонидом.</p></details>
-        <details><summary>Как работают абонементы?</summary><p>На массаж и гвоздепрактики доступны абонементы: 5 сеансов со скидкой 10% и 10 сеансов со скидкой 15%. Условия оформления уточняйте напрямую.</p></details>
-        <details><summary>Где узнать о группах и ретритах?</summary><p>Анонсы Леонид публикует в <a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Telegram-канале практик</a>.</p></details>
+      <div class="container faq-grid"><div class="section-intro"><span class="eyebrow">Перед записью</span><h2 id="faq-title">{{faq_title}}</h2><p>{{faq_lead}}</p></div><div class="faq-list">
+        <details><summary>{{faq_1_question}}</summary><p>{{faq_1_answer}}</p></details>
+        <details><summary>{{faq_2_question}}</summary><p>{{faq_2_answer}}</p></details>
+        <details><summary>{{faq_3_question}}</summary><p>{{faq_3_answer}}</p></details>
+        <details><summary>{{faq_4_question}}</summary><p>{{faq_4_answer}} <a href="{{url_channel}}" target="_blank" rel="noopener noreferrer">Telegram-канале практик</a>.</p></details>
       </div></div>
     </section>
 
-    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="container contact-panel"><div><span class="eyebrow">Связаться</span><h2 id="contact-title">{{contact_title}}</h2><p class="contact-lead">{{contact_lead}}</p><div class="socials"><a href="https://vk.com/leonid_agafonov_33" target="_blank" rel="noopener noreferrer">ВКонтакте ↗</a><a href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Личный Telegram ↗</a><a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Анонсы практик ↗</a></div></div><div class="contact-action"><a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Написать Леониду <span class="arrow" aria-hidden="true">↗</span></a><p>Сайт не собирает заявки и не запрашивает ваши контактные данные. Общение продолжится в выбранном вами сервисе.</p></div></div><footer><div class="container footer-inner"><span>© 2026 Леонид Агафонов</span><a href="#top">Вернуться наверх ↑</a></div></footer></section>
+    {{CUSTOM_BLOCKS}}
+
+    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="container contact-panel"><div><span class="eyebrow">Связаться</span><h2 id="contact-title">{{contact_title}}</h2><p class="contact-lead">{{contact_lead}}</p><div class="socials"><a href="{{url_vk}}" target="_blank" rel="noopener noreferrer">ВКонтакте ↗</a><a href="{{url_telegram}}" target="_blank" rel="noopener noreferrer">Личный Telegram ↗</a><a href="{{url_channel}}" target="_blank" rel="noopener noreferrer">Анонсы практик ↗</a></div></div><div class="contact-action"><a class="button" href="{{url_telegram}}" target="_blank" rel="noopener noreferrer">{{contact_cta}} <span class="arrow" aria-hidden="true">↗</span></a><p>{{contact_note}}</p></div></div><footer><div class="container footer-inner"><span>© {{footer_year}} Леонид Агафонов</span><a href="#top">Вернуться наверх ↑</a></div></footer></section>
   </main>
   <script>
     const toggle = document.querySelector('.menu-toggle');

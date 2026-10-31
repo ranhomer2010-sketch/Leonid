@@ -10,6 +10,7 @@
   <meta property="og:title" content="Леонид Агафонов — массаж и телесные практики">
   <meta property="og:description" content="Массаж, гвоздепрактики и телесно-ориентированная терапия. Услуги и цены Леонида Агафонова.">
   <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ranhomer2010-sketch.github.io/Leonid/">
   <meta property="og:image" content="https://ranhomer2010-sketch.github.io/Leonid/assets/leonid-agafonov.webp">
   <style>
     @font-face { font-family: 'Approach Sans'; src: url('assets/approach-sans-regular.ttf') format('truetype'); font-style: normal; font-weight: 400; font-display: swap; }
@@ -259,6 +260,36 @@
       .studio-grid { gap: 12px; }
       .neuro-grid { gap: 2rem; }
     }
+
+    .upcoming { background: #e9eeee; }
+    .upcoming-layout { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+    .upcoming-layout .section-intro { margin: 0; }
+    .upcoming-layout .section-intro h2 { margin-bottom: .7rem; }
+    .upcoming-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .event-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid #d5dfdc; border-radius: 14px; background: #fff; }
+    .event-image { aspect-ratio: 1.6; background: linear-gradient(145deg, #c6d9d8, #dce7e2 55%, #b9d4df); }
+    .event-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .event-image.empty { display: grid; place-items: center; color: #59847e; font-size: 3rem; }
+    .event-body { display: flex; flex-direction: column; flex: 1; padding: 1.5rem; }
+    .event-meta { color: #4a7973; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .event-card h3 { margin: .75rem 0; font-size: 1.45rem; line-height: 1.2; letter-spacing: -.04em; }
+    .event-place { color: var(--muted); font-size: .83rem; }
+    .event-card p { color: var(--ink-soft); font-size: .89rem; }
+    .event-card .text-link { align-self: flex-start; margin-top: auto; }
+    .upcoming-empty { padding: 1.6rem 2rem; border: 1px solid #cbdad5; border-radius: 12px; background: #f6f9f7; }
+    .upcoming-empty p { margin: 0; }
+    .custom-block { background: #fff; }
+    .custom-block:nth-of-type(even) { background: #e9efec; }
+    .custom-block-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; align-items: center; }
+    .custom-block-grid.no-image { grid-template-columns: 1fr; }
+    .custom-block h2 { margin: 1.2rem 0; }
+    .custom-block p { color: var(--ink-soft); max-width: 640px; }
+    .custom-block img { display: block; width: 100%; aspect-ratio: 1.25; object-fit: cover; border-radius: 14px; }
+    @media (max-width: 900px) { .upcoming-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 760px) {
+      .upcoming-layout { align-items: start; flex-direction: column; }
+      .upcoming-grid, .custom-block-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -272,8 +303,9 @@
       <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
         <a href="#formats">Практики</a>
         <a href="#prices">Цены</a>
+        <a href="#upcoming">События</a>
         <a href="#about">О Леониде</a>
-        <a href="#neuro">Нейротехнологии</a>
+        <a href="#neuro">Нейро</a>
         <a href="#contact">Контакты</a>
       </nav>
       <a class="button header-cta" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Связаться <span class="arrow" aria-hidden="true">↗</span></a>
@@ -299,6 +331,8 @@
       </div>
       <div class="hero-bottom"><div class="container hero-bottom-inner"><span>Индивидуальные и групповые встречи</span><span class="line" aria-hidden="true"></span><span>Листайте вниз ↓</span></div></div>
     </section>
+
+    <section class="section upcoming" id="upcoming" aria-labelledby="upcoming-title"><div class="container"><div class="upcoming-layout"><div class="section-intro"><span class="eyebrow">Афиша Леонида</span><h2 id="upcoming-title">Ближайшие события</h2><p>Групповые практики, ретриты и выступления Леонида.</p></div><a class="text-link" href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Все анонсы <span aria-hidden="true">↗</span></a></div><div class="upcoming-empty"><p>Пока ближайшие даты не опубликованы. Анонсы практик можно посмотреть в <a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Telegram-канале Леонида</a>.</p></div></div></section>
 
     <section class="section services" id="formats" aria-labelledby="formats-title">
       <div class="container">
@@ -401,6 +435,8 @@
         <details><summary>Где узнать о группах и ретритах?</summary><p>Анонсы Леонид публикует в <a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Telegram-канале практик</a>.</p></details>
       </div></div>
     </section>
+
+    
 
     <section class="contact" id="contact" aria-labelledby="contact-title"><div class="container contact-panel"><div><span class="eyebrow">Связаться</span><h2 id="contact-title">Обсудите встречу с Леонидом</h2><p class="contact-lead">Выберите услугу в прайс-листе или расскажите о своём запросе. Леонид ответит на вопросы и согласует время.</p><div class="socials"><a href="https://vk.com/leonid_agafonov_33" target="_blank" rel="noopener noreferrer">ВКонтакте ↗</a><a href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Личный Telegram ↗</a><a href="https://t.me/gvozdisadhu_leon33aga" target="_blank" rel="noopener noreferrer">Анонсы практик ↗</a></div></div><div class="contact-action"><a class="button" href="https://t.me/Leoni_aga33" target="_blank" rel="noopener noreferrer">Написать Леониду <span class="arrow" aria-hidden="true">↗</span></a><p>Сайт не собирает заявки и не запрашивает ваши контактные данные. Общение продолжится в выбранном вами сервисе.</p></div></div><footer><div class="container footer-inner"><span>© 2026 Леонид Агафонов</span><a href="#top">Вернуться наверх ↑</a></div></footer></section>
   </main>

@@ -133,6 +133,56 @@ function safe_image_path(string $path): string {
     return $path;
 }
 
+function safe_external_url(string $url): string {
+    if ($url === '') return '';
+    $parts = parse_url($url);
+    if (!is_array($parts) || strtolower((string) ($parts['scheme'] ?? '')) !== 'https'
+        || empty($parts['host']) || isset($parts['user']) || isset($parts['pass'])
+        || preg_match('/[\x00-\x20]/', $url) || strlen($url) > 500) {
+        throw new RuntimeException('Ссылка должна начинаться с https:// и вести на сайт события.');
+    }
+    return $url;
+}
+
+function featured_events_html(array $data): string {
+    $fields = $data['fields'];
+    $channel = h(safe_external_url((string) $data['links']['channel']));
+    $cards = [];
+    foreach ($data['featured_events'] ?? [] as $event) {
+        if (empty($event['visible'])) continue;
+        $image = empty($event['image']) ? '<div class="event-image empty" aria-hidden="true">✳</div>'
+            : '<div class="event-image"><img src="' . h(safe_image_path((string) $event['image'])) . '" alt="' . h((string) $event['title']) . '" loading="lazy"></div>';
+        $meta = trim((string) $event['date'] . (empty($event['category']) ? '' : ' · ' . $event['category']), " ·");
+        $place = empty($event['place']) ? '' : '<div class="event-place">' . h((string) $event['place']) . '</div>';
+        $description = empty($event['description']) ? '' : '<p>' . h((string) $event['description']) . '</p>';
+        $url = safe_external_url((string) ($event['url'] ?? ''));
+        $link = $url === '' ? '' : '<a class="text-link" href="' . h($url) . '" target="_blank" rel="noopener noreferrer">Подробнее <span aria-hidden="true">↗</span></a>';
+        $cards[] = '<article class="event-card">' . $image . '<div class="event-body"><span class="event-meta">' . h($meta) . '</span><h3>' . h((string) $event['title']) . '</h3>' . $place . $description . $link . '</div></article>';
+    }
+    $content = $cards
+        ? '<div class="upcoming-grid">' . implode("\n        ", $cards) . '</div>'
+        : '<div class="upcoming-empty"><p>Пока ближайшие даты не опубликованы. Анонсы практик можно посмотреть в <a href="' . $channel . '" target="_blank" rel="noopener noreferrer">Telegram-канале Леонида</a>.</p></div>';
+    return '<section class="section upcoming" id="upcoming" aria-labelledby="upcoming-title"><div class="container">'
+        . '<div class="upcoming-layout"><div class="section-intro"><span class="eyebrow">Афиша Леонида</span><h2 id="upcoming-title">' . h((string) $fields['upcoming_title']) . '</h2><p>' . h((string) $fields['upcoming_lead']) . '</p></div>'
+        . '<a class="text-link" href="' . $channel . '" target="_blank" rel="noopener noreferrer">Все анонсы <span aria-hidden="true">↗</span></a></div>'
+        . $content . '</div></section>';
+}
+
+function custom_blocks_html(array $data): string {
+    $html = [];
+    foreach ($data['custom_blocks'] ?? [] as $block) {
+        if (empty($block['visible'])) continue;
+        $image = empty($block['image']) ? '' : '<div><img src="' . h(safe_image_path((string) $block['image'])) . '" alt="' . h((string) $block['title']) . '" loading="lazy"></div>';
+        $url = safe_external_url((string) ($block['url'] ?? ''));
+        $button = ($url !== '' && !empty($block['button']))
+            ? '<a class="button outline" href="' . h($url) . '" target="_blank" rel="noopener noreferrer">' . h((string) $block['button']) . ' <span class="arrow" aria-hidden="true">↗</span></a>' : '';
+        $html[] = '<section class="section custom-block"><div class="container custom-block-grid' . ($image === '' ? ' no-image' : '') . '"><div>'
+            . '<span class="eyebrow">' . h((string) $block['eyebrow']) . '</span><h2>' . h((string) $block['title']) . '</h2>'
+            . '<p>' . h((string) $block['body']) . '</p>' . $button . '</div>' . $image . '</div></section>';
+    }
+    return implode("\n\n    ", $html);
+}
+
 function price_rows(array $rows): string {
     $html = [];
     foreach ($rows as $row) {
@@ -151,15 +201,20 @@ function render_site(array $data): string {
     if (!is_string($template)) throw new RuntimeException('Не найден шаблон сайта.');
     $replacements = [];
     foreach ($data['fields'] as $key => $value) {
-        $replacements['{{' . $key . '}}'] = h((string) $value);
+        $replacements['{{' . $key . '}}'] = h($key === 'site_url' ? rtrim(safe_external_url((string) $value), '/') : (string) $value);
     }
     foreach ($data['images'] as $key => $image) {
         $replacements['{{image_' . $key . '_path}}'] = h(safe_image_path((string) $image['path']));
         $replacements['{{image_' . $key . '_alt}}'] = h((string) $image['alt']);
     }
+    foreach ($data['links'] as $key => $url) {
+        $replacements['{{url_' . $key . '}}'] = h(safe_external_url((string) $url));
+    }
     foreach ($data['prices'] as $key => $rows) {
         $replacements['{{PRICE_' . strtoupper((string) $key) . '}}'] = price_rows($rows);
     }
+    $replacements['{{FEATURED_EVENTS}}'] = featured_events_html($data);
+    $replacements['{{CUSTOM_BLOCKS}}'] = custom_blocks_html($data);
     $result = strtr($template, $replacements);
     if (preg_match('/\{\{[A-Za-z0-9_]+\}\}/', $result)) {
         throw new RuntimeException('В шаблоне остались незаполненные поля.');
@@ -206,7 +261,21 @@ function update_fields(array $data, array $schema, mixed $posted): array {
         foreach ($group as $field) {
             $key = $field['key'];
             $data['fields'][$key] = plain_text($posted[$key] ?? null, $field['type'] === 'textarea' ? 3000 : 500);
+            if ($key === 'site_url') {
+                $data['fields'][$key] = rtrim(safe_external_url($data['fields'][$key]), '/');
+                if ($data['fields'][$key] === '') throw new RuntimeException('Укажите адрес сайта с https://.');
+            }
         }
+    }
+    return $data;
+}
+
+function update_links(array $data, array $schema, mixed $posted): array {
+    if (!is_array($posted)) throw new RuntimeException('Не найдены ссылки.');
+    foreach ($schema['links'] as $key => $_label) {
+        $url = safe_external_url(plain_text($posted[$key] ?? '', 500));
+        if ($url === '') throw new RuntimeException('Заполните все контактные ссылки.');
+        $data['links'][$key] = $url;
     }
     return $data;
 }
@@ -235,9 +304,70 @@ function update_prices(array $data, array $schema, mixed $posted): array {
     return $data;
 }
 
+function update_featured_events(array $data, mixed $posted): array {
+    if (!is_array($posted) || count($posted) > 31) throw new RuntimeException('Некорректный список событий.');
+    $existing = array_column($data['featured_events'] ?? [], null, 'id');
+    $events = [];
+    $newEvents = [];
+    foreach ($posted as $item) {
+        if (!is_array($item) || !empty($item['delete'])) continue;
+        $title = plain_text($item['title'] ?? '', 300);
+        $category = plain_text($item['category'] ?? '', 100);
+        $date = plain_text($item['date'] ?? '', 100);
+        $place = plain_text($item['place'] ?? '', 200);
+        $description = plain_text($item['description'] ?? '', 1200);
+        $url = safe_external_url(plain_text($item['url'] ?? '', 500));
+        if ($title === '' && $category === '' && $date === '' && $place === '' && $description === '' && $url === '') continue;
+        if ($title === '') throw new RuntimeException('У события должно быть название.');
+        $id = (string) ($item['id'] ?? '');
+        if ($id !== '' && !isset($existing[$id])) throw new RuntimeException('Событие не найдено. Обновите страницу.');
+        $isNew = $id === '';
+        if ($isNew) $id = bin2hex(random_bytes(8));
+        $record = compact('id', 'title', 'category', 'date', 'place', 'description', 'url')
+            + ['image' => !empty($item['remove_image']) ? '' : (string) ($existing[$id]['image'] ?? ''), 'visible' => !empty($item['visible'])];
+        if ($isNew) $newEvents[] = $record;
+        else $events[] = $record;
+    }
+    $events = array_merge($newEvents, $events);
+    if (count($events) > 30) throw new RuntimeException('Можно добавить не более 30 событий.');
+    $data['featured_events'] = $events;
+    return $data;
+}
+
+function update_custom_blocks(array $data, mixed $posted): array {
+    if (!is_array($posted) || count($posted) > 21) throw new RuntimeException('Некорректный список блоков.');
+    $existing = array_column($data['custom_blocks'] ?? [], null, 'id');
+    $blocks = [];
+    foreach ($posted as $item) {
+        if (!is_array($item) || !empty($item['delete'])) continue;
+        $eyebrow = plain_text($item['eyebrow'] ?? '', 100);
+        $title = plain_text($item['title'] ?? '', 300);
+        $body = plain_text($item['body'] ?? '', 2000);
+        $button = plain_text($item['button'] ?? '', 100);
+        $url = safe_external_url(plain_text($item['url'] ?? '', 500));
+        if ($eyebrow === '' && $title === '' && $body === '' && $button === '' && $url === '') continue;
+        if ($title === '' || $body === '') throw new RuntimeException('Дополнительному блоку нужны заголовок и текст.');
+        if (($button === '') !== ($url === '')) throw new RuntimeException('Для кнопки заполните и подпись, и ссылку.');
+        $id = (string) ($item['id'] ?? '');
+        if ($id !== '' && !isset($existing[$id])) throw new RuntimeException('Блок не найден. Обновите страницу.');
+        if ($id === '') $id = bin2hex(random_bytes(8));
+        $blocks[] = compact('id', 'eyebrow', 'title', 'body', 'button', 'url')
+            + ['image' => !empty($item['remove_image']) ? '' : (string) ($existing[$id]['image'] ?? ''), 'visible' => !empty($item['visible'])];
+    }
+    if (count($blocks) > 20) throw new RuntimeException('Можно добавить не более 20 блоков.');
+    $data['custom_blocks'] = $blocks;
+    return $data;
+}
+
 function upload_image(array $data, array $schema): array {
     $slot = $_POST['slot'] ?? '';
-    if (!is_string($slot) || !isset($schema['images'][$slot])) throw new RuntimeException('Выберите фотографию для замены.');
+    if (!is_string($slot)) throw new RuntimeException('Выберите фотографию для замены.');
+    $fixed = isset($schema['images'][$slot]);
+    $eventId = str_starts_with($slot, 'event:') ? substr($slot, 6) : '';
+    $blockId = str_starts_with($slot, 'block:') ? substr($slot, 6) : '';
+    if (!$fixed && $eventId === '' && $blockId === '') throw new RuntimeException('Выберите фотографию для замены.');
+    if ($eventId !== '' && !in_array($eventId, array_column($data['featured_events'] ?? [], 'id'), true)) throw new RuntimeException('Событие не найдено.');
+    if ($blockId !== '' && !in_array($blockId, array_column($data['custom_blocks'] ?? [], 'id'), true)) throw new RuntimeException('Блок не найден.');
     $file = $_FILES['image'] ?? null;
     if (!is_array($file) || $file['error'] !== UPLOAD_ERR_OK || !is_uploaded_file($file['tmp_name'])) {
         throw new RuntimeException('Не удалось загрузить фотографию.');
@@ -252,16 +382,29 @@ function upload_image(array $data, array $schema): array {
     if ($info === false || $info[0] < 100 || $info[1] < 100 || $info[0] > 6000 || $info[1] > 6000) {
         throw new RuntimeException('Размеры изображения не подходят.');
     }
-    $alt = plain_text($_POST['alt'] ?? '', 300);
-    if ($alt === '') throw new RuntimeException('Добавьте описание фотографии.');
+    $alt = $fixed ? plain_text($_POST['alt'] ?? '', 300) : '';
+    if ($fixed && $alt === '') throw new RuntimeException('Добавьте описание фотографии.');
     $directory = SITE_ROOT . '/assets/uploads';
     if (!is_dir($directory) && !mkdir($directory, 0755, true)) throw new RuntimeException('Не удалось создать папку фотографий.');
     $filename = 'photo-' . bin2hex(random_bytes(12)) . '.' . $extensions[$mime];
     $destination = $directory . '/' . $filename;
     if (!move_uploaded_file($file['tmp_name'], $destination)) throw new RuntimeException('Не удалось сохранить фотографию.');
     chmod($destination, 0644);
-    $data['images'][$slot]['path'] = 'assets/uploads/' . $filename;
-    $data['images'][$slot]['alt'] = $alt;
+    $path = 'assets/uploads/' . $filename;
+    if ($fixed) {
+        $data['images'][$slot]['path'] = $path;
+        $data['images'][$slot]['alt'] = $alt;
+    } elseif ($eventId !== '') {
+        foreach ($data['featured_events'] as &$event) {
+            if ($event['id'] === $eventId) { $event['image'] = $path; break; }
+        }
+        unset($event);
+    } else {
+        foreach ($data['custom_blocks'] as &$block) {
+            if ($block['id'] === $blockId) { $block['image'] = $path; break; }
+        }
+        unset($block);
+    }
     publish_data($data);
     return $data;
 }

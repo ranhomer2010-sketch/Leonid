@@ -5,6 +5,8 @@ on:
       - 'admin/**'
       - 'content/site.json'
       - 'site.template.html'
+      - 'index.html'
+      - 'scripts/**'
       - '.github/workflows/php-admin-checks.yml'
   workflow_dispatch:
 
@@ -22,6 +24,12 @@ jobs:
           php -l admin/lib.php
           php -l admin/index.php
           php -l admin/private/index.php
-      - name: Render default site
+          php -l scripts/test_cms.php
+      - name: Exercise editor and rendering
         run: |
-          php -r 'require "admin/lib.php"; $html = render_site(load_json(DATA_FILE)); if (strpos($html, "Верните телу") === false || preg_match("/\\{\\{[A-Za-z0-9_]+\\}\\}/", $html)) exit(1); echo "Render OK\\n";'
+          php scripts/test_cms.php
+          php -r 'require "admin/lib.php"; if (render_site(load_json(DATA_FILE)) !== file_get_contents("index.html")) exit(1); echo "Published HTML matches content\n";'
+      - name: Check static preview build
+        run: |
+          python3 scripts/render_static.py
+          git diff --exit-code -- index.html

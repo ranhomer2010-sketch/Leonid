@@ -53,10 +53,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $configured) {
             $data = update_fields(load_json(DATA_FILE), $schema, $_POST['fields'] ?? null);
             publish_data($data);
             $_SESSION['notice'] = 'Тексты сохранены и опубликованы.';
+        } elseif ($action === 'save_links') {
+            $data = update_links(load_json(DATA_FILE), $schema, $_POST['links'] ?? null);
+            publish_data($data);
+            $_SESSION['notice'] = 'Контактные ссылки сохранены и опубликованы.';
         } elseif ($action === 'save_prices') {
             $data = update_prices(load_json(DATA_FILE), $schema, $_POST['prices'] ?? null);
             publish_data($data);
             $_SESSION['notice'] = 'Цены сохранены и опубликованы.';
+        } elseif ($action === 'save_events') {
+            $data = update_featured_events(load_json(DATA_FILE), $_POST['events'] ?? null);
+            publish_data($data);
+            $_SESSION['notice'] = 'Афиша сохранена и опубликована.';
+        } elseif ($action === 'save_blocks') {
+            $data = update_custom_blocks(load_json(DATA_FILE), $_POST['blocks'] ?? null);
+            publish_data($data);
+            $_SESSION['notice'] = 'Дополнительные блоки сохранены и опубликованы.';
         } elseif ($action === 'upload_image') {
             upload_image(load_json(DATA_FILE), $schema);
             $_SESSION['notice'] = 'Фотография заменена и опубликована.';
@@ -131,9 +143,19 @@ $csrf = csrf_token();
     .photo-grid form { padding: 16px; border: 1px solid #dbe5e1; border-radius: 10px; }
     .photo-grid img { display: block; width: 100%; height: 160px; margin: 12px 0; object-fit: cover; object-position: top; border-radius: 7px; background: #e3e9e7; }
     .photo-grid button { width: 100%; }
+    .item-editor { padding: 0 0 10px; }
+    .item-editor summary { font-size: 1rem; }
+    .item-editor .fields { padding-top: 16px; }
+    .item-editor .checks { display: flex; gap: 1.5rem; margin: 5px 0 18px; }
+    .item-editor .checks label { display: flex; gap: .5rem; align-items: center; margin: 0; }
+    .item-editor .checks input { margin: 0; }
+    .upload-mini { display: flex; align-items: end; gap: 1rem; padding: 14px 0; border-top: 1px solid #e2e9e6; }
+    .upload-mini label { flex: 1; margin: 0; }
+    .upload-mini img { width: 100px; height: 70px; border-radius: 7px; object-fit: cover; }
+    .upload-mini button { flex-shrink: 0; }
     .hint { margin: 12px 0 0; font-size: .81rem; color: #68777b; }
     @media (max-width: 800px) { .price-edit { grid-template-columns: 1fr 1fr; } .price-edit label:first-child { grid-column: 1 / -1; } .photo-grid { grid-template-columns: 1fr; } }
-    @media (max-width: 600px) { .fields { grid-template-columns: 1fr; } .fields .wide { grid-column: auto; } .top-inner { align-items: flex-start; } .top nav { flex-direction: column; align-items: flex-end; } }
+    @media (max-width: 600px) { .fields { grid-template-columns: 1fr; } .fields .wide { grid-column: auto; } .top-inner { align-items: flex-start; } .top nav { flex-direction: column; align-items: flex-end; } .upload-mini { align-items: stretch; flex-direction: column; } }
   </style>
 </head>
 <body>
@@ -147,7 +169,7 @@ $csrf = csrf_token();
     <section class="card login"><h1>Вход в админку</h1><p>Редактирование текстов, цен и фотографий.</p><form method="post" autocomplete="off"><input type="hidden" name="csrf" value="<?= h($csrf) ?>"><input type="hidden" name="action" value="login"><label>Пароль<input type="password" name="password" autocomplete="current-password" required autofocus></label><button type="submit">Войти</button></form></section>
   <?php else: ?>
     <h1>Управление сайтом</h1><p class="intro">Сохранили раздел — изменения сразу появятся на сайте. Перед публикацией проверьте тексты и цены.</p>
-    <nav class="sections" aria-label="Разделы редактора"><a href="#texts">Тексты</a><a href="#prices">Цены</a><a href="#photos">Фотографии</a><a href="#security">Пароль</a></nav>
+    <nav class="sections" aria-label="Разделы редактора"><a href="#texts">Тексты</a><a href="#prices">Цены</a><a href="#announcements">События</a><a href="#extra">Новые блоки</a><a href="#photos">Фотографии</a><a href="#links">Ссылки</a><a href="#security">Пароль</a></nav>
 
     <section class="card" id="texts">
       <h2>Тексты</h2><p>Редактируйте формулировки без HTML-разметки.</p>
@@ -187,6 +209,64 @@ $csrf = csrf_token();
       </form>
     </section>
 
+    <section class="card" id="announcements">
+      <h2>События на главной</h2><p>Конференции, выступления, практики и ретриты. Можно сохранить событие скрытым и опубликовать позже.</p>
+      <form method="post"><input type="hidden" name="csrf" value="<?= h($csrf) ?>"><input type="hidden" name="action" value="save_events">
+        <?php $events = $data['featured_events'] ?? []; $events[] = ['id' => '', 'title' => '', 'category' => '', 'date' => '', 'place' => '', 'description' => '', 'url' => '', 'visible' => true]; ?>
+        <?php foreach ($events as $i => $event): ?>
+          <details class="item-editor" <?= $event['id'] === '' ? 'open' : '' ?>><summary><?= $event['id'] === '' ? 'Добавить событие' : h((string) $event['title']) ?></summary>
+            <input type="hidden" name="events[<?= $i ?>][id]" value="<?= h((string) $event['id']) ?>">
+            <div class="fields">
+              <label>Название<input type="text" name="events[<?= $i ?>][title]" value="<?= h((string) $event['title']) ?>" maxlength="150"></label>
+              <label>Тип, например «конференция»<input type="text" name="events[<?= $i ?>][category]" value="<?= h((string) $event['category']) ?>" maxlength="50"></label>
+              <label>Дата или период<input type="text" name="events[<?= $i ?>][date]" value="<?= h((string) $event['date']) ?>" maxlength="50" placeholder="12 ноября 2026"></label>
+              <label>Город или площадка<input type="text" name="events[<?= $i ?>][place]" value="<?= h((string) $event['place']) ?>" maxlength="100"></label>
+              <label class="wide">Краткое описание<textarea name="events[<?= $i ?>][description]" maxlength="600"><?= h((string) $event['description']) ?></textarea></label>
+              <label class="wide">Ссылка на программу или запись, https://<input type="text" name="events[<?= $i ?>][url]" value="<?= h((string) $event['url']) ?>" maxlength="500"></label>
+            </div>
+            <div class="checks"><label><input type="checkbox" name="events[<?= $i ?>][visible]" value="1" <?= !empty($event['visible']) ? 'checked' : '' ?>> Показывать на сайте</label><?php if ($event['id'] !== ''): ?><label><input type="checkbox" name="events[<?= $i ?>][delete]" value="1"> Удалить</label><label><input type="checkbox" name="events[<?= $i ?>][remove_image]" value="1"> Убрать афишу</label><?php endif; ?></div>
+          </details>
+        <?php endforeach; ?>
+        <button type="submit">Сохранить события</button>
+      </form>
+      <?php foreach ($data['featured_events'] ?? [] as $event): ?>
+        <form class="upload-mini" method="post" enctype="multipart/form-data">
+          <?php if (!empty($event['image'])): ?><img src="../<?= h(safe_image_path((string) $event['image'])) ?>" alt="Афиша события"><?php endif; ?>
+          <input type="hidden" name="csrf" value="<?= h($csrf) ?>"><input type="hidden" name="action" value="upload_image"><input type="hidden" name="slot" value="event:<?= h((string) $event['id']) ?>">
+          <label>Афиша: <?= h((string) $event['title']) ?><input type="file" name="image" accept="image/jpeg,image/png,image/webp" required></label><button type="submit">Загрузить фото</button>
+        </form>
+      <?php endforeach; ?>
+      <p class="hint">Новое событие сначала сохраните, затем можно загрузить его афишу. Без фото карточка тоже будет выглядеть аккуратно.</p>
+    </section>
+
+    <section class="card" id="extra">
+      <h2>Дополнительные разделы</h2><p>Для новых направлений или материалов можно добавить отдельный блок с текстом, фотографией и кнопкой.</p>
+      <form method="post"><input type="hidden" name="csrf" value="<?= h($csrf) ?>"><input type="hidden" name="action" value="save_blocks">
+        <?php $blocks = $data['custom_blocks'] ?? []; $blocks[] = ['id' => '', 'eyebrow' => '', 'title' => '', 'body' => '', 'button' => '', 'url' => '', 'visible' => true]; ?>
+        <?php foreach ($blocks as $i => $block): ?>
+          <details class="item-editor" <?= $block['id'] === '' ? 'open' : '' ?>><summary><?= $block['id'] === '' ? 'Добавить раздел' : h((string) $block['title']) ?></summary>
+            <input type="hidden" name="blocks[<?= $i ?>][id]" value="<?= h((string) $block['id']) ?>">
+            <div class="fields">
+              <label>Короткая подпись<input type="text" name="blocks[<?= $i ?>][eyebrow]" value="<?= h((string) $block['eyebrow']) ?>" maxlength="50"></label>
+              <label>Заголовок<input type="text" name="blocks[<?= $i ?>][title]" value="<?= h((string) $block['title']) ?>" maxlength="150"></label>
+              <label class="wide">Текст<textarea name="blocks[<?= $i ?>][body]" maxlength="1000"><?= h((string) $block['body']) ?></textarea></label>
+              <label>Текст кнопки, если нужна<input type="text" name="blocks[<?= $i ?>][button]" value="<?= h((string) $block['button']) ?>" maxlength="50"></label>
+              <label>Ссылка кнопки, https://<input type="text" name="blocks[<?= $i ?>][url]" value="<?= h((string) $block['url']) ?>" maxlength="500"></label>
+            </div>
+            <div class="checks"><label><input type="checkbox" name="blocks[<?= $i ?>][visible]" value="1" <?= !empty($block['visible']) ? 'checked' : '' ?>> Показывать на сайте</label><?php if ($block['id'] !== ''): ?><label><input type="checkbox" name="blocks[<?= $i ?>][delete]" value="1"> Удалить</label><label><input type="checkbox" name="blocks[<?= $i ?>][remove_image]" value="1"> Убрать фото</label><?php endif; ?></div>
+          </details>
+        <?php endforeach; ?>
+        <button type="submit">Сохранить разделы</button>
+      </form>
+      <?php foreach ($data['custom_blocks'] ?? [] as $block): ?>
+        <form class="upload-mini" method="post" enctype="multipart/form-data">
+          <?php if (!empty($block['image'])): ?><img src="../<?= h(safe_image_path((string) $block['image'])) ?>" alt="Фото раздела"><?php endif; ?>
+          <input type="hidden" name="csrf" value="<?= h($csrf) ?>"><input type="hidden" name="action" value="upload_image"><input type="hidden" name="slot" value="block:<?= h((string) $block['id']) ?>">
+          <label>Фото раздела: <?= h((string) $block['title']) ?><input type="file" name="image" accept="image/jpeg,image/png,image/webp" required></label><button type="submit">Загрузить фото</button>
+        </form>
+      <?php endforeach; ?>
+    </section>
+
     <section class="card" id="photos">
       <h2>Фотографии</h2><p>JPG, PNG или WebP до 5 МБ. После загрузки фотография сразу заменится на сайте.</p>
       <div class="photo-grid">
@@ -200,6 +280,13 @@ $csrf = csrf_token();
           </form>
         <?php endforeach; ?>
       </div>
+    </section>
+
+    <section class="card" id="links"><h2>Контактные ссылки</h2><p>Они обновятся во всех кнопках сайта, включая афишу и ответы на вопросы.</p>
+      <form method="post"><input type="hidden" name="csrf" value="<?= h($csrf) ?>"><input type="hidden" name="action" value="save_links">
+        <?php foreach ($schema['links'] as $key => $label): ?><label><?= h((string) $label) ?><input type="text" name="links[<?= h((string) $key) ?>]" value="<?= h((string) $data['links'][$key]) ?>" maxlength="500" required></label><?php endforeach; ?>
+        <button type="submit">Сохранить ссылки</button>
+      </form>
     </section>
 
     <section class="card" id="security"><h2>Сменить пароль</h2><form method="post" autocomplete="off"><input type="hidden" name="csrf" value="<?= h($csrf) ?>"><input type="hidden" name="action" value="change_password"><label>Текущий пароль<input type="password" name="old_password" autocomplete="current-password" required></label><label>Новый пароль, от 16 символов<input type="password" name="new_password" autocomplete="new-password" minlength="16" required></label><button type="submit">Изменить пароль</button></form></section>
