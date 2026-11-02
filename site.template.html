@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101313">
+  <meta name="theme-color" content="#f5f7ef">
   <title>{{site_title}}</title>
   <meta name="description" content="{{seo_description}}">
   <meta property="og:title" content="{{site_title}}">
@@ -17,15 +17,27 @@
 <body>
   <a class="skip" href="#main">К содержанию</a>
   <header class="site-header"><div class="container header-inner">
-    <a class="brand" href="#top" aria-label="Леонид Агафонов — главная">{{brand_name}}<span class="brand-mark" aria-hidden="true">✳</span></a>
-    <nav class="site-nav" id="site-nav" aria-label="Основная навигация"><a href="#formats">{{nav_practices}}</a><a href="#prices">{{nav_prices}}</a>{{EVENTS_NAV}}<a href="#about">{{nav_about}}</a><a href="#contact">{{nav_contact}}</a></nav>
-    <a class="header-contact" href="{{url_telegram}}" target="_blank" rel="noopener noreferrer">{{header_cta}} ↗</a>
-    <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню"><span></span><span></span></button>
+    <a class="brand" href="#top" aria-label="На главную">{{brand_name}}<span class="brand-mark" aria-hidden="true"></span></a>
+    <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="{{nav_menu}}"><span class="menu-lines" aria-hidden="true"><i></i><i></i></span></button>
   </div></header>
+  <nav class="site-nav" id="site-nav" aria-label="Основная навигация">
+    <div class="nav-panel container"><button class="nav-close" type="button" aria-label="Закрыть меню">Закрыть <span aria-hidden="true">×</span></button><div class="nav-links">
+      <a href="#formats">{{nav_practices}}</a><a href="#prices">{{nav_prices}}</a>{{EVENTS_NAV}}<a href="#about">{{nav_about}}</a><a href="#contact">{{nav_contact}}</a>
+    </div></div>
+  </nav>
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-image"><img src="{{image_portrait_path}}" alt="{{image_portrait_alt}}" width="1638" height="2048" fetchpriority="high"></div>
-      <div class="container hero-inner"><div class="hero-copy"><h1 id="hero-title">{{hero_title_1}}<br><em>{{hero_title_2}}</em></h1><p class="hero-lead">{{hero_lead}}</p><a class="button button-light" href="{{url_telegram}}" target="_blank" rel="noopener noreferrer">{{hero_cta}} <span class="arrow" aria-hidden="true">↗</span></a></div><a class="hero-scroll" href="#formats">{{hero_scroll}} <span aria-hidden="true">↓</span></a></div>
+      <div class="container hero-copy"><h1 id="hero-title">{{hero_title_1}}<br><span>{{hero_title_2}}</span></h1><p class="hero-lead">{{hero_lead}}</p></div>
+      <div class="hero-gallery" aria-label="Леонид и пространство для практики">
+        <div class="gallery-track">
+          <figure class="gallery-card gallery-room-first"><img src="{{image_cabinet_1_path}}" alt="{{image_cabinet_1_alt}}" width="1536" height="1024" loading="lazy"></figure>
+          <figure class="gallery-card gallery-detail"><img src="{{image_portrait_path}}" alt="Деталь портрета Леонида" width="1638" height="2048" loading="lazy"></figure>
+          <figure class="gallery-card gallery-portrait"><img src="{{image_portrait_path}}" alt="{{image_portrait_alt}}" width="1638" height="2048" fetchpriority="high"></figure>
+          <figure class="gallery-card gallery-room-second"><img src="{{image_cabinet_2_path}}" alt="{{image_cabinet_2_alt}}" width="1536" height="1024" loading="lazy"></figure>
+          <div class="gallery-card gallery-years"><strong>{{about_years_number}}</strong><span>{{about_years_label}}</span></div>
+        </div>
+      </div>
+      <div class="hero-bottom container"><a class="hero-scroll" href="#formats">{{hero_scroll}} <span aria-hidden="true">↓</span></a><a class="button hero-cta" href="{{url_telegram}}" target="_blank" rel="noopener noreferrer">{{hero_cta}} <span aria-hidden="true">↗</span></a></div>
     </section>
     {{HERO_EVENT}}
 {{FEATURED_EVENTS}}
@@ -47,10 +59,16 @@
 {{CUSTOM_BLOCKS}}
     <section class="contact reveal" id="contact" aria-labelledby="contact-title"><div class="container contact-panel"><div><span class="section-index">{{label_contact}}</span><h2 id="contact-title">{{contact_title}}</h2><p>{{contact_lead}}</p><div class="socials"><a href="{{url_vk}}" target="_blank" rel="noopener noreferrer">{{label_vk}} ↗</a><a href="{{url_channel}}" target="_blank" rel="noopener noreferrer">{{label_channel}} ↗</a></div></div><div class="contact-action"><a class="button button-light" href="{{url_telegram}}" target="_blank" rel="noopener noreferrer">{{contact_cta}} <span class="arrow" aria-hidden="true">↗</span></a></div></div><footer><div class="container footer-inner"><span>© {{footer_year}} {{brand_name}}</span><a href="#top">{{footer_top}} ↑</a></div></footer></section>
   </main>
+  <div class="scroll-dock" id="scroll-dock" hidden><button type="button" class="dock-menu" aria-controls="site-nav" aria-expanded="false">{{nav_menu}} <span aria-hidden="true">☰</span></button><a href="{{url_telegram}}" target="_blank" rel="noopener noreferrer">{{header_cta}} <span aria-hidden="true">↗</span></a></div>
   <script>
-    const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.site-nav');
-    toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню')});
-    nav.addEventListener('click',e=>{if(e.target.closest('a')){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Открыть меню')}});
+    const nav=document.querySelector('.site-nav'),menuButtons=document.querySelectorAll('[aria-controls="site-nav"]'),closeButton=document.querySelector('.nav-close'),dock=document.querySelector('#scroll-dock');
+    function setMenu(open){nav.classList.toggle('open',open);document.body.classList.toggle('nav-open',open);menuButtons.forEach(button=>button.setAttribute('aria-expanded',String(open)));if(open)closeButton.focus()}
+    menuButtons.forEach(button=>button.addEventListener('click',()=>setMenu(!nav.classList.contains('open'))));
+    closeButton.addEventListener('click',()=>setMenu(false));
+    nav.addEventListener('click',event=>{if(event.target===nav||event.target.closest('a'))setMenu(false)});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('open'))setMenu(false)});
+    function updateDock(){dock.hidden=window.scrollY<Math.max(400,document.querySelector('.hero').offsetHeight-240)}
+    updateDock();window.addEventListener('scroll',updateDock,{passive:true});window.addEventListener('resize',updateDock);
     if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
   </script>
 </body>

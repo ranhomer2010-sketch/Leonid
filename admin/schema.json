@@ -225,6 +225,11 @@
         "type": "text"
       },
       {
+        "key": "nav_menu",
+        "label": "Кнопка открытия разделов",
+        "type": "text"
+      },
+      {
         "key": "nav_practices",
         "label": "Меню: практики",
         "type": "text"
