@@ -170,7 +170,11 @@ function hero_event_html(array $data): string {
         $url = safe_external_url((string) ($event['url'] ?? ''));
         $href = $url === '' ? '#upcoming' : h($url);
         $external = $url === '' ? '' : ' target="_blank" rel="noopener noreferrer"';
-        return '<div class="hero-event"><div class="container"><a href="' . $href . '"' . $external . '><span class="label">' . h((string) $data['fields']['label_hero_event']) . '</span><strong>' . h((string) $event['title']) . '</strong><span class="event-date">' . h((string) $event['date']) . '</span><span class="event-arrow" aria-hidden="true">↗</span></a></div></div>';
+        $image = empty($event['image']) ? '' : '<img src="' . h(safe_image_path((string) $event['image'])) . '" alt="" loading="lazy">';
+        return '<a class="gallery-card gallery-event" href="' . $href . '"' . $external . '>' . $image
+            . '<span class="gallery-label">' . h((string) $data['fields']['nav_events']) . '</span>'
+            . '<span class="gallery-event-title">' . h((string) $event['title']) . '</span>'
+            . '<span class="gallery-arrow" aria-hidden="true">↗</span></a>';
     }
     return '';
 }

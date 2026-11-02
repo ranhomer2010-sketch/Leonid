@@ -44,7 +44,6 @@
     "nav_practices": "Практики",
     "nav_prices": "Цены",
     "nav_about": "О мастере",
-    "nav_contact": "Контакты",
     "nav_events": "События",
     "header_cta": "Написать",
     "hero_scroll": "Листайте вниз",
@@ -52,14 +51,13 @@
     "label_prices": "Стоимость",
     "label_about": "О мастере",
     "label_studio": "Пространство",
-    "label_neuro": "Нейротехнологии",
+    "label_neuro": "Нейро",
     "label_contact": "Контакт",
     "label_events": "Афиша",
-    "label_hero_event": "Ближайшее событие",
     "label_vk": "ВКонтакте",
     "label_channel": "Анонсы в Telegram",
     "footer_top": "Наверх",
-    "nav_menu": "Разделы"
+    "nav_menu": "Вернуться к навигации"
   },
   "images": {
     "portrait": {

@@ -59,7 +59,11 @@ def hero_event():
         url = safe_url(event["url"])
         href = h(url) if url else '#upcoming'
         external = ' target="_blank" rel="noopener noreferrer"' if url else ''
-        return ('<div class="hero-event"><div class="container"><a href="' + href + '"' + external + '><span class="label">' + h(data["fields"]["label_hero_event"]) + '</span><strong>' + h(event["title"]) + '</strong><span class="event-date">' + h(event["date"]) + '</span><span class="event-arrow" aria-hidden="true">↗</span></a></div></div>')
+        image = ('<img src="' + h(safe_image(event["image"])) + '" alt="" loading="lazy">') if event["image"] else ''
+        return ('<a class="gallery-card gallery-event" href="' + href + '"' + external + '>' + image
+                + '<span class="gallery-label">' + h(data["fields"]["nav_events"]) + '</span>'
+                + '<span class="gallery-event-title">' + h(event["title"]) + '</span>'
+                + '<span class="gallery-arrow" aria-hidden="true">↗</span></a>')
     return ""
 
 def extra_blocks():

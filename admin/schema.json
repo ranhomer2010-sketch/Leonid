@@ -226,7 +226,7 @@
       },
       {
         "key": "nav_menu",
-        "label": "Кнопка открытия разделов",
+        "label": "Кнопка возврата к навигации",
         "type": "text"
       },
       {
@@ -242,11 +242,6 @@
       {
         "key": "nav_about",
         "label": "Меню: о мастере",
-        "type": "text"
-      },
-      {
-        "key": "nav_contact",
-        "label": "Меню: контакты",
         "type": "text"
       },
       {
@@ -297,11 +292,6 @@
       {
         "key": "label_events",
         "label": "Подпись афиши",
-        "type": "text"
-      },
-      {
-        "key": "label_hero_event",
-        "label": "Подпись события на главной",
         "type": "text"
       },
       {
