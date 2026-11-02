@@ -160,7 +160,7 @@ function featured_events_html(array $data): string {
     }
     if (!$cards) return '';
     return '<section class="section upcoming reveal" id="upcoming" aria-labelledby="upcoming-title"><div class="container">'
-        . '<div class="section-head"><div><span class="eyebrow">Афиша</span><h2 id="upcoming-title">' . h((string) $fields['upcoming_title']) . '</h2></div></div>'
+        . '<div class="section-head"><div><span class="section-index">' . h((string) $fields['label_events']) . '</span><h2 id="upcoming-title">' . h((string) $fields['upcoming_title']) . '</h2></div></div>'
         . '<div class="upcoming-grid">' . implode("\n        ", $cards) . '</div></div></section>';
 }
 
@@ -170,7 +170,7 @@ function hero_event_html(array $data): string {
         $url = safe_external_url((string) ($event['url'] ?? ''));
         $href = $url === '' ? '#upcoming' : h($url);
         $external = $url === '' ? '' : ' target="_blank" rel="noopener noreferrer"';
-        return '<div class="hero-event"><div class="container"><a href="' . $href . '"' . $external . '><span class="label">Ближайшее событие</span><strong>' . h((string) $event['title']) . '</strong><span class="event-date">' . h((string) $event['date']) . '</span><span class="event-arrow" aria-hidden="true">↗</span></a></div></div>';
+        return '<div class="hero-event"><div class="container"><a href="' . $href . '"' . $external . '><span class="label">' . h((string) $data['fields']['label_hero_event']) . '</span><strong>' . h((string) $event['title']) . '</strong><span class="event-date">' . h((string) $event['date']) . '</span><span class="event-arrow" aria-hidden="true">↗</span></a></div></div>';
     }
     return '';
 }
@@ -222,7 +222,7 @@ function render_site(array $data): string {
     }
     $replacements['{{FEATURED_EVENTS}}'] = featured_events_html($data);
     $replacements['{{HERO_EVENT}}'] = hero_event_html($data);
-    $replacements['{{EVENTS_NAV}}'] = featured_events_html($data) === '' ? '' : '<a href="#upcoming">События</a>';
+    $replacements['{{EVENTS_NAV}}'] = featured_events_html($data) === '' ? '' : '<a href="#upcoming">' . h((string) $data['fields']['nav_events']) . '</a>';
     $replacements['{{CUSTOM_BLOCKS}}'] = custom_blocks_html($data);
     $result = strtr($template, $replacements);
     if (preg_match('/\{\{[A-Za-z0-9_]+\}\}/', $result)) {

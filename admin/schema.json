@@ -2,11 +2,6 @@
   "groups": {
     "Главный экран": [
       {
-        "key": "hero_eyebrow",
-        "label": "Строка над заголовком",
-        "type": "text"
-      },
-      {
         "key": "hero_title_1",
         "label": "Заголовок, первая строка",
         "type": "text"
@@ -24,11 +19,6 @@
       {
         "key": "hero_cta",
         "label": "Кнопка записи",
-        "type": "text"
-      },
-      {
-        "key": "hero_caption",
-        "label": "Подпись на фото",
         "type": "text"
       }
     ],
@@ -226,6 +216,103 @@
         "key": "og_description",
         "label": "Описание при отправке ссылки",
         "type": "textarea"
+      }
+    ],
+    "Навигация и подписи": [
+      {
+        "key": "brand_name",
+        "label": "Имя в шапке и подвале",
+        "type": "text"
+      },
+      {
+        "key": "nav_practices",
+        "label": "Меню: практики",
+        "type": "text"
+      },
+      {
+        "key": "nav_prices",
+        "label": "Меню: цены",
+        "type": "text"
+      },
+      {
+        "key": "nav_about",
+        "label": "Меню: о мастере",
+        "type": "text"
+      },
+      {
+        "key": "nav_contact",
+        "label": "Меню: контакты",
+        "type": "text"
+      },
+      {
+        "key": "nav_events",
+        "label": "Меню: события",
+        "type": "text"
+      },
+      {
+        "key": "header_cta",
+        "label": "Кнопка в шапке",
+        "type": "text"
+      },
+      {
+        "key": "hero_scroll",
+        "label": "Ссылка под главным экраном",
+        "type": "text"
+      },
+      {
+        "key": "label_practices",
+        "label": "Подпись раздела практик",
+        "type": "text"
+      },
+      {
+        "key": "label_prices",
+        "label": "Подпись цен",
+        "type": "text"
+      },
+      {
+        "key": "label_about",
+        "label": "Подпись об опыте",
+        "type": "text"
+      },
+      {
+        "key": "label_studio",
+        "label": "Подпись кабинета",
+        "type": "text"
+      },
+      {
+        "key": "label_neuro",
+        "label": "Подпись нейротехнологий",
+        "type": "text"
+      },
+      {
+        "key": "label_contact",
+        "label": "Подпись контактов",
+        "type": "text"
+      },
+      {
+        "key": "label_events",
+        "label": "Подпись афиши",
+        "type": "text"
+      },
+      {
+        "key": "label_hero_event",
+        "label": "Подпись события на главной",
+        "type": "text"
+      },
+      {
+        "key": "label_vk",
+        "label": "Название ссылки ВКонтакте",
+        "type": "text"
+      },
+      {
+        "key": "label_channel",
+        "label": "Название ссылки на канал",
+        "type": "text"
+      },
+      {
+        "key": "footer_top",
+        "label": "Ссылка наверх",
+        "type": "text"
       }
     ]
   },

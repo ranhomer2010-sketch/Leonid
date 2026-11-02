@@ -49,7 +49,7 @@ def upcoming():
     if not cards:
         return ""
     return ('<section class="section upcoming reveal" id="upcoming" aria-labelledby="upcoming-title"><div class="container">'
-            + '<div class="section-head"><div><span class="eyebrow">Афиша</span><h2 id="upcoming-title">' + h(fields["upcoming_title"]) + '</h2></div></div>'
+            + '<div class="section-head"><div><span class="section-index">' + h(fields["label_events"]) + '</span><h2 id="upcoming-title">' + h(fields["upcoming_title"]) + '</h2></div></div>'
             + '<div class="upcoming-grid">' + "\n        ".join(cards) + '</div></div></section>')
 
 def hero_event():
@@ -59,7 +59,7 @@ def hero_event():
         url = safe_url(event["url"])
         href = h(url) if url else '#upcoming'
         external = ' target="_blank" rel="noopener noreferrer"' if url else ''
-        return ('<div class="hero-event"><div class="container"><a href="' + href + '"' + external + '><span class="label">Ближайшее событие</span><strong>' + h(event["title"]) + '</strong><span class="event-date">' + h(event["date"]) + '</span><span class="event-arrow" aria-hidden="true">↗</span></a></div></div>')
+        return ('<div class="hero-event"><div class="container"><a href="' + href + '"' + external + '><span class="label">' + h(data["fields"]["label_hero_event"]) + '</span><strong>' + h(event["title"]) + '</strong><span class="event-date">' + h(event["date"]) + '</span><span class="event-arrow" aria-hidden="true">↗</span></a></div></div>')
     return ""
 
 def extra_blocks():
@@ -85,7 +85,7 @@ for key, rows in data["prices"].items():
     values["{{PRICE_" + key.upper() + "}}"] = price_rows(rows)
 values["{{FEATURED_EVENTS}}"] = upcoming()
 values["{{HERO_EVENT}}"] = hero_event()
-values["{{EVENTS_NAV}}"] = '<a href="#upcoming">События</a>' if values["{{FEATURED_EVENTS}}"] else ''
+values["{{EVENTS_NAV}}"] = '<a href="#upcoming">' + h(data["fields"]["nav_events"]) + '</a>' if values["{{FEATURED_EVENTS}}"] else ''
 values["{{CUSTOM_BLOCKS}}"] = extra_blocks()
 for key, value in values.items():
     template = template.replace(key, value)
