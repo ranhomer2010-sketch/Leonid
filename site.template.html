@@ -12,7 +12,7 @@
   <link rel="canonical" href="{{site_url}}/">
   <meta property="og:image" content="{{site_url}}/{{image_portrait_path}}">
   <link rel="preload" as="image" href="{{image_portrait_path}}">
-  <link rel="stylesheet" href="assets/site.css?v=20261102b">
+  <link rel="stylesheet" href="assets/site.css?v=20261103a">
 </head>
 <body>
   <a class="skip" href="#main">К содержанию</a>
@@ -23,11 +23,12 @@
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="container hero-copy"><h1 id="hero-title">{{hero_title_1}}<br><span>{{hero_title_2}}</span></h1><p class="hero-lead">{{hero_lead}}</p></div>
       <div class="hero-gallery" aria-label="Навигация по сайту"><div class="gallery-track">
-        <a class="gallery-card gallery-practices" href="#formats"><img src="{{image_cabinet_1_path}}" alt="" width="1536" height="1024" loading="lazy"><span class="gallery-label">{{nav_practices}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a>
-        <a class="gallery-card gallery-prices" href="#prices"><img src="{{image_cabinet_2_path}}" alt="" width="1536" height="1024" loading="lazy"><span class="gallery-label">{{nav_prices}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a>
-        <a class="gallery-card gallery-about" href="#about"><img src="{{image_portrait_path}}" alt="" width="1638" height="2048" fetchpriority="high"><span class="gallery-label">{{nav_about}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a>
-        <a class="gallery-card gallery-neuro" href="#neuro"><span class="neuro-art" aria-hidden="true"><i></i><i></i><i></i></span><span class="gallery-label">{{label_neuro}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a>
+        <div class="gallery-stage"><a class="gallery-card gallery-practices" href="#formats"><img src="{{image_practices_path}}" alt="" width="1024" height="1536" loading="lazy"><span class="gallery-label">{{nav_practices}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>
+        <div class="gallery-stage"><a class="gallery-card gallery-prices" href="#prices"><img src="{{image_prices_path}}" alt="" width="1024" height="1536" loading="lazy"><span class="gallery-label">{{nav_prices}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>
+        <div class="gallery-stage stage-about"><a class="gallery-card gallery-about" href="#about"><img src="{{image_portrait_path}}" alt="" width="1638" height="2048" fetchpriority="high"><span class="gallery-label">{{nav_about}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>
+        <div class="gallery-stage"><a class="gallery-card gallery-neuro" href="#neuro"><img src="{{image_neuro_path}}" alt="" width="1024" height="1536" loading="lazy"><span class="gallery-label">{{label_neuro}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>
         {{HERO_EVENT}}
+        <div class="gallery-stage"><a class="gallery-card gallery-contact" href="#contact"><img src="{{image_cabinet_2_path}}" alt="" width="1536" height="1024" loading="lazy"><span class="gallery-label">{{nav_contact}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>
       </div></div>
       <div class="hero-bottom container"><a class="hero-scroll" href="#formats">{{hero_scroll}} <span aria-hidden="true">↓</span></a><a class="button hero-cta" href="{{url_telegram}}" target="_blank" rel="noopener noreferrer">{{hero_cta}} <span aria-hidden="true">↗</span></a></div>
     </section>

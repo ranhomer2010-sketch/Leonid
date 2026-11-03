@@ -47,7 +47,7 @@ def upcoming():
         href = h(url if url else safe_url(data["links"]["channel"]))
         cards.append('<a class="event-card" href="' + href + '" target="_blank" rel="noopener noreferrer">' + image + '<div class="event-body"><span class="event-meta">' + h(meta) + '</span><h3>' + h(event["title"]) + '</h3>' + place + description + '<span class="event-arrow" aria-hidden="true">↗</span></div></a>')
     if not cards:
-        return ""
+        cards.append('<div class="event-empty"><p>' + h(fields['upcoming_empty']) + '</p><a href="' + h(safe_url(data['links']['channel'])) + '" target="_blank" rel="noopener noreferrer">' + h(fields['label_channel']) + ' ↗</a></div>')
     return ('<section class="section upcoming reveal" id="upcoming" aria-labelledby="upcoming-title"><div class="container">'
             + '<div class="section-head"><div><span class="section-index">' + h(fields["label_events"]) + '</span><h2 id="upcoming-title">' + h(fields["upcoming_title"]) + '</h2></div></div>'
             + '<div class="upcoming-grid">' + "\n        ".join(cards) + '</div></div></section>')
@@ -59,12 +59,13 @@ def hero_event():
         url = safe_url(event["url"])
         href = h(url) if url else '#upcoming'
         external = ' target="_blank" rel="noopener noreferrer"' if url else ''
-        image = ('<img src="' + h(safe_image(event["image"])) + '" alt="" loading="lazy">') if event["image"] else ''
-        return ('<a class="gallery-card gallery-event" href="' + href + '"' + external + '>' + image
+        image_path = event["image"] if event["image"] else data['images']['events']['path']
+        image = '<img src="' + h(safe_image(image_path)) + '" alt="" loading="lazy">'
+        return ('<div class="gallery-stage"><a class="gallery-card gallery-event" href="' + href + '"' + external + '>' + image
                 + '<span class="gallery-label">' + h(data["fields"]["nav_events"]) + '</span>'
                 + '<span class="gallery-event-title">' + h(event["title"]) + '</span>'
-                + '<span class="gallery-arrow" aria-hidden="true">↗</span></a>')
-    return ""
+                + '<span class="gallery-arrow" aria-hidden="true">↗</span></a></div>')
+    return ('<div class="gallery-stage"><a class="gallery-card gallery-event" href="#upcoming"><img src="' + h(safe_image(data['images']['events']['path'])) + '" alt="" loading="lazy"><span class="gallery-label">' + h(data['fields']['nav_events']) + '</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>')
 
 def extra_blocks():
     blocks = []

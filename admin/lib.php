@@ -158,7 +158,9 @@ function featured_events_html(array $data): string {
         $href = h($url === '' ? safe_external_url((string) $data['links']['channel']) : $url);
         $cards[] = '<a class="event-card" href="' . $href . '" target="_blank" rel="noopener noreferrer">' . $image . '<div class="event-body"><span class="event-meta">' . h($meta) . '</span><h3>' . h((string) $event['title']) . '</h3>' . $place . $description . '<span class="event-arrow" aria-hidden="true">↗</span></div></a>';
     }
-    if (!$cards) return '';
+    if (!$cards) {
+        $cards[] = '<div class="event-empty"><p>' . h((string) $fields['upcoming_empty']) . '</p><a href="' . h(safe_external_url((string) $data['links']['channel'])) . '" target="_blank" rel="noopener noreferrer">' . h((string) $fields['label_channel']) . ' ↗</a></div>';
+    }
     return '<section class="section upcoming reveal" id="upcoming" aria-labelledby="upcoming-title"><div class="container">'
         . '<div class="section-head"><div><span class="section-index">' . h((string) $fields['label_events']) . '</span><h2 id="upcoming-title">' . h((string) $fields['upcoming_title']) . '</h2></div></div>'
         . '<div class="upcoming-grid">' . implode("\n        ", $cards) . '</div></div></section>';
@@ -170,13 +172,14 @@ function hero_event_html(array $data): string {
         $url = safe_external_url((string) ($event['url'] ?? ''));
         $href = $url === '' ? '#upcoming' : h($url);
         $external = $url === '' ? '' : ' target="_blank" rel="noopener noreferrer"';
-        $image = empty($event['image']) ? '' : '<img src="' . h(safe_image_path((string) $event['image'])) . '" alt="" loading="lazy">';
-        return '<a class="gallery-card gallery-event" href="' . $href . '"' . $external . '>' . $image
+        $imagePath = empty($event['image']) ? (string) $data['images']['events']['path'] : (string) $event['image'];
+        $image = '<img src="' . h(safe_image_path($imagePath)) . '" alt="" loading="lazy">';
+        return '<div class="gallery-stage"><a class="gallery-card gallery-event" href="' . $href . '"' . $external . '>' . $image
             . '<span class="gallery-label">' . h((string) $data['fields']['nav_events']) . '</span>'
             . '<span class="gallery-event-title">' . h((string) $event['title']) . '</span>'
-            . '<span class="gallery-arrow" aria-hidden="true">↗</span></a>';
+            . '<span class="gallery-arrow" aria-hidden="true">↗</span></a></div>';
     }
-    return '';
+    return '<div class="gallery-stage"><a class="gallery-card gallery-event" href="#upcoming"><img src="' . h(safe_image_path((string) $data['images']['events']['path'])) . '" alt="" loading="lazy"><span class="gallery-label">' . h((string) $data['fields']['nav_events']) . '</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>';
 }
 
 function custom_blocks_html(array $data): string {
