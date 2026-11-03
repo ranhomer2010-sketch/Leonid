@@ -12,7 +12,7 @@
   <link rel="canonical" href="{{site_url}}/">
   <meta property="og:image" content="{{site_url}}/{{image_portrait_path}}">
   <link rel="preload" as="image" href="{{image_portrait_path}}">
-  <link rel="stylesheet" href="assets/site.css?v=20261103b">
+  <link rel="stylesheet" href="assets/site.css?v=20261103c">
 </head>
 <body>
   <a class="skip" href="#main">К содержанию</a>
@@ -57,6 +57,31 @@
     function updateDock(){dock.hidden=window.scrollY<Math.max(400,document.querySelector('.hero').offsetHeight-240)}
     updateDock();window.addEventListener('scroll',updateDock,{passive:true});window.addEventListener('resize',updateDock);
     if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
+    const gallery=document.querySelector('.hero-gallery');
+    if(gallery&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      const track=gallery.querySelector('.gallery-track');
+      const originals=Array.from(track.children);
+      if(originals.length){
+        gallery.classList.add('is-marquee');
+        function appendSet(){originals.forEach(item=>{const copy=item.cloneNode(true);copy.setAttribute('aria-hidden','true');copy.querySelectorAll('a').forEach(link=>link.tabIndex=-1);track.appendChild(copy)})}
+        appendSet();
+        const firstCopy=track.children[originals.length];
+        let span=0;
+        function measure(){span=firstCopy.offsetLeft-originals[0].offsetLeft;let sets=0;while(track.scrollWidth<gallery.clientWidth+span+40&&sets++<6)appendSet();if(span>0&&gallery.scrollLeft>=span)gallery.scrollLeft%=span}
+        measure();window.addEventListener('resize',measure);
+        let hover=false,focused=false,visible=true,holdUntil=0,last=performance.now();
+        gallery.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')hover=true});
+        gallery.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse')hover=false});
+        gallery.addEventListener('focusin',()=>focused=true);
+        gallery.addEventListener('focusout',event=>{if(!gallery.contains(event.relatedTarget))focused=false});
+        gallery.addEventListener('pointerdown',()=>holdUntil=performance.now()+5000);
+        gallery.addEventListener('pointerup',()=>holdUntil=performance.now()+3500);
+        gallery.addEventListener('wheel',()=>holdUntil=performance.now()+2500,{passive:true});
+        if('IntersectionObserver' in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting},{threshold:0}).observe(gallery);
+        function move(now){const elapsed=Math.min(now-last,50);last=now;if(span>0){if(gallery.scrollLeft>=span)gallery.scrollLeft-=span;if(visible&&!document.hidden&&!hover&&!focused&&now>holdUntil)gallery.scrollLeft+=elapsed*.042}requestAnimationFrame(move)}
+        requestAnimationFrame(move);
+      }
+    }
   </script>
 </body>
 </html>

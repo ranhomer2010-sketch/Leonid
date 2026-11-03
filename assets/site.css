@@ -71,3 +71,8 @@
 .about-years span{margin-top:7px;font-size:.86rem;color:#43595a}
 @media(max-width:720px){.about-grid{grid-template-columns:1fr}.about-visual{width:min(100% - 20px,420px);margin:0 20px 50px 0}.about-years strong{font-size:4rem}.price-category summary{min-height:94px;padding:21px 23px}.price-items{padding:0 23px 23px}.price-summary-meta{gap:14px}}
 @media(max-width:480px){.price-summary-title{font-size:1.55rem}.price-summary-meta{font-size:1rem;gap:10px}.price-expand{width:34px;height:34px;font-size:1.32rem}.about-years{right:-12px;bottom:-28px;padding:14px 18px}.about-years strong{font-size:3.5rem}}
+
+/* Continuous navigation marquee */
+.hero-gallery.is-marquee{scroll-snap-type:none;scroll-behavior:auto;overscroll-behavior-x:contain}
+.hero-gallery.is-marquee .gallery-stage{scroll-snap-align:none}
+@media(max-width:720px){.hero-gallery.is-marquee .stage-about{order:0}}
