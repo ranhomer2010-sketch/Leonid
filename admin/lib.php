@@ -210,6 +210,15 @@ function price_rows(array $rows): string {
     return implode("\n            ", $html);
 }
 
+function price_from(array $rows): string {
+    $amounts = [];
+    foreach ($rows as $row) {
+        $digits = preg_replace('/\D/u', '', (string) ($row['price'] ?? ''));
+        if ($digits !== '' && (int) $digits > 0) $amounts[] = (int) $digits;
+    }
+    return $amounts ? 'от ' . number_format(min($amounts), 0, '', ' ') . ' ₽' : '';
+}
+
 function render_site(array $data): string {
     $template = @file_get_contents(TEMPLATE_FILE);
     if (!is_string($template)) throw new RuntimeException('Не найден шаблон сайта.');
@@ -226,6 +235,7 @@ function render_site(array $data): string {
     }
     foreach ($data['prices'] as $key => $rows) {
         $replacements['{{PRICE_' . strtoupper((string) $key) . '}}'] = price_rows($rows);
+        $replacements['{{PRICE_' . strtoupper((string) $key) . '_FROM}}'] = h(price_from($rows));
     }
     $replacements['{{FEATURED_EVENTS}}'] = featured_events_html($data);
     $replacements['{{HERO_EVENT}}'] = hero_event_html($data);

@@ -13,6 +13,10 @@ expect(str_contains($html, 'id="upcoming"'), 'Empty events section should be vis
 expect(str_contains($html, 'gallery-event'), 'Events navigation should be visible');
 expect(str_contains($html, 'Сейчас нет опубликованных событий'), 'Empty events message missing');
 expect(str_contains($html, 'gallery-contact'), 'Contact navigation missing');
+expect(substr_count($html, '<details class="price-category"') === 4, 'Price groups should expand on click');
+expect(str_contains($html, 'от 1 800 ₽'), 'Starting price missing');
+expect(str_contains($html, 'Пространство для массажа'), 'Massage room title missing');
+expect(str_contains($html, 'class="about-photo"'), 'Leonid portrait missing from biography');
 expect(!str_contains($html, '{{'), 'Unrendered placeholders');
 
 $password = 'A-long-test-password-12345';
@@ -49,6 +53,9 @@ $sameFields = update_fields($data, $schema, $data['fields']);
 expect($sameFields['fields'] === $data['fields'], 'Fields round trip failed');
 $samePrices = update_prices($data, $schema, $data['prices']);
 expect($samePrices['prices'] === $data['prices'], 'Prices round trip failed');
+$changedPrices = $data;
+$changedPrices['prices']['massage'][0]['price'] = '500 ₽';
+expect(str_contains(render_site($changedPrices), 'от 500 ₽'), 'Starting price should update with admin price');
 $sameLinks = update_links($data, $schema, $data['links']);
 expect($sameLinks['links'] === $data['links'], 'Links round trip failed');
 echo "CMS checks OK\n";

@@ -12,7 +12,7 @@
   <link rel="canonical" href="{{site_url}}/">
   <meta property="og:image" content="{{site_url}}/{{image_portrait_path}}">
   <link rel="preload" as="image" href="{{image_portrait_path}}">
-  <link rel="stylesheet" href="assets/site.css?v=20261103a">
+  <link rel="stylesheet" href="assets/site.css?v=20261103b">
 </head>
 <body>
   <a class="skip" href="#main">К содержанию</a>
@@ -39,13 +39,13 @@
       <article class="service-card"><h3>{{therapy_card_title}}</h3><p>{{therapy_card}}</p></article>
     </div></div></section>
     <section class="section price-list reveal" id="prices" aria-labelledby="prices-title"><div class="container"><div class="section-head"><div><span class="section-index">{{label_prices}}</span><h2 id="prices-title">{{prices_title}}</h2></div></div>
-      <div class="price-category" id="massage-prices"><h3>{{price_massage_title}}</h3><div>{{PRICE_MASSAGE}}</div></div>
-      <div class="price-category" id="sadhu-prices"><h3>{{price_sadhu_title}}</h3><div>{{PRICE_SADHU}}</div></div>
-      <div class="price-category" id="combo-prices"><h3>{{price_combo_title}}</h3><div>{{PRICE_COMBO}}</div></div>
-      <div class="price-category" id="therapy-prices"><h3>{{price_therapy_title}}</h3><div>{{PRICE_THERAPY}}</div></div>
+      <details class="price-category" id="massage-prices"><summary><span class="price-summary-title">{{price_massage_title}}</span><span class="price-summary-meta">{{PRICE_MASSAGE_FROM}}<span class="price-expand" aria-hidden="true">＋</span></span></summary><div class="price-items">{{PRICE_MASSAGE}}</div></details>
+      <details class="price-category" id="sadhu-prices"><summary><span class="price-summary-title">{{price_sadhu_title}}</span><span class="price-summary-meta">{{PRICE_SADHU_FROM}}<span class="price-expand" aria-hidden="true">＋</span></span></summary><div class="price-items">{{PRICE_SADHU}}</div></details>
+      <details class="price-category" id="combo-prices"><summary><span class="price-summary-title">{{price_combo_title}}</span><span class="price-summary-meta">{{PRICE_COMBO_FROM}}<span class="price-expand" aria-hidden="true">＋</span></span></summary><div class="price-items">{{PRICE_COMBO}}</div></details>
+      <details class="price-category" id="therapy-prices"><summary><span class="price-summary-title">{{price_therapy_title}}</span><span class="price-summary-meta">{{PRICE_THERAPY_FROM}}<span class="price-expand" aria-hidden="true">＋</span></span></summary><div class="price-items">{{PRICE_THERAPY}}</div></details>
       <p class="subscription">{{subscription_text}}</p>
     </div></section>
-    <section class="section about reveal" id="about" aria-labelledby="about-title"><div class="container about-grid"><div class="about-years"><strong>{{about_years_number}}</strong><span>{{about_years_label}}</span></div><div class="about-copy"><span class="section-index">{{label_about}}</span><h2 id="about-title">{{about_name}}</h2><p>{{about_intro}}</p><p>{{about_work}}</p><div class="about-facts"><p>{{about_record}}</p><p>{{about_festival}}</p><p>{{about_ambassador}}</p></div></div></div></section>
+    <section class="section about reveal" id="about" aria-labelledby="about-title"><div class="container about-grid"><div class="about-visual"><figure class="about-photo"><img src="{{image_portrait_path}}" alt="{{image_portrait_alt}}" width="1638" height="2048" loading="lazy"></figure><div class="about-years"><strong>{{about_years_number}}</strong><span>{{about_years_label}}</span></div></div><div class="about-copy"><span class="section-index">{{label_about}}</span><h2 id="about-title">{{about_name}}</h2><p>{{about_intro}}</p><p>{{about_work}}</p><div class="about-facts"><p>{{about_record}}</p><p>{{about_festival}}</p><p>{{about_ambassador}}</p></div></div></div></section>
     <section class="section studio reveal" id="studio" aria-labelledby="studio-title"><div class="container"><div class="section-head"><span class="section-index">{{label_studio}}</span><h2 id="studio-title">{{studio_title}}</h2></div><div class="studio-grid"><figure class="studio-photo"><img src="{{image_cabinet_1_path}}" alt="{{image_cabinet_1_alt}}" width="1536" height="1024" loading="lazy"></figure><figure class="studio-photo"><img src="{{image_cabinet_2_path}}" alt="{{image_cabinet_2_alt}}" width="1536" height="1024" loading="lazy"></figure></div></div></section>
     <section class="section neuro reveal" id="neuro" aria-labelledby="neuro-title"><div class="container neuro-grid"><div><span class="section-index">{{label_neuro}}</span><h2 id="neuro-title">{{neuro_title}}</h2><p>{{neuro_intro}}</p></div><div class="neuro-panel"><p>{{neuro_step_1}}</p><p>{{neuro_step_2}}</p><p>{{neuro_step_3}}</p></div></div></section>
 {{CUSTOM_BLOCKS}}

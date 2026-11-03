@@ -31,6 +31,10 @@ def price_rows(rows):
                       + '</div><strong class="price-value">' + h(row["price"]) + '</strong></div>')
     return "\n            ".join(result)
 
+def price_from(rows):
+    amounts = [int(digits) for row in rows if (digits := re.sub(r"\D", "", row["price"])) and int(digits) > 0]
+    return "от " + f"{min(amounts):,}".replace(",", " ") + " ₽" if amounts else ""
+
 def upcoming():
     fields = data["fields"]
     cards = []
@@ -88,6 +92,7 @@ for key, url in data["links"].items():
     values["{{url_" + key + "}}"] = h(safe_url(url))
 for key, rows in data["prices"].items():
     values["{{PRICE_" + key.upper() + "}}"] = price_rows(rows)
+    values["{{PRICE_" + key.upper() + "_FROM}}"] = h(price_from(rows))
 values["{{FEATURED_EVENTS}}"] = upcoming()
 values["{{HERO_EVENT}}"] = hero_event()
 values["{{EVENTS_NAV}}"] = '<a href="#upcoming">' + h(data["fields"]["nav_events"]) + '</a>' if values["{{FEATURED_EVENTS}}"] else ''
