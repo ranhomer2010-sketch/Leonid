@@ -132,3 +132,12 @@ body{background:#eeece6;color:var(--ink)}
 .neuro{background:linear-gradient(135deg,#e7ede3,#d8e3d4)}
 .button,.button-light{background:#2d5033;border-color:#2d5033}.button:hover,.button-light:hover{background:#3f6544;border-color:#3f6544}
 .contact{background:linear-gradient(135deg,#28432d,#33553a 64%,#294530)}
+
+/* An architectural room gives the navigation a real sense of depth. */
+.hero{background:#e9e8df;min-height:830px}
+.hero::before{inset:0;background:var(--hero-room) center 49%/cover no-repeat;opacity:1;filter:saturate(.83) contrast(.97);transform:scale(1.012)}
+.hero::after{inset:0;left:0;top:0;bottom:0;width:auto;height:auto;transform:none;border-radius:0;filter:none;background:radial-gradient(ellipse 45% 25% at 50% 24%,rgba(249,247,241,.5),transparent 100%),linear-gradient(180deg,rgba(242,240,233,.55) 0%,rgba(242,240,233,.76) 16%,rgba(240,239,232,.8) 33%,rgba(238,238,229,.32) 53%,rgba(230,233,222,.06) 76%,rgba(219,226,212,.26) 100%)}
+.hero-copy{z-index:2}.hero h1{text-shadow:0 3px 30px rgba(249,247,240,.6)}
+.hero-gallery{margin-top:76px}.gallery-card{box-shadow:0 26px 48px rgba(25,44,31,.28),0 5px 14px rgba(25,44,31,.13)}.gallery-card:hover{box-shadow:0 33px 58px rgba(25,44,31,.32)}
+@media(max-width:720px){.hero{min-height:0}.hero::before{background-position:49% center}.hero::after{background:linear-gradient(180deg,rgba(244,242,235,.8) 0%,rgba(242,240,233,.82) 32%,rgba(233,235,223,.46) 64%,rgba(225,232,217,.4) 100%)}.hero-gallery{margin-top:54px}}
+@media(prefers-reduced-motion:no-preference){.hero::before{animation:roomSettle 1.5s cubic-bezier(.18,.7,.22,1) both}@keyframes roomSettle{from{transform:scale(1.06)}to{transform:scale(1.012)}}}

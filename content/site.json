@@ -69,6 +69,10 @@
     "about_more": "Подробнее о подходе"
   },
   "images": {
+    "hero_background": {
+      "path": "assets/hero-room.webp",
+      "alt": "Светлое просторное помещение с аркой и панорамными окнами"
+    },
     "portrait": {
       "path": "assets/leonid-sadhu-studio.webp",
       "alt": "Леонид Агафонов с досками Садху"
