@@ -59,12 +59,19 @@
     "footer_top": "Наверх",
     "nav_menu": "Вернуться к навигации",
     "nav_contact": "Контакты",
-    "upcoming_empty": "Сейчас нет опубликованных событий. Новые анонсы появятся здесь."
+    "upcoming_empty": "Сейчас нет опубликованных событий. Новые анонсы появятся здесь.",
+    "credentials_title": "Обучение и признание",
+    "reviews_title": "Отзывы",
+    "reviews_lead": "Впечатления участников — в канале Леонида.",
+    "nav_credentials": "Документы",
+    "label_credentials": "Документы",
+    "label_reviews": "Отзывы",
+    "about_more": "Подробнее о подходе"
   },
   "images": {
     "portrait": {
-      "path": "assets/leonid-portrait.jpg",
-      "alt": "Портрет Леонида Агафонова"
+      "path": "assets/leonid-sadhu-studio.webp",
+      "alt": "Леонид Агафонов с досками Садху"
     },
     "cabinet_1": {
       "path": "assets/cabinet-editorial-1.webp",
@@ -89,6 +96,10 @@
     "events": {
       "path": "assets/upcoming-room.webp",
       "alt": "Иллюстрация: пространство для встречи"
+    },
+    "practice_portrait": {
+      "path": "assets/leonid-practice-studio.webp",
+      "alt": "Леонид Агафонов во время телесной практики"
     }
   },
   "prices": {
@@ -191,11 +202,113 @@
       }
     ]
   },
-  "featured_events": [],
+  "featured_events": [
+    {
+      "id": "event-yoga-26",
+      "title": "Гвоздехождение для посетителей клуба",
+      "category": "Практика",
+      "date": "26 ноября · 16:00–18:00",
+      "place": "ЙогаКурортСпа",
+      "description": "Леонид проводит практику в студии йоги. Подробности — в канале.",
+      "url": "https://t.me/gvozdisadhu_leon33aga",
+      "image": "",
+      "visible": true
+    },
+    {
+      "id": "event-1154",
+      "title": "Ближайшее событие",
+      "category": "Анонс",
+      "date": "Подробности в Telegram",
+      "place": "",
+      "description": "Информация и запись — по ссылке на анонс.",
+      "url": "https://t.me/gvozdisadhu_leon33aga/1154",
+      "image": "",
+      "visible": true
+    },
+    {
+      "id": "event-1156",
+      "title": "Декабрьское событие",
+      "category": "Анонс",
+      "date": "Декабрь",
+      "place": "",
+      "description": "Программа и дата — в публикации Леонида.",
+      "url": "https://t.me/gvozdisadhu_leon33aga/1156",
+      "image": "",
+      "visible": true
+    }
+  ],
   "custom_blocks": [],
   "links": {
     "telegram": "https://t.me/Leoni_aga33",
     "channel": "https://t.me/gvozdisadhu_leon33aga",
-    "vk": "https://vk.com/leonid_agafonov_33"
-  }
+    "vk": "https://vk.com/leonid_agafonov_33",
+    "info": "https://t.me/leon_pro_gvozdi/12"
+  },
+  "credentials": [
+    {
+      "id": "credential1",
+      "title": "Школа гвоздестояния «Осознание»",
+      "detail": "Обучение проводника индивидуальных практик",
+      "image": "assets/cert-sadhu.jpg",
+      "visible": true
+    },
+    {
+      "id": "credential2",
+      "title": "Книга рекордов России",
+      "detail": "Участник рекорда по гвоздестоянию, 2024",
+      "image": "assets/cert-record.jpg",
+      "visible": true
+    },
+    {
+      "id": "credential3",
+      "title": "Телесно-ориентированная терапия",
+      "detail": "Профессиональная переподготовка, 2025",
+      "image": "assets/cert-bodywork.png",
+      "visible": true
+    },
+    {
+      "id": "credential4",
+      "title": "Массаж",
+      "detail": "Обучение лечебно-оздоровительному массажу, 1992",
+      "image": "assets/cert-massage.jpg",
+      "visible": true
+    },
+    {
+      "id": "credential5",
+      "title": "Энергетические практики",
+      "detail": "Курс проводника",
+      "image": "assets/cert-energy.jpg",
+      "visible": true
+    },
+    {
+      "id": "credential6",
+      "title": "Телесно-ориентированная терапия",
+      "detail": "Диплом о профессиональной переподготовке, 2025",
+      "image": "assets/cert-diploma.jpg",
+      "visible": true
+    },
+    {
+      "id": "credential7",
+      "title": "Супервизия",
+      "detail": "Телесно-ориентированная терапия",
+      "image": "assets/cert-supervision.png",
+      "visible": true
+    },
+    {
+      "id": "credential8",
+      "title": "«Алхимия тела»",
+      "detail": "Благодарственное письмо, 2026",
+      "image": "assets/cert-festival.webp",
+      "visible": true
+    }
+  ],
+  "reviews": [
+    {
+      "id": "review1",
+      "title": "Отзывы участников",
+      "description": "Личный опыт после сеансов и практик.",
+      "url": "https://t.me/gvozdisadhu_leon33aga/1151",
+      "visible": true
+    }
+  ]
 }

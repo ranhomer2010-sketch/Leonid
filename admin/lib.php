@@ -197,6 +197,27 @@ function custom_blocks_html(array $data): string {
     return implode("\n\n    ", $html);
 }
 
+function credentials_html(array $data): string {
+    $cards = [];
+    foreach ($data['credentials'] ?? [] as $item) {
+        if (empty($item['visible']) || empty($item['image'])) continue;
+        $path = h(safe_image_path((string) $item['image']));
+        $cards[] = '<a class="credential-card" href="' . $path . '" target="_blank" rel="noopener noreferrer"><div class="credential-image"><img src="' . $path . '" alt="' . h((string) $item['title']) . '" loading="lazy"></div><div class="credential-caption"><h3>' . h((string) $item['title']) . '</h3><p>' . h((string) $item['detail']) . '</p><span aria-hidden="true">↗</span></div></a>';
+    }
+    if (!$cards) return '';
+    return '<section class="section credentials reveal" id="credentials" aria-labelledby="credentials-title"><div class="container"><div class="section-head"><span class="section-index">' . h((string) $data['fields']['label_credentials']) . '</span><h2 id="credentials-title">' . h((string) $data['fields']['credentials_title']) . '</h2></div><div class="credentials-grid">' . implode('', $cards) . '</div></div></section>';
+}
+
+function reviews_html(array $data): string {
+    $cards = [];
+    foreach ($data['reviews'] ?? [] as $item) {
+        if (empty($item['visible'])) continue;
+        $cards[] = '<a class="review-card" href="' . h(safe_external_url((string) $item['url'])) . '" target="_blank" rel="noopener noreferrer"><h3>' . h((string) $item['title']) . '</h3><p>' . h((string) $item['description']) . '</p><span aria-hidden="true">Читать в Telegram ↗</span></a>';
+    }
+    if (!$cards) return '';
+    return '<section class="section reviews reveal" id="reviews" aria-labelledby="reviews-title"><div class="container"><div class="section-head"><span class="section-index">' . h((string) $data['fields']['label_reviews']) . '</span><h2 id="reviews-title">' . h((string) $data['fields']['reviews_title']) . '</h2></div><p class="reviews-lead">' . h((string) $data['fields']['reviews_lead']) . '</p><div class="reviews-grid">' . implode('', $cards) . '</div></div></section>';
+}
+
 function price_rows(array $rows): string {
     $html = [];
     foreach ($rows as $row) {
@@ -241,6 +262,8 @@ function render_site(array $data): string {
     $replacements['{{HERO_EVENT}}'] = hero_event_html($data);
     $replacements['{{EVENTS_NAV}}'] = featured_events_html($data) === '' ? '' : '<a href="#upcoming">' . h((string) $data['fields']['nav_events']) . '</a>';
     $replacements['{{CUSTOM_BLOCKS}}'] = custom_blocks_html($data);
+    $replacements['{{CREDENTIALS}}'] = credentials_html($data);
+    $replacements['{{REVIEWS}}'] = reviews_html($data);
     $result = strtr($template, $replacements);
     if (preg_match('/\{\{[A-Za-z0-9_]+\}\}/', $result)) {
         throw new RuntimeException('В шаблоне остались незаполненные поля.');
@@ -385,15 +408,58 @@ function update_custom_blocks(array $data, mixed $posted): array {
     return $data;
 }
 
+function update_credentials(array $data, mixed $posted): array {
+    if (!is_array($posted) || count($posted) > 41) throw new RuntimeException('Некорректный список документов.');
+    $existing = array_column($data['credentials'] ?? [], null, 'id');
+    $items = [];
+    foreach ($posted as $item) {
+        if (!is_array($item) || !empty($item['delete'])) continue;
+        $title = plain_text($item['title'] ?? '', 300);
+        $detail = plain_text($item['detail'] ?? '', 600);
+        if ($title === '' && $detail === '') continue;
+        if ($title === '') throw new RuntimeException('У документа должно быть название.');
+        $id = (string) ($item['id'] ?? '');
+        if ($id !== '' && !isset($existing[$id])) throw new RuntimeException('Документ не найден. Обновите страницу.');
+        if ($id === '') $id = bin2hex(random_bytes(8));
+        $items[] = compact('id', 'title', 'detail') + ['image' => !empty($item['remove_image']) ? '' : (string) ($existing[$id]['image'] ?? ''), 'visible' => !empty($item['visible'])];
+    }
+    if (count($items) > 40) throw new RuntimeException('Можно добавить не более 40 документов.');
+    $data['credentials'] = $items;
+    return $data;
+}
+
+function update_reviews(array $data, mixed $posted): array {
+    if (!is_array($posted) || count($posted) > 31) throw new RuntimeException('Некорректный список отзывов.');
+    $existing = array_column($data['reviews'] ?? [], null, 'id');
+    $items = [];
+    foreach ($posted as $item) {
+        if (!is_array($item) || !empty($item['delete'])) continue;
+        $title = plain_text($item['title'] ?? '', 300);
+        $description = plain_text($item['description'] ?? '', 1000);
+        $url = safe_external_url(plain_text($item['url'] ?? '', 500));
+        if ($title === '' && $description === '' && $url === '') continue;
+        if ($title === '' || $url === '') throw new RuntimeException('У отзыва нужны название и ссылка.');
+        $id = (string) ($item['id'] ?? '');
+        if ($id !== '' && !isset($existing[$id])) throw new RuntimeException('Отзыв не найден. Обновите страницу.');
+        if ($id === '') $id = bin2hex(random_bytes(8));
+        $items[] = compact('id', 'title', 'description', 'url') + ['visible' => !empty($item['visible'])];
+    }
+    if (count($items) > 30) throw new RuntimeException('Можно добавить не более 30 отзывов.');
+    $data['reviews'] = $items;
+    return $data;
+}
+
 function upload_image(array $data, array $schema): array {
     $slot = $_POST['slot'] ?? '';
     if (!is_string($slot)) throw new RuntimeException('Выберите фотографию для замены.');
     $fixed = isset($schema['images'][$slot]);
     $eventId = str_starts_with($slot, 'event:') ? substr($slot, 6) : '';
     $blockId = str_starts_with($slot, 'block:') ? substr($slot, 6) : '';
-    if (!$fixed && $eventId === '' && $blockId === '') throw new RuntimeException('Выберите фотографию для замены.');
+    $credentialId = str_starts_with($slot, 'credential:') ? substr($slot, 11) : '';
+    if (!$fixed && $eventId === '' && $blockId === '' && $credentialId === '') throw new RuntimeException('Выберите фотографию для замены.');
     if ($eventId !== '' && !in_array($eventId, array_column($data['featured_events'] ?? [], 'id'), true)) throw new RuntimeException('Событие не найдено.');
     if ($blockId !== '' && !in_array($blockId, array_column($data['custom_blocks'] ?? [], 'id'), true)) throw new RuntimeException('Блок не найден.');
+    if ($credentialId !== '' && !in_array($credentialId, array_column($data['credentials'] ?? [], 'id'), true)) throw new RuntimeException('Документ не найден.');
     $file = $_FILES['image'] ?? null;
     if (!is_array($file) || $file['error'] !== UPLOAD_ERR_OK || !is_uploaded_file($file['tmp_name'])) {
         throw new RuntimeException('Не удалось загрузить фотографию.');
@@ -425,6 +491,11 @@ function upload_image(array $data, array $schema): array {
             if ($event['id'] === $eventId) { $event['image'] = $path; break; }
         }
         unset($event);
+    } elseif ($credentialId !== '') {
+        foreach ($data['credentials'] as &$credential) {
+            if ($credential['id'] === $credentialId) { $credential['image'] = $path; break; }
+        }
+        unset($credential);
     } else {
         foreach ($data['custom_blocks'] as &$block) {
             if ($block['id'] === $blockId) { $block['image'] = $path; break; }

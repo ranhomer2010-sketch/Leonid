@@ -76,3 +76,19 @@
 .hero-gallery.is-marquee{scroll-snap-type:none;scroll-behavior:auto;overscroll-behavior-x:contain}
 .hero-gallery.is-marquee .gallery-stage{scroll-snap-align:none}
 @media(max-width:720px){.hero-gallery.is-marquee .stage-about{order:0}}
+
+/* Portraits, documents and source-linked reviews */
+.gallery-credentials{--ry:2deg;--rz:1deg;--shift:-5px;background:#789084}.gallery-credentials img{object-position:center 35%}
+.about-second{width:52%;aspect-ratio:4/3;margin:27px 0 0 auto;border:6px solid rgba(255,255,255,.75);border-radius:24px;overflow:hidden;box-shadow:0 22px 40px rgba(33,74,71,.17);transform:rotate(2deg)}
+.about-more{display:inline-block;margin-top:19px;color:#24594b;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px;font-size:.89rem;font-weight:700}
+.about-second img{width:100%;height:100%;object-fit:cover;object-position:center 58%;transition:transform .6s}.about-second:hover img{transform:scale(1.035)}
+.credentials{background:radial-gradient(ellipse at 6% 10%,rgba(151,204,221,.28),transparent 48%),linear-gradient(135deg,#f5f7f1,#e6efea 65%,#edf2ed)}
+.credentials-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.credential-card{display:block;min-width:0;text-decoration:none;background:rgba(255,255,255,.79);border:1px solid rgba(255,255,255,.95);border-radius:19px;overflow:hidden;box-shadow:0 20px 38px rgba(39,69,62,.11);transition:transform .35s,box-shadow .35s}
+.credential-card:hover{transform:translateY(-7px);box-shadow:0 27px 48px rgba(39,69,62,.18)}
+.credential-image{height:220px;background:#e2e8df;display:grid;place-items:center;padding:13px;overflow:hidden}.credential-image img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 7px 10px rgba(20,40,35,.14))}
+.credential-caption{position:relative;padding:20px 22px 25px;min-height:130px}.credential-caption h3{font-size:1.13rem;line-height:1.2;letter-spacing:-.035em;padding-right:18px}.credential-caption p{color:var(--muted);font-size:.79rem;line-height:1.4;margin-top:8px}.credential-caption span{position:absolute;right:20px;top:20px}
+.reviews{background:radial-gradient(ellipse at 82% 14%,rgba(240,220,227,.52),transparent 50%),linear-gradient(145deg,#eff4ec,#e6efe7)}.reviews-lead{font-size:1.1rem;color:var(--muted);margin:-20px 0 28px}.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}.review-card{display:flex;flex-direction:column;gap:13px;padding:30px;border-radius:22px;background:rgba(255,255,255,.82);text-decoration:none;box-shadow:0 18px 38px rgba(39,69,62,.1);transition:transform .3s}.review-card:hover{transform:translateY(-5px)}.review-card h3{font-size:1.45rem}.review-card p{color:var(--muted)}.review-card span{margin-top:auto;padding-top:15px;color:#1a5d43;font-weight:700;font-size:.9rem}
+@media(max-width:980px){.credentials-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){.about-second{width:64%;margin-top:15px}.credentials-grid{gap:12px}.credential-image{height:170px}.credential-caption{padding:16px;min-height:115px}.credential-caption h3{font-size:1rem}.credential-caption span{right:12px;top:12px}}
+@media(max-width:450px){.credentials-grid{grid-template-columns:1fr 1fr}.credential-image{height:145px;padding:8px}.credential-caption p{font-size:.72rem}}

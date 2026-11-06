@@ -319,6 +319,43 @@
         "label": "Ссылка наверх",
         "type": "text"
       }
+    ],
+    "Документы и отзывы": [
+      {
+        "key": "credentials_title",
+        "label": "Заголовок документов",
+        "type": "text"
+      },
+      {
+        "key": "reviews_title",
+        "label": "Заголовок отзывов",
+        "type": "text"
+      },
+      {
+        "key": "reviews_lead",
+        "label": "Описание отзывов",
+        "type": "textarea"
+      },
+      {
+        "key": "nav_credentials",
+        "label": "Карточка навигации: документы",
+        "type": "text"
+      },
+      {
+        "key": "label_credentials",
+        "label": "Подпись документов",
+        "type": "text"
+      },
+      {
+        "key": "label_reviews",
+        "label": "Подпись отзывов",
+        "type": "text"
+      },
+      {
+        "key": "about_more",
+        "label": "Ссылка о подходе",
+        "type": "text"
+      }
     ]
   },
   "images": {
@@ -328,7 +365,8 @@
     "practices": "Навигация: практики (гвозди Садху)",
     "prices": "Навигация: цены (массаж)",
     "neuro": "Навигация: состояние и замеры",
-    "events": "Навигация: ближайшие события"
+    "events": "Навигация: ближайшие события",
+    "practice_portrait": "О Леониде: фото на практике"
   },
   "price_groups": {
     "massage": "Массаж",
@@ -339,6 +377,7 @@
   "links": {
     "telegram": "Личный Telegram для записи",
     "channel": "Канал с анонсами",
-    "vk": "Страница ВКонтакте"
+    "vk": "Страница ВКонтакте",
+    "info": "Публикация об опыте и подходе"
   }
 }

@@ -65,6 +65,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $configured) {
             $data = update_featured_events(load_json(DATA_FILE), $_POST['events'] ?? null);
             publish_data($data);
             $_SESSION['notice'] = 'Афиша сохранена и опубликована.';
+        } elseif ($action === 'save_credentials') {
+            $data = update_credentials(load_json(DATA_FILE), $_POST['credentials'] ?? null);
+            publish_data($data);
+            $_SESSION['notice'] = 'Документы сохранены и опубликованы.';
+        } elseif ($action === 'save_reviews') {
+            $data = update_reviews(load_json(DATA_FILE), $_POST['reviews'] ?? null);
+            publish_data($data);
+            $_SESSION['notice'] = 'Отзывы сохранены и опубликованы.';
         } elseif ($action === 'save_blocks') {
             $data = update_custom_blocks(load_json(DATA_FILE), $_POST['blocks'] ?? null);
             publish_data($data);
@@ -169,7 +177,7 @@ $csrf = csrf_token();
     <section class="card login"><h1>Вход в админку</h1><p>Редактирование текстов, цен и фотографий.</p><form method="post" autocomplete="off"><input type="hidden" name="csrf" value="<?= h($csrf) ?>"><input type="hidden" name="action" value="login"><label>Пароль<input type="password" name="password" autocomplete="current-password" required autofocus></label><button type="submit">Войти</button></form></section>
   <?php else: ?>
     <h1>Управление сайтом</h1><p class="intro">Сохранили раздел — изменения сразу появятся на сайте. Перед публикацией проверьте тексты и цены.</p>
-    <nav class="sections" aria-label="Разделы редактора"><a href="#texts">Тексты</a><a href="#prices">Цены</a><a href="#announcements">События</a><a href="#extra">Новые блоки</a><a href="#photos">Фотографии</a><a href="#links">Ссылки</a><a href="#security">Пароль</a></nav>
+    <nav class="sections" aria-label="Разделы редактора"><a href="#texts">Тексты</a><a href="#prices">Цены</a><a href="#announcements">События</a><a href="#credentials-editor">Документы</a><a href="#reviews-editor">Отзывы</a><a href="#extra">Новые блоки</a><a href="#photos">Фотографии</a><a href="#links">Ссылки</a><a href="#security">Пароль</a></nav>
 
     <section class="card" id="texts">
       <h2>Тексты</h2><p>Редактируйте формулировки без HTML-разметки.</p>
@@ -237,6 +245,40 @@ $csrf = csrf_token();
         </form>
       <?php endforeach; ?>
       <p class="hint">Новое событие сначала сохраните, затем можно загрузить его афишу. Без фото карточка тоже будет выглядеть аккуратно.</p>
+    </section>
+
+    <section class="card" id="credentials-editor">
+      <h2>Документы и сертификаты</h2><p>Название, подпись и видимость можно менять. Для нового документа сначала сохраните карточку, затем загрузите его изображение.</p>
+      <form method="post"><input type="hidden" name="csrf" value="<?= h($csrf) ?>"><input type="hidden" name="action" value="save_credentials">
+        <?php $credentials = $data['credentials'] ?? []; $credentials[] = ['id' => '', 'title' => '', 'detail' => '', 'visible' => true]; ?>
+        <?php foreach ($credentials as $i => $item): ?>
+          <details class="item-editor" <?= $item['id'] === '' ? 'open' : '' ?>><summary><?= $item['id'] === '' ? 'Добавить документ' : h((string) $item['title']) ?></summary>
+            <input type="hidden" name="credentials[<?= $i ?>][id]" value="<?= h((string) $item['id']) ?>"><div class="fields">
+              <label>Название<input type="text" name="credentials[<?= $i ?>][title]" value="<?= h((string) $item['title']) ?>" maxlength="150"></label>
+              <label>Подпись<input type="text" name="credentials[<?= $i ?>][detail]" value="<?= h((string) $item['detail']) ?>" maxlength="300"></label>
+            </div><div class="checks"><label><input type="checkbox" name="credentials[<?= $i ?>][visible]" value="1" <?= !empty($item['visible']) ? 'checked' : '' ?>> Показывать</label><?php if ($item['id'] !== ''): ?><label><input type="checkbox" name="credentials[<?= $i ?>][delete]" value="1"> Удалить</label><label><input type="checkbox" name="credentials[<?= $i ?>][remove_image]" value="1"> Убрать фото</label><?php endif; ?></div>
+          </details>
+        <?php endforeach; ?><button type="submit">Сохранить документы</button>
+      </form>
+      <?php foreach ($data['credentials'] ?? [] as $item): ?><form class="upload-mini" method="post" enctype="multipart/form-data">
+        <?php if (!empty($item['image'])): ?><img src="../<?= h(safe_image_path((string) $item['image'])) ?>" alt="Документ"><?php endif; ?>
+        <input type="hidden" name="csrf" value="<?= h($csrf) ?>"><input type="hidden" name="action" value="upload_image"><input type="hidden" name="slot" value="credential:<?= h((string) $item['id']) ?>">
+        <label>Изображение: <?= h((string) $item['title']) ?><input type="file" name="image" accept="image/jpeg,image/png,image/webp" required></label><button type="submit">Загрузить</button>
+      </form><?php endforeach; ?>
+    </section>
+
+    <section class="card" id="reviews-editor">
+      <h2>Отзывы</h2><p>Добавляйте ссылки на публикации с отзывами. На сайте показывается краткое описание и ссылка на оригинал.</p>
+      <form method="post"><input type="hidden" name="csrf" value="<?= h($csrf) ?>"><input type="hidden" name="action" value="save_reviews">
+        <?php $reviews = $data['reviews'] ?? []; $reviews[] = ['id' => '', 'title' => '', 'description' => '', 'url' => '', 'visible' => true]; ?>
+        <?php foreach ($reviews as $i => $item): ?><details class="item-editor" <?= $item['id'] === '' ? 'open' : '' ?>><summary><?= $item['id'] === '' ? 'Добавить отзыв' : h((string) $item['title']) ?></summary>
+          <input type="hidden" name="reviews[<?= $i ?>][id]" value="<?= h((string) $item['id']) ?>"><div class="fields">
+            <label>Название<input type="text" name="reviews[<?= $i ?>][title]" value="<?= h((string) $item['title']) ?>" maxlength="150"></label>
+            <label>Ссылка на публикацию<input type="text" name="reviews[<?= $i ?>][url]" value="<?= h((string) $item['url']) ?>" maxlength="500"></label>
+            <label class="wide">Краткое описание<textarea name="reviews[<?= $i ?>][description]" maxlength="500"><?= h((string) $item['description']) ?></textarea></label>
+          </div><div class="checks"><label><input type="checkbox" name="reviews[<?= $i ?>][visible]" value="1" <?= !empty($item['visible']) ? 'checked' : '' ?>> Показывать</label><?php if ($item['id'] !== ''): ?><label><input type="checkbox" name="reviews[<?= $i ?>][delete]" value="1"> Удалить</label><?php endif; ?></div>
+        </details><?php endforeach; ?><button type="submit">Сохранить отзывы</button>
+      </form>
     </section>
 
     <section class="card" id="extra">

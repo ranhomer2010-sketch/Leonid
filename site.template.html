@@ -12,7 +12,7 @@
   <link rel="canonical" href="{{site_url}}/">
   <meta property="og:image" content="{{site_url}}/{{image_portrait_path}}">
   <link rel="preload" as="image" href="{{image_portrait_path}}">
-  <link rel="stylesheet" href="assets/site.css?v=20261103c">
+  <link rel="stylesheet" href="assets/site.css?v=20261106a">
 </head>
 <body>
   <a class="skip" href="#main">К содержанию</a>
@@ -26,6 +26,7 @@
         <div class="gallery-stage"><a class="gallery-card gallery-practices" href="#formats"><img src="{{image_practices_path}}" alt="" width="1024" height="1536" loading="lazy"><span class="gallery-label">{{nav_practices}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>
         <div class="gallery-stage"><a class="gallery-card gallery-prices" href="#prices"><img src="{{image_prices_path}}" alt="" width="1024" height="1536" loading="lazy"><span class="gallery-label">{{nav_prices}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>
         <div class="gallery-stage stage-about"><a class="gallery-card gallery-about" href="#about"><img src="{{image_portrait_path}}" alt="" width="1638" height="2048" fetchpriority="high"><span class="gallery-label">{{nav_about}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>
+        <div class="gallery-stage"><a class="gallery-card gallery-credentials" href="#credentials"><img src="{{image_practice_portrait_path}}" alt="" loading="lazy"><span class="gallery-label">{{nav_credentials}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>
         <div class="gallery-stage"><a class="gallery-card gallery-neuro" href="#neuro"><img src="{{image_neuro_path}}" alt="" width="1024" height="1536" loading="lazy"><span class="gallery-label">{{label_neuro}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>
         {{HERO_EVENT}}
         <div class="gallery-stage"><a class="gallery-card gallery-contact" href="#contact"><img src="{{image_cabinet_2_path}}" alt="" width="1536" height="1024" loading="lazy"><span class="gallery-label">{{nav_contact}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>
@@ -45,7 +46,9 @@
       <details class="price-category" id="therapy-prices"><summary><span class="price-summary-title">{{price_therapy_title}}</span><span class="price-summary-meta">{{PRICE_THERAPY_FROM}}<span class="price-expand" aria-hidden="true">＋</span></span></summary><div class="price-items">{{PRICE_THERAPY}}</div></details>
       <p class="subscription">{{subscription_text}}</p>
     </div></section>
-    <section class="section about reveal" id="about" aria-labelledby="about-title"><div class="container about-grid"><div class="about-visual"><figure class="about-photo"><img src="{{image_portrait_path}}" alt="{{image_portrait_alt}}" width="1638" height="2048" loading="lazy"></figure><div class="about-years"><strong>{{about_years_number}}</strong><span>{{about_years_label}}</span></div></div><div class="about-copy"><span class="section-index">{{label_about}}</span><h2 id="about-title">{{about_name}}</h2><p>{{about_intro}}</p><p>{{about_work}}</p><div class="about-facts"><p>{{about_record}}</p><p>{{about_festival}}</p><p>{{about_ambassador}}</p></div></div></div></section>
+    <section class="section about reveal" id="about" aria-labelledby="about-title"><div class="container about-grid"><div class="about-visual"><figure class="about-photo"><img src="{{image_portrait_path}}" alt="{{image_portrait_alt}}" loading="lazy"></figure><div class="about-years"><strong>{{about_years_number}}</strong><span>{{about_years_label}}</span></div></div><div class="about-copy"><span class="section-index">{{label_about}}</span><h2 id="about-title">{{about_name}}</h2><p>{{about_intro}}</p><p>{{about_work}}</p><div class="about-facts"><p>{{about_record}}</p><p>{{about_festival}}</p><p>{{about_ambassador}}</p></div><a class="about-more" href="{{url_info}}" target="_blank" rel="noopener noreferrer">{{about_more}} ↗</a><figure class="about-second"><img src="{{image_practice_portrait_path}}" alt="{{image_practice_portrait_alt}}" loading="lazy"></figure></div></div></section>
+    {{CREDENTIALS}}
+    {{REVIEWS}}
     <section class="section studio reveal" id="studio" aria-labelledby="studio-title"><div class="container"><div class="section-head"><span class="section-index">{{label_studio}}</span><h2 id="studio-title">{{studio_title}}</h2></div><div class="studio-grid"><figure class="studio-photo"><img src="{{image_cabinet_1_path}}" alt="{{image_cabinet_1_alt}}" width="1536" height="1024" loading="lazy"></figure><figure class="studio-photo"><img src="{{image_cabinet_2_path}}" alt="{{image_cabinet_2_alt}}" width="1536" height="1024" loading="lazy"></figure></div></div></section>
     <section class="section neuro reveal" id="neuro" aria-labelledby="neuro-title"><div class="container neuro-grid"><div><span class="section-index">{{label_neuro}}</span><h2 id="neuro-title">{{neuro_title}}</h2><p>{{neuro_intro}}</p></div><div class="neuro-panel"><p>{{neuro_step_1}}</p><p>{{neuro_step_2}}</p><p>{{neuro_step_3}}</p></div></div></section>
 {{CUSTOM_BLOCKS}}

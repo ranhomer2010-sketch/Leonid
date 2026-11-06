@@ -84,6 +84,27 @@ def extra_blocks():
                       + '<p>' + h(block["body"]) + '</p>' + button + '</div>' + image + '</div></section>')
     return "\n\n    ".join(blocks)
 
+def credentials():
+    cards = []
+    for item in data.get('credentials', []):
+        if not item['visible'] or not item['image']:
+            continue
+        path = h(safe_image(item['image']))
+        cards.append('<a class="credential-card" href="' + path + '" target="_blank" rel="noopener noreferrer"><div class="credential-image"><img src="' + path + '" alt="' + h(item['title']) + '" loading="lazy"></div><div class="credential-caption"><h3>' + h(item['title']) + '</h3><p>' + h(item['detail']) + '</p><span aria-hidden="true">↗</span></div></a>')
+    if not cards:
+        return ''
+    return '<section class="section credentials reveal" id="credentials" aria-labelledby="credentials-title"><div class="container"><div class="section-head"><span class="section-index">' + h(data['fields']['label_credentials']) + '</span><h2 id="credentials-title">' + h(data['fields']['credentials_title']) + '</h2></div><div class="credentials-grid">' + ''.join(cards) + '</div></div></section>'
+
+def reviews():
+    cards = []
+    for item in data.get('reviews', []):
+        if not item['visible']:
+            continue
+        cards.append('<a class="review-card" href="' + h(safe_url(item['url'])) + '" target="_blank" rel="noopener noreferrer"><h3>' + h(item['title']) + '</h3><p>' + h(item['description']) + '</p><span aria-hidden="true">Читать в Telegram ↗</span></a>')
+    if not cards:
+        return ''
+    return '<section class="section reviews reveal" id="reviews" aria-labelledby="reviews-title"><div class="container"><div class="section-head"><span class="section-index">' + h(data['fields']['label_reviews']) + '</span><h2 id="reviews-title">' + h(data['fields']['reviews_title']) + '</h2></div><p class="reviews-lead">' + h(data['fields']['reviews_lead']) + '</p><div class="reviews-grid">' + ''.join(cards) + '</div></div></section>'
+
 values = {"{{" + key + "}}": h(value.rstrip("/") if key == "site_url" else value) for key, value in data["fields"].items()}
 for key, image in data["images"].items():
     values["{{image_" + key + "_path}}"] = h(safe_image(image["path"]))
@@ -97,6 +118,8 @@ values["{{FEATURED_EVENTS}}"] = upcoming()
 values["{{HERO_EVENT}}"] = hero_event()
 values["{{EVENTS_NAV}}"] = '<a href="#upcoming">' + h(data["fields"]["nav_events"]) + '</a>' if values["{{FEATURED_EVENTS}}"] else ''
 values["{{CUSTOM_BLOCKS}}"] = extra_blocks()
+values["{{CREDENTIALS}}"] = credentials()
+values["{{REVIEWS}}"] = reviews()
 for key, value in values.items():
     template = template.replace(key, value)
 if re.search(r"\{\{[A-Za-z0-9_]+\}\}", template):
