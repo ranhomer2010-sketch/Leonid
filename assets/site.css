@@ -112,3 +112,23 @@ body{background:var(--paper)}:focus-visible{outline-color:#f2792f}.section-index
 .studio{background:radial-gradient(ellipse at 72% 5%,rgba(232,217,214,.42),transparent 51%),linear-gradient(150deg,#f8f6f0,#edece4)}.neuro{background:radial-gradient(ellipse at 84% 5%,rgba(255,255,255,.44),transparent 50%),linear-gradient(135deg,#e3e9dd,#d5dfd1)}.neuro p{color:#4c6049}.neuro-panel{box-shadow:0 22px 42px rgba(48,68,45,.13)}.custom-block{background:linear-gradient(150deg,#f5f2ea,#e6eade)}
 .contact{background:radial-gradient(ellipse at 85% 10%,rgba(131,156,116,.28),transparent 45%),linear-gradient(135deg,#263b2c,#354d38 65%,#273d2e)}.contact .section-index{color:#c6d7bc}.contact .button{background:#f2792f;border-color:#f2792f;color:#fff}.contact .button:hover{background:#ff9451;border-color:#ff9451}
 @media(max-width:720px){.event-image{height:210px}}
+
+/* Refined palette: warm ivory, forest green and a clear orange accent. */
+:root{--ink:#304333;--deep:#2d5033;--blue:#f2792f;--sage:#7f9279;--mint:#d5dfcd;--paper:#eeece6;--line:#d6d9cc;--muted:#626e60}
+body{background:#eeece6;color:var(--ink)}
+.section-index{color:#c7672c}
+.hero{background:radial-gradient(ellipse 52% 60% at 49% 55%,rgba(255,255,251,.93),transparent 85%),radial-gradient(ellipse 35% 42% at 1% 70%,rgba(174,198,170,.48),transparent 90%),radial-gradient(ellipse 35% 44% at 99% 34%,rgba(194,206,186,.42),transparent 88%),#eeece6}
+.hero::before{opacity:.08;filter:blur(38px) saturate(.65)}
+.hero::after{background:radial-gradient(ellipse at center,rgba(255,253,248,.35),transparent 76%)}
+.hero h1 span,.brand{color:#2d5033}.hero-lead{color:#5c6b5a}
+.gallery-stage::before{background:linear-gradient(90deg,#658164,#d0d9c9 45%,#6c8469);box-shadow:0 18px 25px rgba(39,65,43,.25),inset 0 -6px 8px rgba(29,53,34,.12)}
+.scroll-dock{background:rgba(248,246,239,.96);border-color:#d8d9cc}.dock-write,.dock-write:hover{background:#f2792f;color:#fff}.dock-write:hover{background:#dc6b26}
+.services{background:linear-gradient(145deg,#f6f4ee,#e9eee4)}
+.upcoming{background:radial-gradient(ellipse 30% 38% at 95% 12%,rgba(224,207,188,.28),transparent 90%),#eeece6}
+.event-card{background:#faf8f2;border-color:#e7e6dc;box-shadow:0 18px 40px rgba(45,64,43,.12)}
+.event-body{border-top:3px solid #ed813b}.event-meta,.event-place{color:#61745e}.event-body h3{color:#2d4a33}
+.price-list,.studio{background:#f6f4ee}.credentials{background:#eef0e8}.reviews{background:#eeece6}
+.about{background:linear-gradient(135deg,#dce7db,#d0dfd0 60%,#e5e9df)}
+.neuro{background:linear-gradient(135deg,#e7ede3,#d8e3d4)}
+.button,.button-light{background:#2d5033;border-color:#2d5033}.button:hover,.button-light:hover{background:#3f6544;border-color:#3f6544}
+.contact{background:linear-gradient(135deg,#28432d,#33553a 64%,#294530)}
