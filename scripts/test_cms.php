@@ -9,9 +9,12 @@ function expect(bool $condition, string $message): void {
 $data = load_json(DATA_FILE);
 $schema = load_json(SCHEMA_FILE);
 $html = render_site($data);
-expect(str_contains($html, 'id="upcoming"'), 'Empty events section should be visible');
+expect(str_contains($html, 'id="upcoming"'), 'Events section should be visible');
 expect(str_contains($html, 'gallery-event'), 'Events navigation should be visible');
-expect(str_contains($html, 'Сейчас нет опубликованных событий'), 'Empty events message missing');
+expect(str_contains($html, 'Декабрьское событие'), 'December event missing');
+expect(str_contains($html, 'id="credentials"'), 'Credentials section missing');
+expect(str_contains($html, 'cert-sadhu.jpg'), 'Certificate image missing');
+expect(str_contains($html, 'id="reviews"'), 'Reviews section missing');
 expect(str_contains($html, 'gallery-contact'), 'Contact navigation missing');
 expect(substr_count($html, '<details class="price-category"') === 4, 'Price groups should expand on click');
 expect(str_contains($html, 'от 1 800 ₽'), 'Starting price missing');
@@ -40,6 +43,19 @@ $hidden['visible'] = '';
 $hiddenHtml = render_site(update_featured_events($data, [$hidden]));
 expect(!str_contains($hiddenHtml, 'Выступление'), 'Hidden event leaked');
 expect(str_contains($hiddenHtml, 'id="upcoming"'), 'Events section should remain visible');
+$emptyEvents = $data;
+$emptyEvents['featured_events'] = [];
+expect(str_contains(render_site($emptyEvents), 'Сейчас нет опубликованных событий'), 'Empty events message missing');
+
+$document = ['id' => '', 'title' => '<Сертификат>', 'detail' => 'Тест', 'visible' => '1'];
+$withDocument = update_credentials($data, [$document]);
+expect(count($withDocument['credentials']) === 1, 'Document editor should add a record');
+$withDocument['credentials'][0]['image'] = 'assets/cert-sadhu.jpg';
+expect(str_contains(render_site($withDocument), '&lt;Сертификат&gt;'), 'Document title should be escaped');
+expect(!str_contains(render_site($withDocument), '<Сертификат>'), 'Document title leaked');
+$review = ['id' => '', 'title' => 'Отзыв', 'description' => 'Опыт участника', 'url' => 'https://example.org/review', 'visible' => '1'];
+$withReview = update_reviews($data, [$review]);
+expect(str_contains(render_site($withReview), 'https://example.org/review'), 'Review link missing');
 
 $block = [
     'id' => '', 'eyebrow' => 'Направление', 'title' => 'Новый формат',
