@@ -13,15 +13,15 @@
   <meta property="og:image" content="{{site_url}}/{{image_portrait_path}}">
   <link rel="preload" as="image" href="{{image_portrait_path}}">
   <link rel="preload" as="image" href="{{image_hero_background_path}}" fetchpriority="high">
-  <link rel="stylesheet" href="assets/site.css?v=20261106d">
+  <link rel="stylesheet" href="assets/site.css?v=20261106e">
 </head>
-<body>
+<body style="--site-room:url('../{{image_hero_background_path}}')">
   <a class="skip" href="#main">К содержанию</a>
   <header class="site-header"><div class="container header-inner">
     <a class="brand" href="#top" aria-label="На главную">{{brand_name}}<span class="brand-mark" aria-hidden="true"></span></a>
   </div></header>
   <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title" style="--hero-room:url('../{{image_hero_background_path}}')">
+    <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="container hero-copy"><h1 id="hero-title">{{hero_title_1}}<br><span>{{hero_title_2}}</span></h1><p class="hero-lead">{{hero_lead}}</p></div>
       <div class="hero-gallery" aria-label="Навигация по сайту"><div class="gallery-track">
         <div class="gallery-stage"><a class="gallery-card gallery-practices" href="#formats"><img src="{{image_practices_path}}" alt="" width="1024" height="1536" loading="lazy"><span class="gallery-label">{{nav_practices}}</span><span class="gallery-arrow" aria-hidden="true">↗</span></a></div>
