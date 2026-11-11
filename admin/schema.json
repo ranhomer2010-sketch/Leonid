@@ -318,6 +318,11 @@
         "key": "footer_top",
         "label": "Ссылка наверх",
         "type": "text"
+      },
+      {
+        "key": "nav_course",
+        "label": "Карточка навигации: курс",
+        "type": "text"
       }
     ],
     "Документы и отзывы": [
@@ -356,6 +361,63 @@
         "label": "Ссылка о подходе",
         "type": "text"
       }
+    ],
+    "Курс обучения": [
+      {
+        "key": "label_course",
+        "label": "Подпись над заголовком",
+        "type": "text"
+      },
+      {
+        "key": "course_title",
+        "label": "Заголовок курса",
+        "type": "text"
+      },
+      {
+        "key": "course_lead",
+        "label": "Краткое описание",
+        "type": "textarea"
+      },
+      {
+        "key": "course_detail",
+        "label": "Что входит",
+        "type": "textarea"
+      },
+      {
+        "key": "course_dates_label",
+        "label": "Подпись к датам",
+        "type": "text"
+      },
+      {
+        "key": "course_dates",
+        "label": "Даты и время",
+        "type": "text"
+      },
+      {
+        "key": "course_place_label",
+        "label": "Подпись к месту",
+        "type": "text"
+      },
+      {
+        "key": "course_place",
+        "label": "Место проведения",
+        "type": "text"
+      },
+      {
+        "key": "course_price",
+        "label": "Цена всего курса",
+        "type": "text"
+      },
+      {
+        "key": "course_price_note",
+        "label": "Цена одного занятия",
+        "type": "text"
+      },
+      {
+        "key": "course_cta",
+        "label": "Текст кнопки",
+        "type": "text"
+      }
     ]
   },
   "images": {
@@ -367,7 +429,8 @@
     "prices": "Навигация: цены (массаж)",
     "neuro": "Навигация: состояние и замеры",
     "events": "Навигация: ближайшие события",
-    "practice_portrait": "О Леониде: фото на практике"
+    "practice_portrait": "О Леониде: фото на практике",
+    "course": "Курс: фото в блоке и навигации"
   },
   "price_groups": {
     "massage": "Массаж",
@@ -379,6 +442,7 @@
     "telegram": "Личный Telegram для записи",
     "channel": "Канал с анонсами",
     "vk": "Страница ВКонтакте",
-    "info": "Публикация об опыте и подходе"
+    "info": "Публикация об опыте и подходе",
+    "course": "Страница курса и записи"
   }
 }

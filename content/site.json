@@ -66,7 +66,19 @@
     "nav_credentials": "Документы",
     "label_credentials": "Документы",
     "label_reviews": "Отзывы",
-    "about_more": "Подробнее о подходе"
+    "about_more": "Подробнее о подходе",
+    "nav_course": "Курс обучения",
+    "label_course": "Обучение",
+    "course_title": "Практика гвоздестояния",
+    "course_lead": "Четыре очные встречи с Леонидом Агафоновым: от знакомства с досками Садху до самостоятельной личной практики.",
+    "course_detail": "Безопасность, работа с вниманием и сопровождение в группе. После курса — материалы и закрытый чат участников.",
+    "course_dates_label": "Когда",
+    "course_dates": "15, 22, 29 ноября и 6 декабря · 19:00–21:00",
+    "course_place_label": "Где",
+    "course_place": "Центр йоги «Сфера», Санкт-Петербург",
+    "course_price": "8 000 ₽",
+    "course_price_note": "весь курс · одно занятие — 2 500 ₽",
+    "course_cta": "Программа и запись"
   },
   "images": {
     "hero_background": {
@@ -104,6 +116,10 @@
     "practice_portrait": {
       "path": "assets/leonid-practice-studio.webp",
       "alt": "Леонид Агафонов во время телесной практики"
+    },
+    "course": {
+      "path": "assets/course-sadhu.webp",
+      "alt": "Иллюстрация: участница осваивает практику на досках Садху с сопровождением мастера"
     }
   },
   "prices": {
@@ -208,6 +224,17 @@
   },
   "featured_events": [
     {
+      "id": "course-sfera-2026",
+      "title": "Освоение практики гвоздестояния",
+      "category": "Курс",
+      "date": "15 ноября — 6 декабря · 19:00–21:00",
+      "place": "Центр йоги «Сфера»",
+      "description": "Четыре очные встречи с Леонидом Агафоновым.",
+      "url": "https://edu.yogasfera.ru/mastering-the-practice-of-nails",
+      "image": "assets/course-sadhu.webp",
+      "visible": true
+    },
+    {
       "id": "event-yoga-26",
       "title": "Гвоздехождение для посетителей клуба",
       "category": "Практика",
@@ -246,7 +273,8 @@
     "telegram": "https://t.me/Leoni_aga33",
     "channel": "https://t.me/gvozdisadhu_leon33aga",
     "vk": "https://vk.com/leonid_agafonov_33",
-    "info": "https://t.me/leon_pro_gvozdi/12"
+    "info": "https://t.me/leon_pro_gvozdi/12",
+    "course": "https://edu.yogasfera.ru/mastering-the-practice-of-nails"
   },
   "credentials": [
     {
