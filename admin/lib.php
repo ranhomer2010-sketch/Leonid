@@ -314,7 +314,7 @@ function update_fields(array $data, array $schema, mixed $posted): array {
         foreach ($group as $field) {
             $key = $field['key'];
             $data['fields'][$key] = $field['type'] === 'checkbox'
-                ? (isset($posted[$key]) ? '1' : '0')
+                ? (($posted[$key] ?? null) === '1' ? '1' : '0')
                 : plain_text($posted[$key] ?? null, $field['type'] === 'textarea' ? 3000 : 500);
             if ($key === 'site_url') {
                 $data['fields'][$key] = rtrim(safe_external_url($data['fields'][$key]), '/');
