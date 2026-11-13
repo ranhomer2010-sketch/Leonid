@@ -255,11 +255,6 @@
         "type": "text"
       },
       {
-        "key": "nav_contact",
-        "label": "Меню: контакты",
-        "type": "text"
-      },
-      {
         "key": "nav_events",
         "label": "Меню: события",
         "type": "text"

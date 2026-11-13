@@ -15,7 +15,7 @@ expect(str_contains($html, 'Декабрьское событие'), 'December e
 expect(str_contains($html, 'id="credentials"'), 'Credentials section missing');
 expect(str_contains($html, 'cert-sadhu.jpg'), 'Certificate image missing');
 expect(str_contains($html, 'id="reviews"'), 'Reviews section missing');
-expect(str_contains($html, 'gallery-contact'), 'Contact navigation missing');
+expect(!str_contains($html, 'gallery-contact'), 'Contact navigation should be removed');
 expect(substr_count($html, '<details class="price-category"') === 4, 'Price groups should expand on click');
 expect(str_contains($html, 'от 1 800 ₽'), 'Starting price missing');
 expect(!str_contains($html, 'id="studio"'), 'Hidden massage room should not appear');
