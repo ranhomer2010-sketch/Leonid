@@ -78,7 +78,8 @@
     "course_place": "Центр йоги «Сфера», Санкт-Петербург",
     "course_price": "8 000 ₽",
     "course_price_note": "весь курс · одно занятие — 2 500 ₽",
-    "course_cta": "Программа и запись"
+    "course_cta": "Программа и запись",
+    "studio_visible": "0"
   },
   "images": {
     "hero_background": {
@@ -120,6 +121,14 @@
     "course": {
       "path": "assets/course-sadhu.webp",
       "alt": "Иллюстрация: участница осваивает практику на досках Садху с сопровождением мастера"
+    },
+    "about_nav": {
+      "path": "assets/leonid-portrait.jpg",
+      "alt": "Портрет Леонида Агафонова на чёрном фоне"
+    },
+    "course_feature": {
+      "path": "assets/course-group.webp",
+      "alt": "Иллюстрация: групповая практика гвоздестояния в светлой студии"
     }
   },
   "prices": {
@@ -231,7 +240,7 @@
       "place": "Центр йоги «Сфера»",
       "description": "Четыре очные встречи с Леонидом Агафоновым.",
       "url": "https://edu.yogasfera.ru/mastering-the-practice-of-nails",
-      "image": "assets/course-sadhu.webp",
+      "image": "assets/event-sadhu-still-life.webp",
       "visible": true
     },
     {

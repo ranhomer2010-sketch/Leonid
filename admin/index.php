@@ -187,6 +187,7 @@ $csrf = csrf_token();
             <?php foreach ($fields as $field): $key = $field['key']; $value = (string) ($data['fields'][$key] ?? ''); ?>
               <label class="<?= $field['type'] === 'textarea' ? 'wide' : '' ?>"><?= h((string) $field['label']) ?>
                 <?php if ($field['type'] === 'textarea'): ?><textarea name="fields[<?= h($key) ?>]" maxlength="1500"><?= h($value) ?></textarea>
+                <?php elseif ($field['type'] === 'checkbox'): ?><input type="checkbox" name="fields[<?= h($key) ?>]" value="1" <?= $value === '1' ? 'checked' : '' ?>>
                 <?php else: ?><input type="text" name="fields[<?= h($key) ?>]" value="<?= h($value) ?>" maxlength="250"><?php endif; ?>
               </label>
             <?php endforeach; ?>

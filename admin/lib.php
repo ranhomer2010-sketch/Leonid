@@ -5,6 +5,7 @@ const SITE_ROOT = __DIR__ . '/..';
 const DATA_FILE = SITE_ROOT . '/content/site.json';
 const SCHEMA_FILE = __DIR__ . '/schema.json';
 const TEMPLATE_FILE = SITE_ROOT . '/site.template.html';
+const STUDIO_FILE = SITE_ROOT . '/partials/studio.html';
 const OUTPUT_FILE = SITE_ROOT . '/index.html';
 const PRIVATE_DIR = __DIR__ . '/private';
 const AUTH_FILE = PRIVATE_DIR . '/auth.php';
@@ -172,7 +173,7 @@ function hero_event_html(array $data): string {
         $url = safe_external_url((string) ($event['url'] ?? ''));
         $href = $url === '' ? '#upcoming' : h($url);
         $external = $url === '' ? '' : ' target="_blank" rel="noopener noreferrer"';
-        $imagePath = empty($event['image']) ? (string) $data['images']['events']['path'] : (string) $event['image'];
+        $imagePath = (string) $data['images']['events']['path'];
         $image = '<img src="' . h(safe_image_path($imagePath)) . '" alt="" loading="lazy">';
         return '<div class="gallery-stage"><a class="gallery-card gallery-event" href="' . $href . '"' . $external . '>' . $image
             . '<span class="gallery-label">' . h((string) $data['fields']['nav_events']) . '</span>'
@@ -264,6 +265,9 @@ function render_site(array $data): string {
     $replacements['{{CUSTOM_BLOCKS}}'] = custom_blocks_html($data);
     $replacements['{{CREDENTIALS}}'] = credentials_html($data);
     $replacements['{{REVIEWS}}'] = reviews_html($data);
+    $studio = ($data['fields']['studio_visible'] ?? '0') === '1' ? @file_get_contents(STUDIO_FILE) : '';
+    if (!is_string($studio)) throw new RuntimeException('Не найден шаблон кабинета.');
+    $replacements['{{STUDIO}}'] = strtr($studio, $replacements);
     $result = strtr($template, $replacements);
     if (preg_match('/\{\{[A-Za-z0-9_]+\}\}/', $result)) {
         throw new RuntimeException('В шаблоне остались незаполненные поля.');
@@ -309,7 +313,9 @@ function update_fields(array $data, array $schema, mixed $posted): array {
     foreach ($schema['groups'] as $group) {
         foreach ($group as $field) {
             $key = $field['key'];
-            $data['fields'][$key] = plain_text($posted[$key] ?? null, $field['type'] === 'textarea' ? 3000 : 500);
+            $data['fields'][$key] = $field['type'] === 'checkbox'
+                ? (isset($posted[$key]) ? '1' : '0')
+                : plain_text($posted[$key] ?? null, $field['type'] === 'textarea' ? 3000 : 500);
             if ($key === 'site_url') {
                 $data['fields'][$key] = rtrim(safe_external_url($data['fields'][$key]), '/');
                 if ($data['fields'][$key] === '') throw new RuntimeException('Укажите адрес сайта с https://.');

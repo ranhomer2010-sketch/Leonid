@@ -63,7 +63,7 @@ def hero_event():
         url = safe_url(event["url"])
         href = h(url) if url else '#upcoming'
         external = ' target="_blank" rel="noopener noreferrer"' if url else ''
-        image_path = event["image"] if event["image"] else data['images']['events']['path']
+        image_path = data['images']['events']['path']
         image = '<img src="' + h(safe_image(image_path)) + '" alt="" loading="lazy">'
         return ('<div class="gallery-stage"><a class="gallery-card gallery-event" href="' + href + '"' + external + '>' + image
                 + '<span class="gallery-label">' + h(data["fields"]["nav_events"]) + '</span>'
@@ -120,6 +120,10 @@ values["{{EVENTS_NAV}}"] = '<a href="#upcoming">' + h(data["fields"]["nav_events
 values["{{CUSTOM_BLOCKS}}"] = extra_blocks()
 values["{{CREDENTIALS}}"] = credentials()
 values["{{REVIEWS}}"] = reviews()
+studio = (ROOT / "partials/studio.html").read_text() if data["fields"].get("studio_visible") == "1" else ""
+for key, value in values.items():
+    studio = studio.replace(key, value)
+values["{{STUDIO}}"] = studio
 for key, value in values.items():
     template = template.replace(key, value)
 if re.search(r"\{\{[A-Za-z0-9_]+\}\}", template):

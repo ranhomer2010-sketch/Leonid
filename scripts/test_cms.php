@@ -18,7 +18,10 @@ expect(str_contains($html, 'id="reviews"'), 'Reviews section missing');
 expect(str_contains($html, 'gallery-contact'), 'Contact navigation missing');
 expect(substr_count($html, '<details class="price-category"') === 4, 'Price groups should expand on click');
 expect(str_contains($html, 'от 1 800 ₽'), 'Starting price missing');
-expect(str_contains($html, 'Пространство для массажа'), 'Massage room title missing');
+expect(!str_contains($html, 'id="studio"'), 'Hidden massage room should not appear');
+$withStudio = $data;
+$withStudio['fields']['studio_visible'] = '1';
+expect(str_contains(render_site($withStudio), 'id="studio"'), 'Massage room should be restorable');
 expect(str_contains($html, 'class="about-photo"'), 'Leonid portrait missing from biography');
 expect(!str_contains($html, '{{'), 'Unrendered placeholders');
 
